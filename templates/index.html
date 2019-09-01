@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'Homestyle.css' %}"/>
+{% endblock styles %}
+
+{% block content %}
+<div id="header">
+    <div id="text_header">
+        پنجمین دوره ی مسابقات دانشجویی مکانیک سیالات
+    </div>
+</div>
+
+<div class="ui fixed inverted menu" id="fixed_menu">
+    <div class="right menu primary">
+
+        <!-- <a href="#" class="item" id="item1">
+            Login
+        </a> -->
+
+        <a href="#" class="item" id="item2">
+            ثبت نام
+        </a>
+        
+        <a href="#content" class="item" id="item3">
+                <i class="home icon"></i>
+        </a>
+
+    </div>
+</div>
+
+<div id="content">
+
+    <div id="right_menu">
+
+        <div class="ui vertical menu" id="side_menu">
+
+            <a class="item" id="a1">
+                <i class="tasks icon" id="i0"></i> برنامه ی مسابقات
+            </a>
+
+            <a class="item" id="a2">
+                <i class="home icon" id="i1"></i> صفحه ی اصلی
+            </a>
+
+            <a class="item" id="a3">
+                <i class="check icon" id="i2"></i> اهداف
+            </a>
+
+            <a class="item" id="a4">
+                <i class="history icon" id="i3"></i> تاریخچه
+            </a>
+
+            <a class="item" id="a5">
+                <i class="file alternate outline icon" id="i4"></i> آیین نامه
+            </a>
+
+            <a class="item" id="a6">
+                <i class="users icon" id="i5"></i> اعضای هیئت امنا
+            </a>
+
+            <a class="item" id="a7">
+                <i class="trophy icon" id="i6"></i> محور های مسابقات 
+            </a>
+
+            <a class="item" id="a8">
+                <i class="dollar sign icon" id="i7"></i> حامیان
+            </a>
+
+            <a class="item" id="a9">
+                <i class="flag icon" id="i8"></i> کمیته های مسابقات
+            </a>
+
+            <a class="item" id="a10">
+                <i class="balance scale icon" id="i9"></i> قوانین داوری
+            </a>
+
+            <a class="item" id="a11">
+                <i class="paint brush icon" id="i10"></i> مسابقه ی طراحی لوگو
+            </a>
+
+            <a class="item" id="a12">
+                <i class="pencil alternate icon" id="i11"></i> ثبت نام اولیه
+            </a>
+            
+            <a class="item" id="a13">
+                <i class="id badge icon" id="i12"></i> ثبت نام نهایی
+            </a>
+
+            <a class="item" id="a14">
+                <i class="gift icon" id="i13"></i> جوایز مسابقات
+            </a>
+
+            <a class="item" id="a15">
+                <i class="calendar alternate icon" id="i14"></i> تقویم مسابقات
+            </a>
+
+            <a class="item" id="a16">
+                <i class="map marker alternate icon" id="i15"></i> نقشه ی دانشگاه
+            </a>
+
+            <a class="item" id="a17">
+                <i class="map icon" id="i16"></i> نقشه ی محل اسکان
+            </a>
+
+            <a class="item" id="a18">
+                <i class="image icon" id="i17"></i> گالری عکس
+            </a>
+
+            <a class="item" id="a19">
+                <i class="phone icon" id="i18"></i> تماس با ما
+            </a>
+
+            
+
+        </div>
+
+
+    </div>
+
+    <div id="main_content">
+        <div class="ui tag label" id="tag2">محور های مسابقات</div>
+        <a class="ui tag label" id="tag1">صفحه ی اصلی</a>
+        <div class="ui horizontal divider" id="h_divider">
+            <a class="item" id="c_divider">
+                <i class="trophy icon" id="i19"></i> محور های مسابقات 
+            </a>
+        </div>
+        
+        <div id="text_content">
+                <i class="hand point down icon"></i> محورهای مسابقه  به صورت زیر می باشند
+            <br>
+                <br>
+                
+                <span class="span_first">
+                    : &nbsp &nbsp<i class="flask icon" id="i20"></i>&nbsp آزمایشگاه مجازی</span>
+                    <br>
+                    
+                    <span class="span_second">
+                        این بخش شامل برنامه‌نویسی و شبیه سازی فرآیند یک پدیده‌ی سیالاتی است که از بین موضوعات که در  
+                        بخش مربوطه اعلام می شود انتخاب می گردد. تیم‌های شركت‌كننده باید باتوجه به موضوعات اعلام شده در سایت 
+                        مسابقات نسبت به تهیه برنامه کامپیوتری آزمایش اقدام و قبل از اتمام مهلت مقرر، فایل‌های مربوطه را به 
+                        دبیرخانه مسابقات ارسال كنند. پس از اعلام نتایج اولیه، تیم‌ها باید در صبح روز اول مسابقات نسبت به 
+                        تغییرات اعلام شده توسط مسولین مسابقات در برنامه اقدام و نسخه‌ی نهایی را تا عصر همان روز تحویل دهند.
+                        در این بخش هر تیم شركت‌كننده می‌تواند حداقل از ۲نفر و حداكثر از 3  نفر  تشكیل گردد. 
+                        در این بخش تیم‌ها باید یك نفر از اعضای هیات علمی را به عنوان مشاور علمی معرفی كنند 
+                    </span>
+                <br>
+                <br>
+
+                
+                <div class="ui section divider"></div>
+                <span class="span_first">
+                    : &nbsp &nbsp<i class="video icon" id="i21"></i>&nbsp نماهنگ</span>
+                    <br>
+
+                    <span class="span_second">
+                        در این بخش هر تیم یک یا حداکثر سه نماهنگ (كلیپ) در رابطه با پدیده های مكانیك سیالات تهیه می کند
+                    </span>
+                </span>
+                <br>
+                <br>
+
+                <div class="ui section divider"></div>
+                <span class="span_first">
+                    : &nbsp &nbsp<i class="cogs icon" id="i22"></i>&nbsp پروژه ی علمی</span>
+                    <br>
+
+                    <span class="span_second">
+                        شرکت‌کنندگان در این قسمت پس از ساخت یک یا 
+                        دو دستگاهی که مشخصات آن در بخش مربوط به پروژه های عملی اعلام شده است با حضور در مکان
+                        مسابقه نسبت به معرفی طرح  ساخت و عملکرد دستگاه اقدام می نمایند. در این بخش هر
+                        تیم شركت‌كننده می‌تواند حداقل از ۲ نفر و حداكثر از 4  نفر (بجز مشاور علمی)  تشكیل گردد.
+                        در این بخش تیم‌ها  باید یك نفر از اعضای هیات علمی را به عنوان مشاور علمی معرفی كنند
+                    </span>
+                </span>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+        </div>
+
+    </div>
+
+
+    
+
+</div>
+
+
+<div id="footer">
+</div>
+
+{% endblock content %}
