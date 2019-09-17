@@ -9,3 +9,15 @@ def index_view(request):
 
 def regulations_view(request):
     return render(request, "regulations.html", {})
+
+def clipart_view(request):
+    return render(request, "clipart.html", {})
+
+def project_view(request):
+    return render(request, "project.html", {})
+
+def idea_show_view(request):
+    return render(request, "idea_show.html", {})
+
+def virtual_lab_view(request):
+    return render(request, "virtual_lab.html", {})
