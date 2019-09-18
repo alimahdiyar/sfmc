@@ -25,7 +25,7 @@ SECRET_KEY = '*=*^9w0ex6ha5*6a$l90eri24!z_x4%9)3@)1hapf+88@^bslc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sfmc.ir', '157.119.190.194']
+ALLOWED_HOSTS = ['sfmc.ir', '157.119.190.194' , '127.0.0.1']
 
 
 # Application definition

@@ -29,12 +29,12 @@
 
         <div class="ui right sidebar inverted vertical menu">
 
-            <a class="item" id="a1_m">
-                <i class="tasks icon" id="i0_m"></i> برنامه ی مسابقات
-            </a>
-
-            <a class="item" id="a2_m">
+            <a class="item" href="{% url 'index' %}" id="a1_m">
                 <i class="home icon" id="i1_m"></i> صفحه ی اصلی
+            </a>
+            
+            <a class="item" id="a2_m">
+                <i class="tasks icon" id="i0_m"></i> برنامه ی مسابقات
             </a>
 
             <!-- <a class="item" id="a3_m">
@@ -70,9 +70,9 @@
                   </div>
             
 
-            <a class="item" id="a5_m">
+            <!-- <a class="item" id="a5_m">
                 <i class="file alternate outline icon" id="i4_m"></i> آیین نامه
-            </a>
+            </a> -->
 
             <!-- <a class="item" id="a8_m">
                 <i class="dollar sign icon" id="i7_m"></i> حامیان
@@ -82,9 +82,9 @@
                 <i class="flag icon" id="i8_m"></i> کمیته های مسابقات<i class="angle left icon" id="i8_m_corner"></i>
             </a> -->
 
-            <a class="item" id="a10_m">
+            <!-- <a class="item" id="a10_m">
                 <i class="balance scale icon" id="i9_m"></i> قوانین داوری<i class="angle left icon" id="i9_m_corner"></i>
-            </a>
+            </a> -->
 
             <!-- <a class="item" id="a11_m">
                 <i class="paint brush icon" id="i10_m"></i> مسابقه ی طراحی لوگو
@@ -199,9 +199,8 @@
 
                     <h2 id="h_location"><i class="check circle icon"></i> &nbsp&nbspبرگزار کننده</h2>
 
-                    <img class="ui centered medium image" id="location_img" src="{% static 'shiraz_uni.jpg' %}">
-
-                    <br>
+                    <img class="ui centered medium image" id="location_img" src="{% static 'shiraz.png' %}">
+                    <h5 style="width: 200px; margin: 15px auto">بخش مهندسی راه، ساختمان و محیط زیست</h5>
                     <div class="ui divider"></div>
 
                     <div id="address">
@@ -211,13 +210,13 @@
                         <br>
                         
                         <div id="address_span">
-                            شیراز – خیابان قصرالدشت – نبش خیابان قم آباد - جنب دانشکده دندانپزشکی
+                            شیراز – خیابان زند - دانشکده مهندسی ۱ - طبقه ۳
                         </div>
     
                         <div id="link_location">
-                            <a href="https://goo.gl/maps/yWc8WYSuiQcKKmMRA" target="blank">
+                            <a href="https://goo.gl/maps/b3bdVHnMxKLZ749i6" target="blank">
                                 <div class="image">
-                                    <img id="location_shiraz" src="{% static 'location3.jpg' %}">
+                                    <img id="location_shiraz" src="{% static 'location3.png' %}">
                                 </div>
                             </a>
                         </div>
@@ -328,9 +327,9 @@
 
                     <h2 id="h_location2"><i class="check circle icon"></i> &nbsp&nbspبرگزار کننده</h2>
 
-                    <img class="ui centered medium image" id="location_img2" src="{% static 'shiraz_uni.jpg' %}">
-
-                    <br>
+                    <img class="ui centered medium image" id="location_img2" src="{% static 'shiraz.png' %}">
+                    <h5 style="width: 200px; margin: 15px auto">بخش مهندسی راه، ساختمان و محیط زیست</h5>
+                    
                     <div class="ui divider"></div>
 
                     <div id="address2">
@@ -340,17 +339,18 @@
                         <br>
                         
                         <div id="address_span2">
-                            شیراز – خیابان قصرالدشت – نبش خیابان قم آباد - جنب دانشکده دندانپزشکی
+                            شیراز – خیابان زند - دانشکده مهندسی ۱ - طبقه ۳
                         </div>
     
                         <div id="link_location2">
-                            <a href="https://goo.gl/maps/yWc8WYSuiQcKKmMRA" target="blank">
+                            <a href="https://goo.gl/maps/b3bdVHnMxKLZ749i6" target="blank">
                                 <div class="image">
-                                    <img id="location_shiraz2" src="{% static 'location3.jpg' %}">
+                                    <img id="location_shiraz2" src="{% static 'location3.png' %}">
                                 </div>
                             </a>
                         </div>
     
+        
                     </div>
     
                 </div>
@@ -366,12 +366,12 @@
 
                 <div class="ui vertical menu" id="side_menu">
 
-                    <a class="item" id="a1">
-                        <i class="tasks icon" id="i0"></i> برنامه ی مسابقات
+                    <a class="item" href="{% url 'index' %}" id="a1">
+                        <i class="home icon" id="i1"></i> صفحه ی اصلی
                     </a>
 
                     <a class="item" id="a2">
-                        <i class="home icon" id="i1"></i> صفحه ی اصلی
+                        <i class="tasks icon" id="i0"></i> برنامه ی مسابقات
                     </a>
 
                     <!-- <a class="item" id="a3">
@@ -396,9 +396,9 @@
         </div>
       </div>
 
-                    <a class="item" id="a5">
+                    <!-- <a class="item" id="a5">
                         <i class="file alternate outline icon" id="i4"></i> آیین نامه
-                    </a>
+                    </a> -->
 
                     <!-- <a class="item" id="a8">
                         <i class="dollar sign icon" id="i7"></i> حامیان
@@ -408,9 +408,9 @@
                         <i class="flag icon" id="i8"></i> کمیته های مسابقات<i class="angle left icon" id="i8_corner"></i>
                     </a> -->
 
-                    <a class="item" id="a10">
+                    <!-- <a class="item" id="a10">
                         <i class="balance scale icon" id="i9"></i> قوانین داوری<i class="angle left icon" id="i9_corner"></i>
-                    </a>
+                    </a> -->
 
                     <!-- <a class="item" id="a11">
                         <i class="paint brush icon" id="i10"></i> مسابقه ی طراحی لوگو
@@ -464,6 +464,48 @@
 
 
 
+        <div class="ui piled segment" id="middle_content">
+
+                <h2 id="header_middle_content">
+                    
+                    <i class="history icon"></i>
+                    &nbsp
+                    دوره های مختلف مسابقات
+    
+                </h2>
+    
+                <div id="content_middle_content">
+    
+                    <div class="competitions">
+    
+                        <a href="http://sfmc2015.iut.ac.ir/web/guest/home"><img class="ui centered image" src="{% static 'comp1.jpg' %}"></a>
+    
+                    </div>
+    
+                    <div class="competitions">
+    
+                        <a href="http://2sfmc.ui.ac.ir:81/fa/"><img class="ui centered image" src="{% static 'comp2.jpg' %}"></a>
+    
+                    </div>
+    
+                    <div class="competitions">
+    
+                        <a href="http://3sfmc.uk.ac.ir/fa/"><img class="ui centered image" src="{% static 'comp3.jpg' %}"></a>
+    
+                    </div>
+    
+                    <div class="competitions">
+    
+                        <a href="http://4sfmc.iut.ac.ir/fa/"><img class="ui centered image" src="{% static 'comp4.jpg' %}"></a>
+    
+                    </div>
+    
+                </div>
+    
+            </div>
+    
+    
+    
 
 
 
@@ -496,7 +538,7 @@
 
                 <div class="member">
 
-                    <img class="ui centered image" src="{% static '1.jpg' %}">
+                    <img class="ui centered image" src="{% static 'omana1.jpg' %}">
                     <i class="user icon"></i>
                     دکتر محمد رضا چمنی
                     <br>
@@ -531,21 +573,21 @@
 
                 <div class="member">
 
-                    <img class="ui centered image" src="{% static '2.jpg' %}">
+                    <img class="ui centered image" src="{% static 'omana2.jpg' %}">
                     <i class="user icon"></i>
                     دكتر احمد شانه ساز زاده
                     <br>
                     <span>
-                        دانشگاه صنعتی اصفهان
+                        دانشگاه اصفهان
                         <br>
-                        دانشکده مهندسی عمران
+                        دانشکده مهندسی عمران و حمل و نقل
                     </span>
 
                 </div>
 
                 <div class="member">
 
-                    <img class="ui centered image" src="{% static '3.jpg' %}">
+                    <img class="ui centered image" src="{% static 'omana3.jpg' %}">
                     <i class="user icon"></i>
                     دكتر علی محبی
                     <br>
@@ -559,21 +601,21 @@
 
                 <div class="member">
 
-                    <img class="ui centered image" src="{% static '4.jpg' %}">
+                    <img class="ui centered image" src="{% static 'omana4.jpg' %}">
                     <i class="user icon"></i>
                     دكتر محمد جواد عابدینی
                     <br>
                     <span>
                         دانشگاه شیراز
                         <br>
-                        دانشکده مهندسی راه و ساختمان
+                        بخش مهندسی راه، ساختمان و محیط زیست
                     </span>
 
                 </div>
 
                 <div class="member">
 
-                    <img class="ui centered image" src="{% static '5.jpg' %}">
+                    <img class="ui centered image" src="{% static 'omana5.jpg' %}">
                     <i class="user icon"></i>
                     دكتر وحید نورانی
                     <br>
@@ -587,12 +629,12 @@
 
                 <div class="member">
 
-                    <img class="ui centered image" src="{% static '6.jpg' %}">
+                    <img class="ui centered image" src="{% static 'omana6.jpg' %}">
                     <i class="user icon"></i>
                     دكتر سعیدی دهاقانی
                     <br>
                     <span>
-                        دانشگاه تریت مدرس
+                        دانشگاه تربیت مدرس
                         <br>
                         دانشکده مهندسی شیمی
                     </span>
@@ -608,9 +650,73 @@
                     <span>
                         دانشگاه اصفهان
                         <br>
-                        دانشکده مهندسی عمران
+                        دانشکده مهندسی عمران و حمل و نقل
                     </span>
 
+                </div>
+
+                <div class="member">
+
+                    <img class="ui centered image" style="height: 180px; object-fit: cover;" src="{% static 'omana8.jpg' %}">
+                    <i class="user icon"></i>
+                    دکتر کامران عاصمی
+                    <br>
+                    <span>
+                        دانشگاه آزاد اسلامی واحد تهران شمال
+                        <br>
+                        گروه مهندسی مکانیک
+                    </span>
+
+                </div>
+                
+                <div class="member">
+
+                    <img class="ui centered image" src="{% static 'omana10.jpg' %}">
+                    <i class="user icon"></i>
+                    دکتر سید محراب امیری
+                    <br>
+                    <span>
+                        دانشگاه شیراز
+                        <br>
+                        بخش مهندسی راه، ساختمان و محیط زیست
+                    </span>
+
+                </div>
+                
+                <div class="member">
+
+                    <img class="ui centered image" src="{% static 'omana9.jpg' %}">
+                    <i class="user icon"></i>
+                    دکتر محمد فغفور مغربی
+                    <br>
+                    <span>
+                        دانشگاه فردوسی مشهد
+                        <br>
+                        گروه مهندسی عمران
+                    </span>
+
+                </div>
+
+                
+                <div class="member">
+
+                        <img class="ui centered image" src="">
+                        <i class="user icon"></i>
+                        دکتر رویا شادمانی
+                        <br>
+                        <span>
+                            دانشگاه آزاد اسلامی واحد تهران شمال
+                            <br>
+                            گروه مهندسی مکانیک
+                        </span>
+    
+                    </div>
+
+                <div class="member">
+
+                    <img class="ui centered image" src="{% static 'omana11.jpg' %}">
+                    <i class="user icon"></i>
+                    مهندس سید حامد حسینی
                 </div>
 
             </div>
