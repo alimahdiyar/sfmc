@@ -1,7 +1,254 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block styles %}
+<style>
+
+    .format
+    {
+        font-family:Yekan;
+        text-align:center;
+    }
+
+    .section_format
+    {
+        width:100%;
+        height:auto;
+        text-align:justify;
+        direction:rtl;
+    }
+
+    .header_section
+    {
+        width:100%;
+        direction:rtl;
+        font-family:Yekan;
+        font-size:20px;
+        font-weight:700;
+    }
+
+    .content_section
+    {
+        width:100%;
+        direction:rtl;
+        font-family:Yekan;
+        font-size:17px;
+        font-weight:500;
+        padding-right:10px;
+        padding-left:10px;
+    }
+
+    .header_more_info
+    {
+        width:100%;
+        text-align:center;
+        direction:rtl;
+        font-family:Yekan;
+        font-size:20px;
+        font-weight:700;
+        margin-bottom:30px;
+    }
+
+    .content_more_info
+    {
+        width:100%;
+        height:auto;
+        text-align:justify;
+        direction:rtl;
+    }
+
+    .icon_more_info
+    {
+        font-size:8px !important;
+        position:relative;
+        left:4px;
+        color:rgb(80, 128, 167);
+    }
+
+    .text_content_more_info
+    {
+        width:100%;
+        direction:rtl;
+        text-align:justify;
+        margin-bottom:20px;
+    }
+
+
+</style>
+{% endblock styles %}
+
 {% block content %}
+
+
+<h2 id="header_main_content_second2">
+
+    <i class="lightbulb outline icon" style="color:rgb(255, 153, 0) !important;" id="goal_icon_header2"></i>&nbsp ایده شو
+    
+</h2>
+
+<div class="text_main_content">
+    ایده‌شو رویداد جالب کارآفرینی است. در این رویداد به افراد این 
+    امکان داده میشود تا در محیطی دوستانه به بیان ایده‌های نوآورانه بپردازند و ضمن تقویت 
+    مهارت‌های ایده‌پردازی و بیان ایده، ایده‌های خود را اصلاح کرده و پرورش دهند. این محور 
+    برای اولین بار در این دوره از مسابقات مطرح شده است. شرکت‌کنندگان باید پس از ثبت‌ نام 
+    اولیه در این بخش از مسابقات، ایده خود را که در زمینه راهحل کاربردی برای حل مسائل 
+    مطرح شده است، پرورش دهند و نتایج آن  را مطابق فرمت زیر به سایت مسابقات ارسال کنند. 
+    داوران بخش ایده‌شو پس از بررسی ایده‌های ارسال شده، ایده‌های برتر را انتخاب می کنند. 
+    صاحبان این ایده‌ها پس از ثبت‌نام نهایی، باید ایده خود را در مدت زمان سه دقیقه در روز 
+    مسابقات در مقابل جمعیت بیان کنند. در پایان، ایده‌های برتر توسط داوران شناسایی شده و 
+    ضمن اهدای جوایز به صاحبان ایده تلاش می شود این ایده‌ها به سمت کسب و کار هدایت شوند
+    <div class="ui divider"></div>
+
+    <div class="ui raised segment" style="width:50%;margin:0 auto 10px;background-color:rgb(149, 210, 212)">
+            <!-- background-color:rgb(64, 216, 158) -->
+        <h3 class="format">
+            فرمت ایده شو
+        </h3>
+    </div>
+
+    شرکت‌کنندگان باید ایده موردنظر را در زمینه موضوع‌ زیر ارسال کنند:
+    <br>
+
+    <span style="font-weight:700;font-size:21px;">
+        <i class="circle icon" style="font-size:10px;position:relative;left:4px;color:rgb(238, 20, 173);"></i>
+        کاهش میزان تبخیر در مخازن طبیعی و مصنوعی آب چون دریاچه های طبیعی، مخازن سدها و ...
+    </span>
+    <br>
+    
+    تعداد صفحات فایل ایده که توسط شرکت‌کنندگان
+     برای تشریح ایده ارسال خواهد شد، شامل 3 صفحه
+      A4 است. دو صفحه اول باید شامل مطالبی در باره عناوین زیر باشد:
+
+    <div class="section_format">
+
+        <div class="header_section">
+
+            <span style="position:relative;left:7px;">1.</span>
+            عنوان ایده
+
+        </div>
+
+        <div class="content_section"></div>
+
+    </div>
+
+
+    <div class="section_format">
+
+        <div class="header_section">
+
+            <span style="position:relative;left:7px;">2.</span>
+            بیان مساله و خلاصه ایده
+
+        </div>
+
+        <div class="content_section">
+
+            در این قسمت، توضیحاتی در مورد اهمیت موضوع و تشريح مباني ایده داده خواهد شد.
+
+        </div>
+
+    </div>
+
+
+    <div class="section_format">
+
+        <div class="header_section">
+
+            <span style="position:relative;left:7px;">3.</span>
+            ضرورت، اهميت و روش اجراي ایده
+
+        </div>
+
+        <div class="content_section">
+
+            بیان اهم دلایل ضرورت ایده باتوجه به شرایط حاکم بر محیط، استفاده از 
+            نتایج اجرای ایده در توسعه پایدار و چگونگی انجام ایده در این قسمت ارائه خواهد شد.
+
+        </div>
+
+    </div>
+
+
+    <div class="section_format">
+
+        <div class="header_section">
+
+            <span style="position:relative;left:7px;">4.</span>
+            محدویت‌ های ایده
+
+        </div>
+
+        <div class="content_section">
+
+            محدویت‌های فنی، اقتصادی و اجتماعی ایده در این قسمت بیان خواهد شد.
+            در صفحه سوم، شکل شماتیکی از طرح موردنظر با توضیح مختصری قرار داده شود.
+                
+        </div>
+
+    </div>
+    <br>
+
+    <div class="ui divider"></div>
+
+
+    <div class="header_more_info">
+
+        <i class="thumbtack icon" style="float:right;color:goldenrod;transform:rotate(35deg);"></i>
+        آنچه شرکت کنندگان باید بدانند
+        <i class="thumbtack icon" style="float:left;color:goldenrod;transform:rotate(-35deg);"></i>
+
+    </div>
+
+
+
+
+    <div class="content_more_info">
+
+        <div class="text_content_more_info">
+            <i class="circle icon icon_more_info"></i>
+            شرکت‌کنندگان باید فایل ایده را هنگام ثبت‌نام ارسال کنند.
+        </div>
+
+
+        <div class="text_content_more_info">
+            <i class="circle icon icon_more_info"></i>
+            از بین کسانی که ایده‌ها را ارسال می‌کنند، تعدادی برای ارائه، در روز رویداد 
+            انتخاب می‌شود. این انتخاب با داوری‌های اولیه و 
+            تنها بر اساس توضیحات داده شده در فایل ایده انتخاب می‌شود.
+        </div>
+
+        <div class="text_content_more_info">
+            <i class="circle icon icon_more_info"></i>
+            در روز رویداد شما فرصت دارید تنها سه دقیقه در مورد موضوع در مقابل
+            جمعیت صحبت کنید. به محض اتمام زمان مذکور، 
+            به هیچ وجه امکان ادامه بحث وجود ندارد.
+        </div>
+        
+        <div class="text_content_more_info">
+            <i class="circle icon icon_more_info"></i>
+            حتما و حتما نیاز دارید قبل از رویداد بارها تمرین کنید
+            و بدانید که انتقال سریع یک ایده شدیداً نیازمند تمرین است.
+        </div>
+
+        قرار نیست موضوع مورد بحث را به‌طور کامل و با جزئیات به شنوندگان 
+        آموزش دهید، بلکه باید بتوانید به‌درستی جرقه 
+        اولیه شور و علاقه دیگران به آن موضوع را روشن کرده و نیروی محرکه 
+        اولیه را برای ادامه مسیر مهیا کنید. توجه 
+        کنید که رعایت اصول اولیه سخنرانی از ضروریات یک ارائه خوب است.
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
 
 
 {% endblock content %}
