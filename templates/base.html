@@ -14,6 +14,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
+        {% block styles %}
+        {% endblock styles %}
 
     </head>
 
@@ -200,7 +202,7 @@
                     <h2 id="h_location"><i class="check circle icon"></i> &nbsp&nbspبرگزار کننده</h2>
 
                     <img class="ui centered medium image" id="location_img" src="{% static 'shiraz.png' %}">
-                    <h5 style="width: 200px; margin: 15px auto">بخش مهندسی راه، ساختمان و محیط زیست</h5>
+                    <h5 style="width: 90%;text-align:center; margin: 15px auto;font-family:Yekan;">بخش مهندسی راه، ساختمان و محیط زیست</h5>
                     <div class="ui divider"></div>
 
                     <div id="address">
@@ -274,39 +276,7 @@
             <div id="main_content2">
 
                 <div class="ui piled segment" id="content_main_content2">
-
                     
-
-                    <h2 id="header_main_content_second2">
-
-                        <i class="check icon" id="goal_icon_header2"></i> اهداف
-
-                    </h2>
-
-                    <!-- <div class="ui divider"></div> -->
-
-                    
-                    مکانیک سیالات امروزه از مهم ترین و پرکاربرد ترین علوم 
-                    در بیشتر رشته های  مهندسی از جمله مهندسی عمران، مهندسی مکانیک، مهندسی شیمی، کشاورزی، معدن و مواد است که 
-                    طیف وسیعی از پژوهشگران و دانشجویان علاقمند، تحقیقات گسترده ای به صورت عملی یا تئوری روی آن انجام می دهند.
-                    آموزش مهندسی در سال های اخیر تغییرات 
-                    زیادی داشته و بر خلاف گذشته که بیشتر استاد محور بوده و یادگیری دانشجویان در کلاس در کنار عوامل دیگر به تطابق 
-                    دانشجویان با سبک تدریس استاد بستگی داشته و همچنین دانشجویان باید به تنهایی تکالیف را انجام می دادند، به شکل 
-                    قابل ملاحظه¬ای دانشجو محور شده، به این معنا که تمرکز فعالیت ها از استاد به دانشجو منتقل می شود و دانشجو نیز در 
-                    کنار استاد باید مسئولیت ساماندهی آنچه باید فرا گرفته شود را بر عهده بگیرد. در نتیجه به طور موثر با درس درگیر
-                        می شود، به سوالات پاسخ می دهد و خود سوال مطرح می کند. از مزیت های این روش می توان به یادگیری سریع با ماندگاری 
-                    بیشتر، درک عمیق تر مواد درسی، رشد خلاقیت و مهارت های تعامل و همکاری و ایجاد دید مثبت نسبت به درس اشاره کرد. 
-                    چنانچه دانشجویان فارغ التحصیل در رشته های مهندسی در شناخت کامل مسئله و ارائه ی راه حل مهارت کافی را داشته 
-                    باشند قادر خواهند بود که در زمینه های مختلف اقتصادی، کارآفرینی و رفع مشکلات کشور تحولی اساسی به وجود آورند.
-                    در همین راستا
-                        پنجمین دوره مسابقات ملی دانشجویی مکانیک سیالات به میزبانی دانشگاه شیراز با هدف ارتقاء آموزش طراحی و مهارت حل 
-                    مسئله و همچنین تقویت خلافیت و نوآوری دانشجویان و افزایش روحیه همکاری در آنها، انگیزه کافی را در دانشجویان برای 
-                    تحقق این رویکرد ایجاد می کند. از سوی دیگر این مسابقات با ایجاد ارتباط بیشتر میان مفاهیم تئوری و کارکرد های 
-                    تجربی و همچنین ایجاد ارتباط علمی بین دانشگاه های سراسر کشور دانشجویان را به علم مکانیک سیالات علاقمند می کند.
-                    
-
-                    
-
                 </div>
 
             </div>
@@ -328,7 +298,7 @@
                     <h2 id="h_location2"><i class="check circle icon"></i> &nbsp&nbspبرگزار کننده</h2>
 
                     <img class="ui centered medium image" id="location_img2" src="{% static 'shiraz.png' %}">
-                    <h5 style="width: 200px; margin: 15px auto">بخش مهندسی راه، ساختمان و محیط زیست</h5>
+                    <h5 style="width: 90%;text-align:center; margin: 15px auto;font-family:Yekan;">بخش مهندسی راه، ساختمان و محیط زیست</h5>
                     
                     <div class="ui divider"></div>
 
@@ -910,7 +880,15 @@
 
 
         <script src="{% static 'HomepageJs.js' %}"></script>
-
+        <script>
+            $(document).ready(function(){
+                $('#content_main_content2').html(
+                    $('#content_main_content_second').html()
+                )
+            })
+        </script>
+        {% block scripts %}
+        {% endblock scripts %}
 
     </body>
 
