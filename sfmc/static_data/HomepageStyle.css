@@ -1042,3 +1042,8 @@ html
         width:200px !important;
     }
 }
+
+#other_users .member .image {
+    height: 150px;
+    object-fit: cover;
+}

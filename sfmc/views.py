@@ -21,3 +21,6 @@ def idea_show_view(request):
 
 def virtual_lab_view(request):
     return render(request, "virtual_lab.html", {})
+
+def history_view(request):
+    return render(request, "history.html", {})
