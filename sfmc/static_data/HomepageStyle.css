@@ -326,14 +326,14 @@ html
     object-fit: contain;
 }
 
-#address, #phone_number, #fax,
-#address2, #phone_number2, #fax2
+#address, #phone_number, #fax, #contact_us, #address2, #phone_number2, #fax2, #contact_us2
 {
     font-family:Yekan;
     font-size:22px;
     font-weight:700;
     text-align:right;
     line-height:40px;
+    padding:10px;
 }
 
 #i19, #i19_2
@@ -363,6 +363,50 @@ html
     width:100%;
     border-radius:8px;
     border:1px solid rgb(209, 240, 245);
+}
+
+#i1, #i1_2
+{
+    margin:0px;
+    float:right;
+    color:rgb(236, 13, 13);
+}
+
+#address_span, #address_span2
+{
+    padding-right:30px;
+    padding-left:30px;
+    font-size:15px;
+}
+
+#i2, #i2_2
+{
+    margin:0px;
+    float:right;
+    color:cadetblue;
+}
+
+#phone_span, #fax_span,
+#phone_span2, #fax_span2
+{
+    padding-right:30px;
+    padding-left:30px;
+    font-size:15px;
+    text-align:left;
+    direction:rtl;
+    font-size:20px;
+}
+
+#i3, #i3_2
+{
+    margin:0px;
+    float:right;
+    color:rgb(82, 80, 74);
+}
+
+.e-mail
+{
+    font-size:20px !important;
 }
 
 
@@ -823,7 +867,6 @@ html
     float:left;
     display:flex;
     flex-wrap:wrap;
-    border-bottom:1px solid rgb(211, 211, 211);
 }
 
 #hamian
@@ -836,7 +879,7 @@ html
     float:left;
     /* display:flex;
     flex-wrap:wrap; */
-    border-bottom:1px solid rgb(224, 224, 224);
+    border-top:1px solid rgb(199, 199, 199);
 }
 
 #header_hamian
@@ -1046,4 +1089,54 @@ html
 #other_users .member .image {
     height: 150px;
     object-fit: cover;
+}
+
+#phone_span, #fax_span,
+#phone_span2, #fax_span2
+{
+    padding-right:30px;
+    padding-left:30px;
+    font-size:18px;
+    text-align:left;
+    direction:rtl;
+}
+
+#mobile_span, #mobile_span2
+{
+    padding-right:30px;
+    padding-left:30px;
+    font-size:15px;
+    text-align:left;
+    direction:ltr;
+}
+
+#mobile_span .mobile.alternate.icon,
+#mobile_span2 .mobile.alternate.icon
+{
+    color:rgb(0, 0, 0);
+}
+
+#email_span, #email_span2
+{
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding-right:30px;
+    padding-left:30px;
+    font-size:15px;
+    font-weight:500;
+    text-align:left;
+    direction:ltr;
+}
+
+#email_span .paper.plane.icon,
+#email_span2 .paper.plane.icon
+{
+    color:cadetblue;
+}
+
+
+#icon_mobile, #icon_mobile2
+{
+    margin:0px;
+    float:right;
+    color:rgb(50, 117, 57); 
 }
