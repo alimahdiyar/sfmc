@@ -30,3 +30,6 @@ def calendar_view(request):
 
 def hovercraft_view(request):
     return render(request, "hovercraft.html", {})
+
+def poster_view(request):
+    return render(request, "poster.html", {})

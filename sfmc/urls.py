@@ -25,6 +25,7 @@ urlpatterns = [
     path('virtual-lab/', views.virtual_lab_view, name='virtual_lab'),
     path('idea-show/', views.idea_show_view, name='idea_show'),
     path('project/', views.project_view, name='project'),
+    path('poster/', views.poster_view, name='poster'),
     path('regulations/', views.regulations_view, name='regulations'),
     path('', views.index_view, name='index'),
 ]
