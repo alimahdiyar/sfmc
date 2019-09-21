@@ -24,3 +24,9 @@ def virtual_lab_view(request):
 
 def history_view(request):
     return render(request, "history.html", {})
+
+def calendar_view(request):
+    return render(request, "calendar.html", {})
+
+def hovercraft_view(request):
+    return render(request, "hovercraft.html", {})
