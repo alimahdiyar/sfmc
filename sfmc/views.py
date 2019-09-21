@@ -33,3 +33,6 @@ def hovercraft_view(request):
 
 def poster_view(request):
     return render(request, "poster.html", {})
+
+def contactus_view(request):
+    return render(request, "contactus.html", {})

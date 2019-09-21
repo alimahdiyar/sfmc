@@ -26,6 +26,7 @@ urlpatterns = [
     path('idea-show/', views.idea_show_view, name='idea_show'),
     path('project/', views.project_view, name='project'),
     path('poster/', views.poster_view, name='poster'),
+    path('contactus/', views.contactus_view, name='contactus'),
     path('regulations/', views.regulations_view, name='regulations'),
     path('', views.index_view, name='index'),
 ]

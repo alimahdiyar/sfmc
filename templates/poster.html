@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block styles %}
+<style>
+
+
+
+
+</style>
+{% endblock styles %}
+
 {% block content %}
 
 
@@ -8,7 +17,7 @@
 
 <h2 id="header_main_content_second2">
 
-    <i class="image icon" id="goal_icon_header2"></i> پوستر و لوگو
+    <i class="image icon" id="goal_icon_header2" style="color:rgb(19, 19, 94);"></i> پوستر و لوگو
 
 </h2>
 
@@ -16,6 +25,15 @@
 
 
 <div class="text_main_content">
+
+    
+    <div style="width:100%;font-weight:700;font-size:24px;text-align:center;margin-bottom:25px;">
+        پوستر رسمی مسابقات
+    </div>
+
+    <img class="ui medium centered image"  src="{% static 'poster.jpg' %}">
+
+
 
 </div>
 
