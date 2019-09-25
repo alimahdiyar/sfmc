@@ -105,7 +105,7 @@ html
 
 #header
 {
-    background: url('bg.png');
+    background: url('banner-2.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -156,10 +156,10 @@ html
     display: none;
   }
   #header {
-      background: url('bg.png');
+      background: url('banner-2.jpg');
       background-position: center center;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: contain;
       background-attachment: scroll;
   }
   .masthead.segment {

@@ -67,8 +67,13 @@
                       <a class="item" href="{% url 'clipart' %}" style="color: black">نماهنگ</a>
                       <a class="item" href="{% url 'virtual_lab' %}" style="color: black">آزمایشگاه مجازی</a>
                       <a class="item" href="{% url 'idea_show' %}" style="color: black">ایده شو</a>
-                      <a class="item" href="{% url 'project' %}" style="color: black">پروژه ی عملی</a>
-                      <a class="item" href="{% url 'hovercraft' %}" style="color: black">طراحی و ساخت هاورکرافت</a>
+                      <div class="item">
+                        <div class="header" style="color: black">پروژه عملی</div>
+                        <div class="menu">
+                            <a class="item" href="{% url 'project' %}" style="color: black">ساخت وسیله آزمایشگاهی</a>
+                            <a class="item" href="{% url 'hovercraft' %}" style="color: black">طراحی و ساخت هاورکرافت</a>
+                        </div>
+                      </div>
                     </div>
                   </div>
             
@@ -173,9 +178,9 @@
         </div> -->
 
         <div id="header">
-            <div id="text_header">
+            <!-- <div id="text_header">
                 پنجمین دوره ی مسابقات ملّی دانشجویی مکانیک سیالات
-            </div>
+            </div> -->
         </div>
 
 
@@ -412,8 +417,13 @@
           <a class="item" href="{% url 'clipart' %}">نماهنگ</a>
           <a class="item" href="{% url 'virtual_lab' %}">آزمایشگاه مجازی</a>
           <a class="item" href="{% url 'idea_show' %}">ایده شو</a>
-          <a class="item" href="{% url 'project' %}">پروژه ی عملی</a>
-          <a class="item" href="{% url 'hovercraft' %}">طراحی و ساخت هاورکرافت</a>
+          <div class="item">
+            <div class="header">پروژه عملی</div>
+            <div class="menu">
+                <a class="item" href="{% url 'project' %}">ساخت وسیله آزمایشگاهی</a>
+                <a class="item" href="{% url 'hovercraft' %}">طراحی و ساخت هاورکرافت</a>
+            </div>
+          </div>
         </div>
       </div>
 
