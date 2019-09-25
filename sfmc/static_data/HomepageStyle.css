@@ -125,6 +125,8 @@ html
 
 
     /* padding-top:60px; */
+
+
     font-family: 'yekan';
     font-size : 50px;
     width:100%;
@@ -134,8 +136,10 @@ html
     vertical-align:middle;
     line-height:50px;
     margin-top: 50px;
-    /* margin:auto; */
-    /* background-color:white; */
+
+
+    /* margin:auto;
+    background-color:white; */
 }
 
 #text_header
@@ -510,7 +514,7 @@ html
     border-radius:0px;
     
 
-    border-top:none;
+    border-top:1px solid #E5E7E9;
     border-bottom:none;
 
 
