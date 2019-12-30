@@ -7,6 +7,9 @@ from django.urls import reverse
 def index_view(request):
     return render(request, "index.html", {})
 
+def about_view(request):
+    return render(request, "about.html", {})
+
 def regulations_view(request):
     return render(request, "regulations.html", {})
 
