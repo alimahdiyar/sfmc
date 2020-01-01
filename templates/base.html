@@ -10,9 +10,9 @@
         <title>مسابقات ملی دانشجویی مکانیک سیالات</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="{% static 'HomepageStyle.css' %}"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <link rel="stylesheet" href="http://cse-shirazu.ir/assets/semantic-ui/2.4.1/semantic.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+        <script src="http://cse-shirazu.ir/assets/semantic-ui/2.4.1/semantic.min.js"></script>
 
         {% block styles %}
         {% endblock styles %}
@@ -200,7 +200,8 @@
 
         
 
-        
+            {% block topcontent %}
+            {% endblock topcontent %}
 
             <div id="left_content">
 
@@ -393,7 +394,9 @@
                 <div class="ui vertical menu" id="side_menu">
 
                     <a class="item" href="{% url 'index' %}" id="a1">
-                        <i class="home icon" id="i1"></i> صفحه ی اصلی
+                        <i class="home icon" id="i1"></i>
+                        &nbsp
+                        صفحه ی اصلی
                     </a>
 
                     <a class="item" id="a2">
@@ -405,7 +408,9 @@
                     </a> -->
 
                     <a class="item" href="{% url 'history' %}" id="a4">
-                        <i class="history icon" id="i3"></i> تاریخچه
+                        <i class="history icon" id="i3"></i>
+                        &nbsp
+                        تاریخچه
                     </a>
 
                     <!-- <a class="item" id="a6">

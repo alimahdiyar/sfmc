@@ -98,7 +98,82 @@ html
 
 
 
+.prizes
+{
+    /* margin-top:30px !important; */
+    width:95%;
+    height:auto;
+    margin:15px auto 5px !important;
+    text-align:center !important;
+    /* background-color:red; */
+    padding:0px !important;
+    padding-top:5px !important;
 
+}
+
+.prizes .ui.header
+{
+    direction:rtl;
+    font-size:32px;
+    text-align:center;
+    font-family:Yekan;
+    display:inline-block;
+    width:100%;
+    min-width:300px;
+    
+    padding-bottom:5px;
+    padding-top:10px;
+    /* background:linear-gradient(to bottom,rgb(75, 221, 202),rgb(186, 191, 192)); */
+    background-color:rgb(207, 231, 233);
+    background-color:rgb(52, 172, 144);
+    border-top-left-radius:.28571429rem;
+    border-top-right-radius:.28571429rem;
+    color:white;
+}
+
+.prizes .ui.header .content
+{
+    font-family:Yekan !important;
+}
+
+.prizes .ui.header .trophy.icon
+{
+    color:goldenrod;
+}
+
+.prizes .ui.header .star
+{
+    color:goldenrod;
+}
+
+.main_prizes
+{
+    margin-top:50px;
+    height:auto;
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.prizes_main_prizes
+{
+    display:inline-block;
+    font-family:Yekan !important;
+    font-size:20px;
+    direction:rtl !important;
+    font-weight:700;
+    line-height:35px !important;
+    width:350px !important;
+    text-align:center !important;
+    margin:0 auto 15px !important;
+}
+
+.prizes_main_prizes .ui.centered.image
+{
+    max-width:220px;
+    width:100%;
+    min-width:100px;
+}
 
 
 
@@ -506,6 +581,7 @@ html
     /* background-color:orange; */
     height:100%;
     /* padding-top:15px; */
+    margin-top:15px;
 
 }
 

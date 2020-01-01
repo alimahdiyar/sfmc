@@ -1,6 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block topcontent %}
+    <div class="prizes ui piled segment">
+
+        <h2 class="ui header">
+            <i class="trophy icon"></i>
+            جوایز این دوره
+        </h2>
+
+        <div class="main_prizes">
+
+            <div class="prizes_main_prizes">
+                <img class="ui centered image" src="{% static 'trophy2.jpg' %}">
+                معرفی طرح های برتر به شتابدهنده آبان
+            </div>
+
+            <div class="prizes_main_prizes">
+                <img class="ui centered image" src="{% static 'trophy2.jpg' %}">
+                کسر خدمت سربازی
+            </div>
+
+            <div class="prizes_main_prizes">
+                <img class="ui centered image" src="{% static 'trophy2.jpg' %}">
+                جوایز نقدی
+            </div>
+
+        </div>
+
+
+        
+    </div>
+{% endblock topcontent %}
+
 {% block content %}
 
 
@@ -19,7 +52,7 @@
     مکانیک سیالات امروزه یکی از مهم ترین و پرکاربرد ترین علوم در رشته های مهندسی از جمله مهندسی عمران، مهندسی مکانیک، مهندسی شیمی، مهندسی پزشکی، مهندسی کشاورزی، مهـــندسی معدن و مهندسی مواد می باشد.  این درس بین رشته ای، پرکاربرد و پایه ای،  نظر طیف وسیعی از پژوهشگران و دانشجویان علاقمند را به خود جلب نموده و منجر به انجام تحقیقات گسترده ای در قالب پروژه های عملی یا نظری گردیده است. 
     <a href="{% url 'about' %}">ادامه مطلب</a>
     <br />
-    <h3 style="font-size: 14px; font-weight: normal;">کلیدواژه ها: مسابقات سیالات, مسابقات مکانیک سیالات</h3>
+    <h3 style="font-family:Yekan;font-size: 14px; font-weight: normal;">کلیدواژه ها: مسابقات سیالات, مسابقات مکانیک سیالات</h3>
 </div>
 
 {% endblock content %}
