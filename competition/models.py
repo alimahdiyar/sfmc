@@ -17,7 +17,7 @@ class Manager (models.Model):
     last_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    studnt_card_image = models.ImageField()
+    student_card_image = models.ImageField()
     university = models.CharField(max_length=50)
 
     def __str__(self):
@@ -29,7 +29,7 @@ class Participant (models.Model):
     last_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    studnt_card_image = models.ImageField()
+    student_card_image = models.ImageField()
     university = models.CharField(max_length=50)
 
     def __str__(self):
