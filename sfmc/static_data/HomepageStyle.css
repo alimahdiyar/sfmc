@@ -138,13 +138,9 @@ html
 
 .prizes .ui.header .trophy.icon
 {
-    color:goldenrod;
+    color:rgb(249, 200, 9);
 }
 
-.prizes .ui.header .star
-{
-    color:goldenrod;
-}
 
 .main_prizes
 {
@@ -358,6 +354,59 @@ html
     display:none;
 }
 
+.competition_date
+{
+    width:100% !important;
+    height:auto !important;
+    padding:0px !important;
+    padding-top:3px !important;
+    padding-bottom:17px !important;
+    direction:rtl !important;
+    font-size:20px !important;
+
+}
+
+.competition_date .ui.header
+{
+    background-color:rgb(157, 217, 236);
+    padding:18px;
+    font-size:27px;
+    font-family:Yekan !important;
+    direction:rtl !important;
+    border-top-left-radius: 4px;
+    border-top-right-radius:4px;
+}
+
+.competition_date .ui.header .clock
+{
+    font-size:27px;
+    position:relative;
+    top:3px;
+    margin-bottom:14px;
+    /* color:rgb(46, 122, 145); */
+    color:rgb(68, 142, 185);
+}
+
+.competition_date_content
+{
+    padding-right:15px;
+    padding-left:15px;
+    font-size:18px;
+    font-weight:700;
+}
+
+.competition_date_content .paper
+{
+    color:rgb(85, 164, 184);
+    font-size:24px;
+}
+
+.competition_date_content .pencil
+{
+    color:rgb(4, 116, 78);
+    font-size:24px;
+}
+
 #location, #location2
 {
     /* padding:20px 25px 20px 20px; */
@@ -384,7 +433,7 @@ html
     margin-bottom:60px;
     font-family:Yekan;
     direction:rtl;
-    font-size:30px;
+    font-size:28px;
     text-align:center;
     background:linear-gradient(to right,rgb(165, 219, 210),rgb(131, 202, 190));
     padding:18px;

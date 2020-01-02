@@ -5,7 +5,6 @@ $(document).ready(function(){
     $('.ui.modal')
     .modal('show');
     
-    
 
     $("#icon_bars_fm").click(function(){
 
