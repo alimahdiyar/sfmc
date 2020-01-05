@@ -1,0 +1,171 @@
+{% extends 'panel_base.html' %}
+
+{% block styles %}
+<style>
+.field input[type=text]{
+    border: 1px solid #cdcdcd;
+}
+
+.rtl {
+        flex-direction: row-reverse;
+        text-align: right;
+        direction: rtl;
+    }
+#reg-form input[type=text] {
+    text-align: right;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-container .checkbox-header {
+    padding: 10px 2px;
+    font-weight: bold;
+}
+
+.checkbox-container .field {
+    padding: 10px;
+}
+</style>
+{% endblock styles %}
+
+
+{% block content %}
+
+<div class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
+    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        
+        <form class="ui from rtl" id="reg-form" action="">
+            <div class="ui padded raised right aligned segment">
+                
+                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات تیم</h3>
+                <div class="fields">
+                    
+                    <div class="field">
+                        <div class="ui input" dir="rtl">
+                            <input type="text" required placeholder="نام گروه" name="name">
+                        </div>
+                    </div>
+                    
+
+                    <div class="inline fields checkbox-container">
+                        <label class="checkbox-header" for="team_type">نوع گروه: </label>
+                        <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="team_type" value="0" tabindex="0" class="hidden">
+                            <label>دانش آموزی</label>
+                        </div>
+                        </div>
+                        <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="team_type" value="1" tabindex="0" checked class="hidden">
+                            <label>دانشجویی</label>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="inline fields checkbox-container">
+                        <label class="checkbox-header">آیتم ها: </label>
+
+
+                        {% for competition_field in competition_fields %}
+
+                        <div class="inline field">
+                            <div class="ui checkbox">
+                            <input type="checkbox" tabindex="0" name="competition_{{ competition_field.pk }}" class="hidden">
+                            <label>{{ competition_field.name }}</label>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+                
+        </div>
+        
+        <div class="ui padded raised right aligned segment">
+
+            <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات سرگروه</h3>
+            <div class="fields">
+                
+                <div class="field">
+                    <div class="ui input" dir="rtl">
+                        <input type="text" required placeholder="نام و" name="name">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <table>
+            <tr>
+                <td>
+                    <div class="submit-container">
+                        <input id="add-btn" type="submit" name="add">
+                    </div>
+                </td>
+                <td>
+                    <div class="submit-container">
+                        <input id="submit-btn" type="submit" name="sumbit">
+                    </div>
+                </td>
+            </tr>
+        </table>
+            </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+
+<script>
+    $(document).ready(function(){
+        $('.ui.checkbox').checkbox();
+    })
+</script>
+    <script>
+        var member_clone;
+        var form;
+
+
+
+
+        $(document).ready(function () {
+            // $('#checkBtn').click(function() {
+            //   checked = $("input[type=checkbox]:checked").length;
+
+            //   if(!checked) {
+            //     alert("You must check at least one checkbox.");
+            //     return false;
+            //   }
+            // });
+
+            // z.appendTo("form")
+            // member_clone = z;
+            // form = $("form")[0];
+
+            $("#add-btn").click(function(){
+                add_member().appendTo("form");
+            })
+        });
+
+
+        function add_member(){
+            var z = $("#member").clone();
+            // console.log(z);
+            var member_items = z.find(".team-property");
+            // console.log(member_items);
+            $(member_items[0]).text("مشخصات عضو");
+            $(member_items[1]).remove();
+            $(member_items[2]).find("p").text("نام عضو");
+            // console.log(z)
+            z.removeAttr("id");
+            return z;
+         }
+    </script>
+
+{% endblock scripts %}
