@@ -114,18 +114,18 @@ html
 .prizes .ui.header
 {
     direction:rtl;
-    font-size:32px;
+    /* font-size:32px; */
     text-align:center;
     font-family:Yekan;
-    display:inline-block;
+    /* display:inline-block; */
     width:100%;
     min-width:300px;
     
-    padding-bottom:5px;
-    padding-top:10px;
+    padding-bottom:14px;
+    padding-top:14px;
     /* background:linear-gradient(to bottom,rgb(75, 221, 202),rgb(186, 191, 192)); */
-    background-color:rgb(207, 231, 233);
-    background-color:rgb(52, 172, 144);
+    /* background-color:rgb(207, 231, 233); */
+    background-color:rgb(100, 177, 255);
     border-top-left-radius:.28571429rem;
     border-top-right-radius:.28571429rem;
     color:white;
