@@ -1,0 +1,84 @@
+
+.rtl.icon.message {
+    padding-right: 85px;
+}
+
+.rtl.message .header, .rtl.message p {
+    direction: rtl;
+    text-align: right;
+}
+
+.rtl.message .close.icon {
+    left: unset !important;
+    right: 0.5em !important;
+}
+
+.ui.rtl.message>.icon {
+    position: absolute;
+    right: 0;
+}
+
+form.ui.rtl.form label {
+    direction: rtl;
+    text-align: right;
+    padding-bottom: 3px;
+}
+
+form.rtl.form .input input[type="text"], form.rtl.form .input textarea {
+    direction: rtl;
+    text-align: right;
+}
+
+.rtl.dropdown .dropdown.selection {
+    padding-right: 12px;
+    width: 100%;
+}
+
+.rtl.dropdown .dropdown.selection .text {
+    float: right;
+}
+
+.rtl.dropdown .dropdown.selection .dropdown.icon {
+    right: unset;
+    left: 12px;
+}
+
+.rtl.dropdown .dropdown.selection .transition .item {
+    text-align: right;
+}
+
+.divided.rtl.grid > .column, .divided.rtl.grid > .row > .column {
+    box-shadow: 1px 0 0 0 rgba(34,36,38,.15) !important;
+}
+
+.rtl.table {
+    direction: rtl;
+}
+
+.ui.celled.rtl.table tr td:first-child, .ui.celled.rtl.table tr th:first-child {
+    border-left: 1px solid rgba(34,36,38,.1);
+}
+
+.ui.rtl.menu {
+    direction: rtl;
+}
+
+.ui.rtl.menu .item:before {
+    right: unset;
+    left: 0;
+}
+
+.ui.rtl.checkbox > input {
+    left: unset;
+    right: 0;
+}
+
+.ui.rtl.checkbox .box:before, .ui.rtl.checkbox label:before, .ui.rtl.checkbox .box:after, .ui.rtl.checkbox label:after {
+    left: unset;
+    right: 0;
+}
+
+.ui.rtl.checkbox .box, .ui.rtl.checkbox label {
+    padding-left: 0;
+    padding-right: 1.85714em;
+}

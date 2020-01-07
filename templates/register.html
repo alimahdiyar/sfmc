@@ -1,4 +1,5 @@
 {% extends 'panel_base.html' %}
+{% load static %}
 
 {% block styles %}
 <style>
@@ -7,10 +8,11 @@
 }
 
 .rtl {
-        flex-direction: row-reverse;
-        text-align: right;
-        direction: rtl;
-    }
+    flex-direction: row-reverse;
+    text-align: right;
+    direction: rtl;
+}
+
 #reg-form input[type=text] {
     text-align: right;
 }
@@ -34,17 +36,18 @@
 
 {% block content %}
 
-<div class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
+<div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
     <div class="fourteen wide mobile ten wide tablet ten wide computer column">
-        
+        {% verbatim %}
         <form class="ui from rtl" id="reg-form" action="">
+            <input type="hidden" name="active_members" :value="activeMembers">
             <div class="ui padded raised right aligned segment">
                 
                 <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات تیم</h3>
                 <div class="fields">
                     
                     <div class="field">
-                        <div class="ui input" dir="rtl">
+                        <div class="ui input">
                             <input type="text" required placeholder="نام گروه" name="name">
                         </div>
                     </div>
@@ -69,103 +72,223 @@
                     <div class="inline fields checkbox-container">
                         <label class="checkbox-header">آیتم ها: </label>
 
-
-                        {% for competition_field in competition_fields %}
-
-                        <div class="inline field">
+                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk">
                             <div class="ui checkbox">
-                            <input type="checkbox" tabindex="0" name="competition_{{ competition_field.pk }}" class="hidden">
+                            <input type="checkbox" tabindex="0" :name="'competition_' + competition_field.pk" v-model="competition_field.is_selected" class="hidden">
                             <label>{{ competition_field.name }}</label>
                             </div>
                         </div>
-                        {% endfor %}
 
                     </div>
 
-                </div>
-                
-        </div>
-        
-        <div class="ui padded raised right aligned segment">
-
-            <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات سرگروه</h3>
-            <div class="fields">
-                
-                <div class="field">
-                    <div class="ui input" dir="rtl">
-                        <input type="text" required placeholder="نام و" name="name">
-                    </div>
                 </div>
                 
             </div>
-        </div>
+            
+            <div class="ui padded raised right aligned segment">
+
+                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات سرگروه</h3>
+                <div class="fields">
+                    
+                    <div class="field">
+                        <div class="ui input">
+                            <input type="text" required placeholder="نام و نام خانوادگی" name="manager_name">
+                        </div>
+                        <div class="ui input">
+                            <input type="text" required placeholder="دانشگاه" name="manager_university">
+                        </div>
+                        <div class="ui input">
+                            <input type="email" required placeholder="ایمیل" name="manager_email">
+                        </div>
+                        <div class="ui input">
+                            <input type="tel" 
+                            pattern="[0-9]{11}" required placeholder="شماره تلفن" name="manager_phone">
+                        </div>
+                        <div class="ui input" style="padding-top: 10px;">
+                            <label for="manager_student_card" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
+                            <input type="file" required name="manager_student_card">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="ui padded raised right aligned segment" v-for="(member, i) in members" v-if="!member.is_delete">
+                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات عضو گروه</h3>
+                <div class="fields">
+                    
+                    <div class="field">
+                        <div class="ui input">
+                            <input type="text" v-model="member.name" required placeholder="نام و نام خانوادگی" :name="'member_' + i + '_name'">
+                        </div>
+                        <div class="ui input">
+                            <input type="text" v-model="member.university" required placeholder="دانشگاه" :name="'member_' + i + '_university'">
+                        </div>
+                        <div class="ui input">
+                            <input type="email" v-model="member.email" required placeholder="ایمیل" :name="'member_' + i + '_email'">
+                        </div>
+                        <div class="ui input">
+                            <input type="tel" 
+                            pattern="[0-9]{11}" v-model="member.phone_number" required placeholder="شماره تلفن" :name="'member_' + i + '_phone_number'">
+                        </div>
+                        <div class="ui input" style="padding-top: 10px;">
+                            <label :for="'member_' + i + '_student_card_image'" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
+                            <input type="file" required :name="'member_' + i + '_student_card_image'">
+                        </div>
+                    </div>
+                    
+                    <div class="inline fields checkbox-container">
+                        <label class="checkbox-header">آیتم ها: </label>
+
+                        <div class="inline field" v-for="competition_field in member.competition_fields" v-if="competition_fields.find(el=>el.pk == competition_field.pk).is_selected" :key="competition_field.pk">
+                            <div class="ui checkbox">
+                            <input type="checkbox" tabindex="0" :name="'member_' + i + '_competition_' + competition_field.pk" v-model="competition_field.is_selected" class="hidden">
+                            <label>{{ competition_field.name }}</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                <div class="ui red button" style="margin-top: 10px;" @click="removeMember(member)">حذف عضو</div>
+            </div>
 
 
-        <table>
-            <tr>
-                <td>
-                    <div class="submit-container">
-                        <input id="add-btn" type="submit" name="add">
-                    </div>
-                </td>
-                <td>
-                    <div class="submit-container">
-                        <input id="submit-btn" type="submit" name="sumbit">
-                    </div>
-                </td>
-            </tr>
-        </table>
-            </form>
+            <div class="ui primary button" @click="addMember">افزودن عضو</div>
+        </form>
+        {% endverbatim %}
     </div>
 </div>
 {% endblock content %}
 
 {% block scripts %}
-
+<script src="{% static 'vue.min.js' %}"></script>
 <script>
     $(document).ready(function(){
         $('.ui.checkbox').checkbox();
     })
 </script>
-    <script>
-        var member_clone;
-        var form;
+<script>
+    new Vue({
+        el: '#reg-form',
+        computed: {
+            activeMembers(){
+                const allMembers = [];
+                this.members.forEach((el, i) => {
+                    if(!el.is_delete){
+                        allMembers.push(i);
+                    };
+                });
+                return allMembers.join(',');
+            }
+        },
+        data: {
+            competition_fields: [
+                {% for competition_field in competition_fields %}
+                {
+                    pk: {{ competition_field.pk }},
+                    name: '{{ competition_field.name }}',
+                    team_member_limit_min: {{ competition_field.team_member_limit_min }},
+                    team_member_limit_max: {{ competition_field.team_member_limit_max }},
+                    is_selected: false,
+                },
+                {% endfor %}
+            ],
+            members: [
+
+            ]
+        },
+        methods: {
+            membersCount(competition_field){
+                let i = 1; // The manager is already enrolled
+                this.members.forEach(member => {
+                    if(member.competition_fields.find(el => el.pk == competition_field.pk).is_selected){
+                        i++;
+                    }
+                });
+                console.log(competition_field.name, i);
+                return i;
+            },
+            addMember(){
+                const newMember = {
+                    name: '',
+                    email: '',
+                    phone_number: '',
+                    university: '',
+                    is_delete: false,
+                    competition_fields: []
+                };
+                this.competition_fields.forEach(competition_field => {
+                    const member_competition_field = Object.assign({}, competition_field)
+                    
+                    if(competition_field.is_selected){
+                        member_competition_field.is_selected = member_competition_field.team_member_limit_max > this.membersCount(competition_field);
+                    }
+
+                    
+                    newMember.competition_fields.push(member_competition_field);
+                });
+
+                this.members.push(newMember)
+            },
+            removeMember(member){
+                member.is_delete = true;
+
+                member.competition_fields.forEach(competition_field => {
+                    competition_field.is_selected = false;
+                });
+            }
+        },
+        created(){
+            console.log('created');
+        },
+        mounted(){
+            console.log('mounted');
+        },
+        updated(){
+            $('.ui.checkbox').checkbox();
+        }
+    });
+</script>
+<script>
+    var member_clone;
+    var form;
 
 
 
 
-        $(document).ready(function () {
-            // $('#checkBtn').click(function() {
-            //   checked = $("input[type=checkbox]:checked").length;
+    $(document).ready(function () {
+        // $('#checkBtn').click(function() {
+        //   checked = $("input[type=checkbox]:checked").length;
 
-            //   if(!checked) {
-            //     alert("You must check at least one checkbox.");
-            //     return false;
-            //   }
-            // });
+        //   if(!checked) {
+        //     alert("You must check at least one checkbox.");
+        //     return false;
+        //   }
+        // });
 
-            // z.appendTo("form")
-            // member_clone = z;
-            // form = $("form")[0];
+        // z.appendTo("form")
+        // member_clone = z;
+        // form = $("form")[0];
 
-            $("#add-btn").click(function(){
-                add_member().appendTo("form");
-            })
-        });
+        $("#add-btn").click(function(){
+            add_member().appendTo("form");
+        })
+    });
 
 
-        function add_member(){
-            var z = $("#member").clone();
-            // console.log(z);
-            var member_items = z.find(".team-property");
-            // console.log(member_items);
-            $(member_items[0]).text("مشخصات عضو");
-            $(member_items[1]).remove();
-            $(member_items[2]).find("p").text("نام عضو");
-            // console.log(z)
-            z.removeAttr("id");
-            return z;
-         }
-    </script>
+    function add_member(){
+        var z = $("#member").clone();
+        // console.log(z);
+        var member_items = z.find(".team-property");
+        // console.log(member_items);
+        $(member_items[0]).text("مشخصات عضو");
+        $(member_items[1]).remove();
+        $(member_items[2]).find("p").text("نام عضو");
+        // console.log(z)
+        z.removeAttr("id");
+        return z;
+        }
+</script>
 
 {% endblock scripts %}
