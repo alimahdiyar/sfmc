@@ -140,10 +140,10 @@
                     <div class="inline fields checkbox-container">
                         <label class="checkbox-header">آیتم ها: </label>
 
-                        <div class="inline field" v-for="competition_field in member.competition_fields" v-if="competition_fields.find(el=>el.pk == competition_field.pk).is_selected" :key="competition_field.pk">
-                            <div class="ui checkbox">
-                            <input type="checkbox" tabindex="0" :name="'member_' + i + '_competition_' + competition_field.pk" v-model="competition_field.is_selected" class="hidden">
-                            <label>{{ competition_field.name }}</label>
+                        <div class="inline field" v-for="member_competition_field in member.competition_fields" v-if="competition_fields.find(el=>el.pk == member_competition_field.pk).is_selected" :key="member_competition_field.pk">
+                            <div class="ui checkbox" :id="'member_' + i + '_competition_' + member_competition_field.pk">
+                            <input type="checkbox" tabindex="0" @change="handleCheckBoxChange(member, member_competition_field, i)" :name="'member_' + i + '_competition_' + member_competition_field.pk" v-model="member_competition_field.is_selected" class="hidden">
+                            <label>{{ member_competition_field.name }}</label>
                             </div>
                         </div>
 
@@ -208,6 +208,27 @@
                 });
                 console.log(competition_field.name, i);
                 return i;
+            },
+            handleCheckBoxChange(member, member_competition_field, i){
+                if(member.is_delete){
+                    return;
+                }
+                const competition_field = this.competition_fields.find(el => el.pk == member_competition_field.pk)
+                console.log(member_competition_field)
+                console.log(competition_field)
+                if(member_competition_field.is_selected){
+                    if(this.membersCount(competition_field) > competition_field.team_member_limit_max){
+                        alert('تعداد نفرات تیم ' + competition_field.name + ' باید بین ' + competition_field.team_member_limit_min + ' و ' + competition_field.team_member_limit_max + ' نفر باشد.')
+                        member_competition_field.is_selected = false;
+                        $('#' + 'member_' + i + '_competition_' + member_competition_field.pk).checkbox('set unchecked');
+                    }
+                } else {
+                    if(this.membersCount(competition_field) < competition_field.team_member_limit_min){
+                        alert('تعداد نفرات تیم ' + competition_field.name + ' باید بین ' + competition_field.team_member_limit_min + ' و ' + competition_field.team_member_limit_max + ' نفر باشد.')
+                        member_competition_field.is_selected = true;
+                        $('#' + 'member_' + i + '_competition_' + member_competition_field.pk).checkbox('set checked');
+                    }
+                }
             },
             addMember(){
                 const newMember = {
