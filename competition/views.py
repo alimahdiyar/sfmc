@@ -35,7 +35,7 @@ def registeration_view(request):
         return HttpResponseRedirect(reverse('competition:home'))
     else:
         if request.method == 'POST':
-            pass
+            print(request.POST)
             # form = RegisterationForm(request.POST)
             # if form.is_valid():
             #     if User.objects.filter(username=form.cleaned_data['email']).exists():

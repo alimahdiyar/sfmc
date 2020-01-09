@@ -38,8 +38,9 @@
 
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
     <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        <form @submit="submitForm" class="ui from rtl" id="reg-form" method="POST" enctype="multipart/form-data" action="">
+        {% csrf_token %}
         {% verbatim %}
-        <form class="ui from rtl" id="reg-form" action="">
             <input type="hidden" name="active_members" :value="activeMembers">
             <div class="ui padded raised right aligned segment">
                 
@@ -155,6 +156,7 @@
 
 
             <div class="ui primary button" @click="addMember">افزودن عضو</div>
+            <input type="submit" value="ثبت نام" class="ui primary button" />
         </form>
         {% endverbatim %}
     </div>
@@ -258,6 +260,27 @@
                 member.competition_fields.forEach(competition_field => {
                     competition_field.is_selected = false;
                 });
+            },
+            submitForm(e){
+                let formValid = true;
+
+                this.competition_fields.forEach(competition_field => {
+                    if(competition_field.is_selected
+                        && (
+                                competition_field.team_member_limit_min > this.membersCount(competition_field)
+                                || competition_field.team_member_limit_max < this.membersCount(competition_field)
+                            )
+                        ){
+                        formValid = false;
+                        alert('تعداد نفرات تیم ' + competition_field.name + ' باید بین ' + competition_field.team_member_limit_min + ' و ' + competition_field.team_member_limit_max + ' نفر باشد.')
+                    }
+                });
+
+                if(!formValid){
+                    e.preventDefault();
+                } else {
+                    return true;
+                }
             }
         },
         created(){
