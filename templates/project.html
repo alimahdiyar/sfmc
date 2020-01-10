@@ -72,298 +72,301 @@
 {% endblock styles %}
 {% block content %}
 
-<h2 id="header_main_content_second2">
+<div class="ui piled segment" id="content_main_content_second">
+                            
+    <h2 id="header_main_content_second2">
 
-    <i class="cogs icon" style="color:rgb(139, 139, 139) !important;" id="goal_icon_header2"></i>&nbsp پروژه ی عملی
-    
-</h2>
-    
-<div class="text_main_content">
-
-        <h3 style="text-align: center;font-family:Yekan;">
-            ساخت وسیله برای بدست آوردن منحنی عملکرد پمپ
-        </h3>
-
-        <span style="font-size:24px;direction:rtl;font-weight:700;">
-            <span style="position:relative;left:7px;">1.</span>
-            شرح مسئله<br />
-        </span>
-
-        منحنی عملکرد پمپ عبارتست از نمودار 
-        تغییرات هد پمپ در مقابل تغییرات
-        دبی پمپ. برای به دست آوردن این منحنی
-        تیمهای شرکت کننده بایستی فلومتر و فشارسنج
-        مناسب را طراحی کرده و بسازند.
-        محل قرار گرفتن فشار سنج 
-        در شکل (1) با علامت (*) و محل
-        نصب فلومتر با علامت (**) مشخص شده
-        است. محدوده فشار قابل
-        اندازه گیری برای فشار سنج، از <span style="font-family: Arial;">0</span> تا <span style="font-family: Arial; direction: ltr;" dir="ltr">+2 bar</span>
-        است. دبی ارائه شده توسط پمپ نیز در محدوه  <span style="font-family: Arial;">0</span> تا <span style="font-family: Arial; direction: ltr;" dir="ltr">40 lit/min</span> تغییر
-        می کند. همچنین
-        قطر تمامی لوله ها <span style="font-family: Arial;" dir="ltr">0.5 in</span> می باشد. نمای کناری این سیستم در
-        شکل زیر مشخص شده است.
-
-        <img class="ui centered image" style="margin:20px auto 20px;width:80%;" src="{% static 'p1.jpg' %}"/>
+        <i class="cogs icon" style="color:rgb(139, 139, 139) !important;" id="goal_icon_header2"></i>&nbsp پروژه ی عملی
         
-        <div class="ui raised segment" style="background-color:rgb(243, 243, 243);direction:rtl;font-family:Yekan;width:40%;margin:0 auto 30px;padding:15px;border-radius:4px;">
-            شکل (1) - نمای جانبی از محل قرارگیری فلومتر و پمپ
-        </div>
-
+    </h2>
         
+    <div class="text_main_content">
 
-        یک نمودار شماتیک از منحنی عملکرد پمپ در
-        شکل (2) نشان داده شده است:
-
-        <img class="ui centered image" style="margin:20px auto 20px;width:80%;" src="{% static 'p2.jpg' %}"/>
-        
-        <div class="ui raised segment" style="background-color:rgb(243, 243, 243);direction:rtl;font-family:Yekan;width:40%;margin:0 auto 30px;padding:15px;border-radius:4px;">
-            شکل (2)- نمودار شماتیک از منحنی عملکرد پمپ
-        </div>
-
-
-
-        محل اتصال فشار سنج ها در شکل زیر نشان داد شده
-        که همانطور که قبلا تاکید شد قطر لوله ها 0/5 اینچ می باشد.
-
-        <img class="ui centered image" style="margin:20px auto 20px;width:80%;" src="{% static 'p3.jpg' %}"/>
-        
-        <div class="ui raised segment" style="background-color:rgb(243, 243, 243);direction:rtl;font-family:Yekan;width:40%;margin:0 auto 30px;padding:15px;border-radius:4px;">
-            شکل (3)- محل اتصال فشارسنج
-        </div>
-
-
-        همچنین برای اتصال فلومتر مسیری به شکل زیر در نظر گرفته شده است
-        و طول لوله های قرمز رنگ منعطف در حدود یک متر می باشد
-        (باز هم تاکید می شود که در محل اتصالات قطر <span style="font-family: Arial;" dir="ltr">0.5 in</span> می باشد).
-
-        <img class="ui centered image" style="margin:20px auto 20px;width:80%;" src="{% static 'p4.jpg' %}"/>
-        
-        <div class="ui raised segment" style="background-color:rgb(243, 243, 243);direction:rtl;font-family:Yekan;width:40%;margin:0 auto 30px;padding:15px;border-radius:4px;">
-            شکل (4)- محل اتصال فلومتر
-        </div>
-
-
-        <div class="ui divider"></div>
-
-        <span style="font-size:24px;direction:rtl;font-weight:700;">
-            <span style="position:relative;left:7px;">2.</span>
-            داده های مسئله
-            <br/>
-            <br>
-        </span>
-
-        <span style="padding-right:3px;direction:rtl;">
-                در روز مسابقه هر تیم شرکت کننده فرصت دارد تا با
-                نصب دستگاههای خود، نسبت به قرائت فشار
-                و دبی  های مورد نیاز مبادرت کند.
-        </span>
-
-        <div class="ui divider"></div>
-
-        <span style="font-size:24px;direction:rtl;font-weight:700;">
-            <span style="position:relative;left:7px;">3.</span>
-            خروجی مسئله
-            <br/>
-            <br/>
-        </span>
-    
-        <div style="width:100%;height:auto;text-align:justify;direction:rtl;">
-
-            <i class="circle icon" style="font-size:10px;position:relative;left:4px;color:rgb(75, 196, 190);"></i>
-            منحنی عملکرد پمپ
-
-            <br>
-            <br>
-            <i class="circle icon" style="font-size:10px;position:relative;left:4px;color:rgb(75, 196, 190);"></i>
-            نقشه کامل و جزییات ساخت فشارسنج
-            و فلومتر به همراه آنالیز قیمت 
-
-
-        </div>
-    
-        <div class="ui divider"></div>
-
-        <span style="font-size:24px;direction:rtl;font-weight:700;">
-            <span style="position:relative;left:7px;">4.</span>
-            نکات مهم
-            <br/>
-            <br/>
-        </span>
-    
-        <div style="width:100%;height:auto;text-align:justify;direction:rtl;">
-
-            <i class="circle icon" style="font-size:10px;position:relative;left:4px;color:rgb(75, 196, 190);"></i>
-            خلاقیت در ساخت دستگاه¬ها امتیاز آور خواهد بود.
-
-            <br>
-            <br>
-            <i class="circle icon" style="font-size:10px;position:relative;left:4px;color:rgb(75, 196, 190);"></i>
-            مدت زمان برقراری اتصالات و انجام
-            آزمایش (بسته به تعداد گروههای شرکت کننده) محدود بوده
-            و بنابراین همه تدارکات لازم جهت 
-            انجام اتصالات بایستی از قبل برنامه ریزی شوند.
-        </div>
-
-        <div class="ui divider"></div>
-
-        <div class="ui raised segment" style="width:60%;margin:0 auto 10px;background-color:rgb(165, 233, 216)">
-                <!-- background-color:rgb(64, 216, 158) -->
-            <h3 class="format">
-
-                <i class="balance scale icon" style="float:right;color:rgb(87, 90, 128);"></i>
-                قوانین پروژه ی عملی
-                <i class="balance scale icon" style="float:left;color:rgb(87, 90, 128);"></i>        
-            
+            <h3 style="text-align: center;font-family:Yekan;">
+                ساخت وسیله برای بدست آوردن منحنی عملکرد پمپ
             </h3>
-        </div>
 
-        شرکت‌کنندگان در این قسمت پس از ساخت
-        دستگاهی که مشخصات آن در بخش مربوط
-        به پروژه های عملی اعلام شده
-        است با حضور در مکان مسابقه
-        نسبت به معرفی طرح  ساخت و
-        عملکرد دستگاه اقدام می نمایند.
-        در این بخش هر تیم شركت‌كننده می‌تواند حداقل از
-        ۲ نفر و حداكثر از 4  نفر (بجز مشاور علمی)
-        تشكیل گردد. در این بخش تیم‌ها 
-        باید یك نفر از اعضای هیات علمی
-        را به عنوان مشاور علمی معرفی كنند.
+            <span style="font-size:24px;direction:rtl;font-weight:700;">
+                <span style="position:relative;left:7px;">1.</span>
+                شرح مسئله<br />
+            </span>
 
-        <div class="header_rules">
-            قوانین و مقررات :
-        </div>
+            منحنی عملکرد پمپ عبارتست از نمودار 
+            تغییرات هد پمپ در مقابل تغییرات
+            دبی پمپ. برای به دست آوردن این منحنی
+            تیمهای شرکت کننده بایستی فلومتر و فشارسنج
+            مناسب را طراحی کرده و بسازند.
+            محل قرار گرفتن فشار سنج 
+            در شکل (1) با علامت (*) و محل
+            نصب فلومتر با علامت (**) مشخص شده
+            است. محدوده فشار قابل
+            اندازه گیری برای فشار سنج، از <span style="font-family: Arial;">0</span> تا <span style="font-family: Arial; direction: ltr;" dir="ltr">+2 bar</span>
+            است. دبی ارائه شده توسط پمپ نیز در محدوه  <span style="font-family: Arial;">0</span> تا <span style="font-family: Arial; direction: ltr;" dir="ltr">40 lit/min</span> تغییر
+            می کند. همچنین
+            قطر تمامی لوله ها <span style="font-family: Arial;" dir="ltr">0.5 in</span> می باشد. نمای کناری این سیستم در
+            شکل زیر مشخص شده است.
 
-        <span style="padding-right:3px;direction:rtl;">
-            1.
-            در مورد رشته و مقطع تحصیلی شرکت‌کنندگان هیچگونه
-            محدودیتی وجود ندارد.
-        </span>
+            <img class="ui centered image" style="margin:20px auto 20px;width:80%;" src="{% static 'p1.jpg' %}"/>
             
-    
-        <div style="padding-right:3px;background-color:rgb(236, 236, 236);width:100%;direction:rtl;">
+            <div class="ui raised segment" style="background-color:rgb(243, 243, 243);direction:rtl;font-family:Yekan;width:40%;margin:0 auto 30px;padding:15px;border-radius:4px;">
+                شکل (1) - نمای جانبی از محل قرارگیری فلومتر و پمپ
+            </div>
+
+            
+
+            یک نمودار شماتیک از منحنی عملکرد پمپ در
+            شکل (2) نشان داده شده است:
+
+            <img class="ui centered image" style="margin:20px auto 20px;width:80%;" src="{% static 'p2.jpg' %}"/>
+            
+            <div class="ui raised segment" style="background-color:rgb(243, 243, 243);direction:rtl;font-family:Yekan;width:40%;margin:0 auto 30px;padding:15px;border-radius:4px;">
+                شکل (2)- نمودار شماتیک از منحنی عملکرد پمپ
+            </div>
+
+
+
+            محل اتصال فشار سنج ها در شکل زیر نشان داد شده
+            که همانطور که قبلا تاکید شد قطر لوله ها 0/5 اینچ می باشد.
+
+            <img class="ui centered image" style="margin:20px auto 20px;width:80%;" src="{% static 'p3.jpg' %}"/>
+            
+            <div class="ui raised segment" style="background-color:rgb(243, 243, 243);direction:rtl;font-family:Yekan;width:40%;margin:0 auto 30px;padding:15px;border-radius:4px;">
+                شکل (3)- محل اتصال فشارسنج
+            </div>
+
+
+            همچنین برای اتصال فلومتر مسیری به شکل زیر در نظر گرفته شده است
+            و طول لوله های قرمز رنگ منعطف در حدود یک متر می باشد
+            (باز هم تاکید می شود که در محل اتصالات قطر <span style="font-family: Arial;" dir="ltr">0.5 in</span> می باشد).
+
+            <img class="ui centered image" style="margin:20px auto 20px;width:80%;" src="{% static 'p4.jpg' %}"/>
+            
+            <div class="ui raised segment" style="background-color:rgb(243, 243, 243);direction:rtl;font-family:Yekan;width:40%;margin:0 auto 30px;padding:15px;border-radius:4px;">
+                شکل (4)- محل اتصال فلومتر
+            </div>
+
+
             <div class="ui divider"></div>
-            <span style="direction:rtl;">
-                2. 
-                نام فایل ارسالی باید شامل نام گروه
-                و نام دانشگاه یا مؤسسه باشد .
+
+            <span style="font-size:24px;direction:rtl;font-weight:700;">
+                <span style="position:relative;left:7px;">2.</span>
+                داده های مسئله
+                <br/>
+                <br>
             </span>
-            <div class="ui divider"></div>
-        </div>
-    
-        <span style="padding-right:3px;direction:rtl;">
-            3.
-            هر گروه موظف است شخصاً دستگاه ساخته شده را آزمایش
-            نماید و لذا لازم است که تمامی تجهیزات
-            مورد نیاز را همراه داشته باشد.
-        </span>
 
-        <div style="padding-right:3px;padding-left:3px;background-color:rgb(236, 236, 236);width:100%;direction:rtl;">
-            <div class="ui divider"></div>
-            <span style="direction:rtl;text-align:justify;">
-                4. 
-                گروه ها
-                لازم است که گزارش عملکرد دستگاه طراحی شده و چند عکس
-                (حداقل سه عکس) از دستگاه را در طی مراحل ساخت تهیه
-                و در در زمان مشخصی ارسال نمایند. لازم
-                است که اعضای گروهها در عکس ها حضور داشته باشد.
-                همچنین، گزارش شامل اطلاعات جامعی از دستگاه
-                از جمله  نحوه ساخت و مواد مصرفی به همراه
-                هزینه آنها و هزینه نهایی ساخت می باشد.
-                پس از تایید اولیه توسط کمیته داوران،
-                در روز مسابقه تجهیزات ساخته شده توسط
-                داوران بازرسی خواهد شد و تست‌های اولیه
-                انجام خواهد شد. تیم‌هایی كه تجهیزات
-                آنها توسط داوران تأیید شده باشد، 
-                مجوز حضور در مسابقه را خواهند داشت.
+            <span style="padding-right:3px;direction:rtl;">
+                    در روز مسابقه هر تیم شرکت کننده فرصت دارد تا با
+                    نصب دستگاههای خود، نسبت به قرائت فشار
+                    و دبی  های مورد نیاز مبادرت کند.
             </span>
-            <div class="ui divider"></div>
-        </div>
-    
-        <span style="padding-right:3px;direction:rtl;">
-            5.
-            دبیرخانه‌ی مسابقات آسیب‌های ناشی از نامطلوب بودن
-            ارسال آثار را بر عهده نمی‌گیرد.
-        </span>
 
-        <div style="padding-right:3px;background-color:rgb(236, 236, 236);width:100%;direction:rtl;">
             <div class="ui divider"></div>
-            <span style="direction:rtl;">
-                6. 
-                هرگونه دعوی توسط دیگران در رابطه با مالکیت اثر،
-                موجب حذف اثر از مسابقات خواهدشد و دبیرخانه‌ی مسابقات 
-                هیچگونه مسئولیت وحکمیتی دراین مورد نمی‌پذیرد.
+
+            <span style="font-size:24px;direction:rtl;font-weight:700;">
+                <span style="position:relative;left:7px;">3.</span>
+                خروجی مسئله
+                <br/>
+                <br/>
             </span>
-            <div class="ui divider"></div>
-        </div>
-
-        <div class="ui divider"></div>
-
-
-        <div class="header_table">
-            جدول امتیازات پروژه عملی : منحنی عملکرد پمپ
-        </div>
         
-        <table>
+            <div style="width:100%;height:auto;text-align:justify;direction:rtl;">
 
-            <tr>
-                <th>حداکثر امتیاز</th>
-                <th>توضیحات</th> 
-                <th>جنبه های اثر</th>
-            </tr>
-    
-            <tr>
-                <td class="number">10</td>
-                <td>کیفیت مستندات شامل شناسنامه اثر، اسلاید، فیلم، کلیپ</td>
-                <td class="header_of_table" rowspan=3>علمی</td>
-            </tr>
-    
-            <tr>
-                <td class="number">10</td>
-                <td>تسلط بر تئوری موضوع و پاسخ‌گویی به سوالات داوران</td>
-            </tr>
-    
-            <tr>
-                <td class="number">20</td>
-                <th>جمع</th>
-            </tr>
-    
-            <tr style="background-color:rgb(236,236,236);">
-                <td class="number">40</td>
-                <td>دقت منحنی عملکرد به دست آمده</td>
-                <td class="header_of_table" rowspan=3>فناوری</td>
-            </tr>
-    
-            <tr style="background-color:rgb(236,236,236);">
-                <td class="number">20</td>
-                <td>صرفه‌های اقتصادی و هزینه‌های ساخت</td>
-            </tr>
+                <i class="circle icon" style="font-size:10px;position:relative;left:4px;color:rgb(75, 196, 190);"></i>
+                منحنی عملکرد پمپ
 
-            <tr style="background-color:rgb(236,236,236);">
-                <td class="number">60</td>
-                <th>جمع</th>
-            </tr>
+                <br>
+                <br>
+                <i class="circle icon" style="font-size:10px;position:relative;left:4px;color:rgb(75, 196, 190);"></i>
+                نقشه کامل و جزییات ساخت فشارسنج
+                و فلومتر به همراه آنالیز قیمت 
 
-            <tr>
-                <td class="number">20</td>
-                <td>خلاقیت  در طراحی و استفاده از تجهیزات جانبی برای افزایش دقت </td>
-                <td class="header_of_table">علمی</td>       
-            </tr>
 
-            <tr style="background-color:rgb(236,236,236);">
-                <td class="number total">100</td>
-                <td class="header_of_table">مجموع امتیاز ها</td>
-                <td></td>
-            </tr>
-    
+            </div>
+        
+            <div class="ui divider"></div>
 
-    
-        </table>
+            <span style="font-size:24px;direction:rtl;font-weight:700;">
+                <span style="position:relative;left:7px;">4.</span>
+                نکات مهم
+                <br/>
+                <br/>
+            </span>
+        
+            <div style="width:100%;height:auto;text-align:justify;direction:rtl;">
 
-        <div style="width: 100%; text-align: center; margin-top: 20px;">
-            <a href="{% static 'project.pdf' %}" class="ui primary button">دانلود pdf</a>
-        </div>
+                <i class="circle icon" style="font-size:10px;position:relative;left:4px;color:rgb(75, 196, 190);"></i>
+                خلاقیت در ساخت دستگاه¬ها امتیاز آور خواهد بود.
+
+                <br>
+                <br>
+                <i class="circle icon" style="font-size:10px;position:relative;left:4px;color:rgb(75, 196, 190);"></i>
+                مدت زمان برقراری اتصالات و انجام
+                آزمایش (بسته به تعداد گروههای شرکت کننده) محدود بوده
+                و بنابراین همه تدارکات لازم جهت 
+                انجام اتصالات بایستی از قبل برنامه ریزی شوند.
+            </div>
+
+            <div class="ui divider"></div>
+
+            <div class="ui raised segment" style="width:60%;margin:0 auto 10px;background-color:rgb(165, 233, 216)">
+                    <!-- background-color:rgb(64, 216, 158) -->
+                <h3 class="format">
+
+                    <i class="balance scale icon" style="float:right;color:rgb(87, 90, 128);"></i>
+                    قوانین پروژه ی عملی
+                    <i class="balance scale icon" style="float:left;color:rgb(87, 90, 128);"></i>        
+                
+                </h3>
+            </div>
+
+            شرکت‌کنندگان در این قسمت پس از ساخت
+            دستگاهی که مشخصات آن در بخش مربوط
+            به پروژه های عملی اعلام شده
+            است با حضور در مکان مسابقه
+            نسبت به معرفی طرح  ساخت و
+            عملکرد دستگاه اقدام می نمایند.
+            در این بخش هر تیم شركت‌كننده می‌تواند حداقل از
+            ۲ نفر و حداكثر از 4  نفر (بجز مشاور علمی)
+            تشكیل گردد. در این بخش تیم‌ها 
+            باید یك نفر از اعضای هیات علمی
+            را به عنوان مشاور علمی معرفی كنند.
+
+            <div class="header_rules">
+                قوانین و مقررات :
+            </div>
+
+            <span style="padding-right:3px;direction:rtl;">
+                1.
+                در مورد رشته و مقطع تحصیلی شرکت‌کنندگان هیچگونه
+                محدودیتی وجود ندارد.
+            </span>
+                
+        
+            <div style="padding-right:3px;background-color:rgb(236, 236, 236);width:100%;direction:rtl;">
+                <div class="ui divider"></div>
+                <span style="direction:rtl;">
+                    2. 
+                    نام فایل ارسالی باید شامل نام گروه
+                    و نام دانشگاه یا مؤسسه باشد .
+                </span>
+                <div class="ui divider"></div>
+            </div>
+        
+            <span style="padding-right:3px;direction:rtl;">
+                3.
+                هر گروه موظف است شخصاً دستگاه ساخته شده را آزمایش
+                نماید و لذا لازم است که تمامی تجهیزات
+                مورد نیاز را همراه داشته باشد.
+            </span>
+
+            <div style="padding-right:3px;padding-left:3px;background-color:rgb(236, 236, 236);width:100%;direction:rtl;">
+                <div class="ui divider"></div>
+                <span style="direction:rtl;text-align:justify;">
+                    4. 
+                    گروه ها
+                    لازم است که گزارش عملکرد دستگاه طراحی شده و چند عکس
+                    (حداقل سه عکس) از دستگاه را در طی مراحل ساخت تهیه
+                    و در در زمان مشخصی ارسال نمایند. لازم
+                    است که اعضای گروهها در عکس ها حضور داشته باشد.
+                    همچنین، گزارش شامل اطلاعات جامعی از دستگاه
+                    از جمله  نحوه ساخت و مواد مصرفی به همراه
+                    هزینه آنها و هزینه نهایی ساخت می باشد.
+                    پس از تایید اولیه توسط کمیته داوران،
+                    در روز مسابقه تجهیزات ساخته شده توسط
+                    داوران بازرسی خواهد شد و تست‌های اولیه
+                    انجام خواهد شد. تیم‌هایی كه تجهیزات
+                    آنها توسط داوران تأیید شده باشد، 
+                    مجوز حضور در مسابقه را خواهند داشت.
+                </span>
+                <div class="ui divider"></div>
+            </div>
+        
+            <span style="padding-right:3px;direction:rtl;">
+                5.
+                دبیرخانه‌ی مسابقات آسیب‌های ناشی از نامطلوب بودن
+                ارسال آثار را بر عهده نمی‌گیرد.
+            </span>
+
+            <div style="padding-right:3px;background-color:rgb(236, 236, 236);width:100%;direction:rtl;">
+                <div class="ui divider"></div>
+                <span style="direction:rtl;">
+                    6. 
+                    هرگونه دعوی توسط دیگران در رابطه با مالکیت اثر،
+                    موجب حذف اثر از مسابقات خواهدشد و دبیرخانه‌ی مسابقات 
+                    هیچگونه مسئولیت وحکمیتی دراین مورد نمی‌پذیرد.
+                </span>
+                <div class="ui divider"></div>
+            </div>
+
+            <div class="ui divider"></div>
+
+
+            <div class="header_table">
+                جدول امتیازات پروژه عملی : منحنی عملکرد پمپ
+            </div>
+            
+            <table>
+
+                <tr>
+                    <th>حداکثر امتیاز</th>
+                    <th>توضیحات</th> 
+                    <th>جنبه های اثر</th>
+                </tr>
+        
+                <tr>
+                    <td class="number">10</td>
+                    <td>کیفیت مستندات شامل شناسنامه اثر، اسلاید، فیلم، کلیپ</td>
+                    <td class="header_of_table" rowspan=3>علمی</td>
+                </tr>
+        
+                <tr>
+                    <td class="number">10</td>
+                    <td>تسلط بر تئوری موضوع و پاسخ‌گویی به سوالات داوران</td>
+                </tr>
+        
+                <tr>
+                    <td class="number">20</td>
+                    <th>جمع</th>
+                </tr>
+        
+                <tr style="background-color:rgb(236,236,236);">
+                    <td class="number">40</td>
+                    <td>دقت منحنی عملکرد به دست آمده</td>
+                    <td class="header_of_table" rowspan=3>فناوری</td>
+                </tr>
+        
+                <tr style="background-color:rgb(236,236,236);">
+                    <td class="number">20</td>
+                    <td>صرفه‌های اقتصادی و هزینه‌های ساخت</td>
+                </tr>
+
+                <tr style="background-color:rgb(236,236,236);">
+                    <td class="number">60</td>
+                    <th>جمع</th>
+                </tr>
+
+                <tr>
+                    <td class="number">20</td>
+                    <td>خلاقیت  در طراحی و استفاده از تجهیزات جانبی برای افزایش دقت </td>
+                    <td class="header_of_table">علمی</td>       
+                </tr>
+
+                <tr style="background-color:rgb(236,236,236);">
+                    <td class="number total">100</td>
+                    <td class="header_of_table">مجموع امتیاز ها</td>
+                    <td></td>
+                </tr>
+        
+
+        
+            </table>
+
+            <div style="width: 100%; text-align: center; margin-top: 20px;">
+                <a href="{% static 'project.pdf' %}" class="ui primary button">دانلود pdf</a>
+            </div>
+
+    </div>
 
 </div>
-
 {% endblock content %}
