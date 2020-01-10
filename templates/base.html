@@ -217,17 +217,9 @@
 
                     <div class="competition_date_content">
 
-                        <i class="paper plane icon"></i>
-                        &nbsp
-                        ارسال فایل مسابقات :
-                        <br>
-                        20
-                        بهمن
-    
-                        <div class="ui divider"></div>
                         <i class="pencil alternate icon"></i>
                         &nbsp
-                        ثبت نام نهایی :
+                        ارسال فایل و ثبت نام نهایی
                         <br>
                         30 بهمن
 
@@ -334,9 +326,6 @@
 
             <div id="main_content2">
 
-                <div class="ui raised segment" id="content_main_content2">
-
-                </div>
 
             </div>
 
@@ -364,17 +353,9 @@
         
                             <div class="competition_date_content">
         
-                                <i class="paper plane icon"></i>
-                                &nbsp
-                                ارسال فایل مسابقات :
-                                <br>
-                                20
-                                بهمن
-            
-                                <div class="ui divider"></div>
                                 <i class="pencil alternate icon"></i>
                                 &nbsp
-                                ثبت نام نهایی :
+                                ارسال فایل و ثبت نام نهایی
                                 <br>
                                 30 بهمن
         
@@ -542,9 +523,11 @@
         <script src="{% static 'HomepageJs.js' %}"></script>
         <script>
             $(document).ready(function(){
-                $('#content_main_content2').html(
-                    $('#content_main_content_second').html()
-                )
+                $('#main_content2').html(
+                    $('#main_content').html()
+                ).children('.ui.segment')
+                .removeClass('piled')
+                .addClass('raised');
             })
         </script>
         {% block scripts %}

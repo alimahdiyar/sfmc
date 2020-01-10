@@ -42,6 +42,24 @@
                     
 
 <div class="ui piled segment" id="content_main_content_second">
+
+    <h2 id="header_main_content_second2">
+
+        <i class="check icon" style="color: red; font-size: 30px;"></i> اطلاعیه ها
+
+    </h2>
+
+
+    <div style="padding: 10px;">
+        <div class="text_content_more_info">
+            <i class="angle double left icon icon_judgement"></i>
+
+    <a class="item" href="{% url 'hovercraft' %}#news">هاورکرافت:</a> توان باطری ها می تواند تا 120 وات ارتقاء یابد.
+            </div>
+            </div>
+</div>
+
+<div class="ui piled segment" id="content_main_content_second">
                             
     <h2 id="header_main_content_second2">
 
@@ -51,8 +69,7 @@
 
     <!-- <div class="ui divider"></div> -->
 
-
-    <div class="text_main_content">
+    <div style="padding: 15px;">
         مکانیک سیالات امروزه یکی از مهم ترین و پرکاربرد ترین علوم در رشته های مهندسی از جمله مهندسی عمران، مهندسی مکانیک، مهندسی شیمی، مهندسی پزشکی، مهندسی کشاورزی، مهـــندسی معدن و مهندسی مواد می باشد.  این درس بین رشته ای، پرکاربرد و پایه ای،  نظر طیف وسیعی از پژوهشگران و دانشجویان علاقمند را به خود جلب نموده و منجر به انجام تحقیقات گسترده ای در قالب پروژه های عملی یا نظری گردیده است. 
         <a href="{% url 'about' %}">ادامه مطلب</a>
         <!-- <span id="hidden_content" onload="f()">
@@ -63,13 +80,11 @@
     </div>
 
 </div>
-{% endblock content %}
 
-{% block bottomcontent %}
 
-<div class="ui piled segment" id="middle_content">
+<div class="ui segment" id="middle_content">
 
-    <h2 id="header_middle_content">
+    <h2 id="header_middle_content" style="background-color: white;">
         
         <i class="history icon"></i>
         &nbsp
@@ -108,7 +123,9 @@
 </div>
 
 
+{% endblock content %}
 
+{% block bottomcontent %}
 
 
 

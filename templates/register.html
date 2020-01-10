@@ -38,6 +38,14 @@
 
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
     <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        <div class="ui message info" style="text-align: right;">
+            تعداد نفرات مجاز هر تیم:
+            <ul>
+                {% for competition_field in competition_fields %}
+                    <li>{{ competition_field.name }}: {{ competition_field.team_member_limit_min }} تا {{ competition_field.team_member_limit_max }} نفر</li>
+                {% endfor %}
+            </ul>
+        </div>
         <form @submit="submitForm" class="ui from rtl" id="reg-form" method="POST" enctype="multipart/form-data" action="">
         {% csrf_token %}
         {% verbatim %}

@@ -6,12 +6,12 @@ from django.contrib.auth.models import User
 
 class TeamTypeConsts():
     
-    SCHOOL = '0'
-    UNIVERSITY = '1'
+    TYPE_1 = '0'
+    TYPE_2 = '1'
 
     states = (
-        (SCHOOL, "دانش آموزی"),
-        (UNIVERSITY, "دانش جویی"),
+        (TYPE_1, "ثبت نام آزاد (خارج از مسابقه)"),
+        (TYPE_2, "ثبت نام شرکت کنندگان در مسابقه"),
     )
 
 class CompetitionField(models.Model):
