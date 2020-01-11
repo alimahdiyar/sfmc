@@ -66,14 +66,14 @@
                         <label class="checkbox-header" for="team_type">نوع گروه: </label>
                         <div class="field">
                         <div class="ui radio checkbox">
-                            <input type="radio" name="team_type" value="0" tabindex="0" class="hidden">
-                            <label>دانش آموزی</label>
+                            <input type="radio" name="team_type" value="0" v-model="team_type" tabindex="0" class="hidden">
+                            <label>ثبت نام شرکت کنندگان در مسابقه</label>
                         </div>
                         </div>
                         <div class="field">
                         <div class="ui radio checkbox">
-                            <input type="radio" name="team_type" value="1" tabindex="0" checked class="hidden">
-                            <label>دانشجویی</label>
+                            <input type="radio" name="team_type" value="1" v-model="team_type" tabindex="0" checked class="hidden">
+                            <label>ثبت نام آزاد (خارج از مسابقه)</label>
                         </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                     <div class="inline fields checkbox-container">
                         <label class="checkbox-header">آیتم ها: </label>
 
-                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk">
+                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk" v-if="team_type == '0' || competition_field.can_free_register">
                             <div class="ui checkbox">
                             <input type="checkbox" tabindex="0" :name="'competition_' + competition_field.pk" v-model="competition_field.is_selected" class="hidden">
                             <label>{{ competition_field.name }}</label>
@@ -149,7 +149,7 @@
                     <div class="inline fields checkbox-container">
                         <label class="checkbox-header">آیتم ها: </label>
 
-                        <div class="inline field" v-for="member_competition_field in member.competition_fields" v-if="competition_fields.find(el=>el.pk == member_competition_field.pk).is_selected" :key="member_competition_field.pk">
+                        <div class="inline field" v-for="member_competition_field in member.competition_fields" v-if="(team_type == '0' || member_competition_field.can_free_register) && competition_fields.find(el=>el.pk == member_competition_field.pk).is_selected" :key="member_competition_field.pk">
                             <div class="ui checkbox" :id="'member_' + i + '_competition_' + member_competition_field.pk">
                             <input type="checkbox" tabindex="0" @change="handleCheckBoxChange(member, member_competition_field, i)" :name="'member_' + i + '_competition_' + member_competition_field.pk" v-model="member_competition_field.is_selected" class="hidden">
                             <label>{{ member_competition_field.name }}</label>
@@ -193,6 +193,7 @@
             }
         },
         data: {
+            team_type: '0',
             competition_fields: [
                 {% for competition_field in competition_fields %}
                 {
@@ -200,6 +201,7 @@
                     name: '{{ competition_field.name }}',
                     team_member_limit_min: {{ competition_field.team_member_limit_min }},
                     team_member_limit_max: {{ competition_field.team_member_limit_max }},
+                    can_free_register: '{{ competition_field.can_free_register }}' === 'True',
                     is_selected: false,
                 },
                 {% endfor %}

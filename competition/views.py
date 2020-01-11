@@ -31,53 +31,53 @@ def home_view(request):
 def registeration_view(request):
     template = 'register.html'
 
-    if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('competition:home'))
-    else:
-        if request.method == 'POST':
-            print(request.POST)
-            # form = RegisterationForm(request.POST)
-            # if form.is_valid():
-            #     if User.objects.filter(username=form.cleaned_data['email']).exists():
-            #         return render(request, template, {
-            #             'form': form,
-            #             'error_message': 'شما قبلا ثبت نام کرده اید'
-            #         })
-            #     else:
-            #         # Create the user:
-            #         # Create participant
-            #         user = User.objects.create_user(
-            #             username=form.cleaned_data['email'],
-            #             password=form.cleaned_data['password'],
-            #         )
-            #         user.save()
-            #         manager = Manager(
-            #             user=user,
-            #             first_name=form.cleaned_data['first_name'],
-            #             last_name=form.cleaned_data['last_name'],
-            #             phone_number=form.cleaned_data['phone_number'],
-            #             email=form.cleaned_data['email'],
-            #             student_card_image=form.cleaned_data['student_card_image'],
-            #             university=form.cleaned_data['university']
-            #         )
-            #         manager.save()
-            #         participant = Participant(
-            #             manager=manager,
-            #             first_name=form.cleaned_data['first_name'],
-            #             last_name=form.cleaned_data['last_name'],
-            #             phone_number=form.cleaned_data['phone_number'],
-            #             email=form.cleaned_data['email'],
-            #             student_card_image=form.cleaned_data['student_card_image'],
-            #             university=form.cleaned_data['university']
-            #         )
-            #         participant.save()
-            #         login(request, user)
-            #         return HttpResponseRedirect(reverse('competition:home'))
-        # else:
-        #     form = RegisterationForm()
+    # if request.user.is_authenticated:
+    #     return HttpResponseRedirect(reverse('competition:home'))
+    # else:
+    if request.method == 'POST':
+        print(request.POST)
+        # form = RegisterationForm(request.POST)
+        # if form.is_valid():
+        #     if User.objects.filter(username=form.cleaned_data['email']).exists():
+        #         return render(request, template, {
+        #             'form': form,
+        #             'error_message': 'شما قبلا ثبت نام کرده اید'
+        #         })
+        #     else:
+        #         # Create the user:
+        #         # Create participant
+        #         user = User.objects.create_user(
+        #             username=form.cleaned_data['email'],
+        #             password=form.cleaned_data['password'],
+        #         )
+        #         user.save()
+        #         manager = Manager(
+        #             user=user,
+        #             first_name=form.cleaned_data['first_name'],
+        #             last_name=form.cleaned_data['last_name'],
+        #             phone_number=form.cleaned_data['phone_number'],
+        #             email=form.cleaned_data['email'],
+        #             student_card_image=form.cleaned_data['student_card_image'],
+        #             university=form.cleaned_data['university']
+        #         )
+        #         manager.save()
+        #         participant = Participant(
+        #             manager=manager,
+        #             first_name=form.cleaned_data['first_name'],
+        #             last_name=form.cleaned_data['last_name'],
+        #             phone_number=form.cleaned_data['phone_number'],
+        #             email=form.cleaned_data['email'],
+        #             student_card_image=form.cleaned_data['student_card_image'],
+        #             university=form.cleaned_data['university']
+        #         )
+        #         participant.save()
+        #         login(request, user)
+        #         return HttpResponseRedirect(reverse('competition:home'))
+    # else:
+    #     form = RegisterationForm()
 
-        # valid_entry = [entry_year_show(x) for x in range(14)]
-        return render(request, template, {'competition_fields': CompetitionField.objects.all()})
+    # valid_entry = [entry_year_show(x) for x in range(14)]
+    return render(request, template, {'competition_fields': CompetitionField.objects.all()})
 
 
 # def login_view(request):

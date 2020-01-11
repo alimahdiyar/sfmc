@@ -10,12 +10,13 @@ class TeamTypeConsts():
     TYPE_2 = '1'
 
     states = (
-        (TYPE_1, "ثبت نام آزاد (خارج از مسابقه)"),
-        (TYPE_2, "ثبت نام شرکت کنندگان در مسابقه"),
+        (TYPE_1, "ثبت نام شرکت کنندگان در مسابقه"),
+        (TYPE_2, "ثبت نام آزاد (خارج از مسابقه)"),
     )
 
 class CompetitionField(models.Model):
     name = models.CharField(max_length=100)
+    can_free_register = models.BooleanField(default=True)
     price = models.IntegerField()
     team_member_limit_min = models.IntegerField()
     team_member_limit_max = models.IntegerField()
