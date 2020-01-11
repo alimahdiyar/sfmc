@@ -160,7 +160,7 @@
                     </div>
                     
 
-                    <div class="inline fields checkbox-container" v-if="team_type == '0'">
+                    <div class="inline fields checkbox-container" v-if="team_type == '0' && anyItemSelected">
                         <label class="checkbox-header">آیتم ها: </label>
 
                         <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk" v-if="competition_field.is_selected">
@@ -214,7 +214,7 @@
                     </div>
 
                     
-                    <div class="inline fields checkbox-container" v-if="team_type == '0'">
+                    <div class="inline fields checkbox-container" v-if="team_type == '0' && anyItemSelected">
                         <label class="checkbox-header">آیتم ها: </label>
 
                         <div class="inline field" v-for="member_competition_field in member.competition_fields" v-if="competition_fields.find(el=>el.pk == member_competition_field.pk).is_selected" :key="member_competition_field.pk">
