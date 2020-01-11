@@ -317,7 +317,6 @@
 
 
             <div id="main_content">
-
                 {% block content %}
                 {% endblock content %}
 
@@ -528,6 +527,12 @@
                 ).children('.ui.segment')
                 .removeClass('piled')
                 .addClass('raised');
+                
+                {% if request.path != '/' %}
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: Math.max($("#main_content").offset().top, $("#main_content2").offset().top) - 50
+                }, 10);
+                {% endif %}
             })
         </script>
         {% block scripts %}

@@ -62,6 +62,25 @@
 
 {% block content %}
 
+     
+
+<div class="ui piled segment" id="content_main_content_second">
+
+    <h2 id="header_main_content_second2">
+
+        <i class="check icon" style="color: red; font-size: 30px;"></i> اطلاعیه ها
+
+    </h2>
+
+
+    <div style="padding: 10px;">
+        <div class="text_content_more_info">
+            <i class="angle double left icon icon_judgement"></i>
+            <a href="{% static 'clips' %}">کلیپ دوره های قبل</a>
+        </div>
+    </div>
+
+</div>
 
 <div class="ui piled segment" id="content_main_content_second">
                         
@@ -78,9 +97,9 @@
                 قوانین و مقررات نماهنگ
                 <i class="balance scale icon" style="float:left;color:rgb(87, 90, 128);"></i>
         
-            </div>    
-        
+            </div>
 
+            <div class="ui divider"></div>
                 نماهنگ <span class="english">(Video Clip)</span>   : در این بخش هر تیم یک یا حداکثر دو نماهنگ (كلیپ) در رابطه با پدیده های مكانیك سیالات تهیه کرده و در روز مشخصی تحویل می دهد. کمیته‌ی داوران به هر کلیپ با توجه به کیفیت ساخت، موضوع و نوآوری امتیاز می‌دهند. متقاضیان این بخش در گروه‌های 1 یا 2 نفره شركت خواهند كرد و مشاور علمی برای این بخش الزامی نیست.<br />
                 <br />
     در این بخش هر تیم یک نماهنگ (كلیپ) در رابطه با پدیده های مكانیك سیالات تهیه می کند.<br />
@@ -155,29 +174,6 @@
 
 
         </table>
-
-
-        <div class="ui divider"></div>
-
-        <span style="font-size:24px;direction:rtl;font-weight:700;" id="news">
-            <span style="position:relative;left:7px;">5.</span>
-            اطلاعیه ها
-            <i class="balance scale icon" style="float:left;color:rgb(87, 90, 128);"></i>
-            <br />
-            <br>
-        </span>
-
-
-
-
-
-        <div class="content_more_info">
-
-                <div class="text_content_more_info">
-                    <i class="angle double left icon icon_judgement"></i>
-                    <a href="{% static 'clips' %}">کلیپ دوره های قبل</a>
-                </div>
-        </div>
 
     </div>
 </div>
