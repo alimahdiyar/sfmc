@@ -50,20 +50,14 @@
         {% csrf_token %}
         {% verbatim %}
             <input type="hidden" name="active_members" :value="activeMembers">
+
+            <h3 class="ui right aligned header" style="margin-top: 13px;">اطلاعات کلی</h3>
             <div class="ui padded raised right aligned segment">
                 
-                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات تیم</h3>
                 <div class="fields">
-                    
-                    <div class="field">
-                        <div class="ui input">
-                            <input type="text" required placeholder="نام گروه" name="name">
-                        </div>
-                    </div>
-                    
 
                     <div class="inline fields checkbox-container">
-                        <label class="checkbox-header" for="team_type">نوع گروه: </label>
+                        <label class="checkbox-header" for="team_type">نوع ثبت نام: </label>
                         <div class="field">
                         <div class="ui radio checkbox">
                             <input type="radio" name="team_type" value="0" v-model="team_type" tabindex="0" class="hidden">
@@ -78,10 +72,10 @@
                         </div>
                     </div>
 
-                    <div class="inline fields checkbox-container">
+                    <div class="inline fields checkbox-container" v-if="team_type == '0'">
                         <label class="checkbox-header">آیتم ها: </label>
 
-                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk" v-if="team_type == '0' || competition_field.can_free_register">
+                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk">
                             <div class="ui checkbox">
                             <input type="checkbox" tabindex="0" :name="'competition_' + competition_field.pk" v-model="competition_field.is_selected" class="hidden">
                             <label>{{ competition_field.name }}</label>
@@ -93,45 +87,101 @@
                 </div>
                 
             </div>
-            
+            <template v-if="team_type == '0' && anyItemSelected">
+
+                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات آیتم ها</h3>
+                <div class="ui padded raised right aligned segment" v-for="competition_field in competition_fields" v-if="competition_field.is_selected">
+                    
+                    <div class="fields">
+                        <h3 class="ui right aligned header">{{ competition_field.name }}</h3>
+                        <div class="field">
+                            <div class="ui input">
+                                <input type="text" v-model="competition_field.team_name" required placeholder="نام گروه" :name="'competition_' + competition_field.pk + '_team_name'">
+                            </div>
+                        </div>
+
+
+                        <div class="field" v-if="competition_field.needs_advisor">
+                            <h4 class="ui right aligned header" style="margin-top: 13px;">مشخصات مشاور هیئت علمی</h4>
+                            <div class="ui input">
+                                <input type="text" v-model="competition_field.advisor.name" required placeholder="نام و نام خانوادگی" :name="'competition_' + competition_field.pk + '_advisor_name'">
+                            </div> 
+                            <div class="ui input">
+                                <input type="email" v-model="competition_field.advisor.email" required placeholder="ایمیل" :name="'competition_' + competition_field.pk + '_advisor_email'">
+                            </div> 
+                            <div class="ui input">
+                                <input type="text" v-model="competition_field.advisor.university" required placeholder="نام دانشگاه" :name="'competition_' + competition_field.pk + '_advisor_university'">
+                            </div> 
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </template>
+
+            <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات اعضا</h3>
             <div class="ui padded raised right aligned segment">
 
-                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات سرگروه</h3>
+                <h3 class="ui right aligned header">سرگروه</h3>
                 <div class="fields">
                     
                     <div class="field">
                         <div class="ui input">
-                            <input type="text" required placeholder="نام و نام خانوادگی" name="manager_name">
+                            <input type="text" v-model="manager.name" required placeholder="نام و نام خانوادگی" name="manager_name">
                         </div>
                         <div class="ui input">
-                            <input type="text" required placeholder="دانشگاه" name="manager_university">
-                        </div>
-                        <div class="ui input">
-                            <input type="email" required placeholder="ایمیل" name="manager_email">
+                            <input type="email" v-model="manager.email" required placeholder="ایمیل" name="manager_email">
                         </div>
                         <div class="ui input">
                             <input type="tel" 
-                            pattern="[0-9]{11}" required placeholder="شماره تلفن" name="manager_phone">
+                            pattern="[0-9]{11}" v-model="manager.phone_number" required placeholder="شماره تلفن" name="manager_phone">
                         </div>
-                        <div class="ui input" style="padding-top: 10px;">
-                            <label for="manager_student_card" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
-                            <input type="file" required name="manager_student_card">
-                        </div>
+
+                        <template v-if="team_type == '0'">
+                            <div class="ui input">
+                                <input type="text" v-model="manager.university" required placeholder="دانشگاه" name="manager_university">
+                            </div>
+                            <div class="ui input" style="padding-top: 10px;">
+                                <label for="manager_student_card" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
+                                <input type="file" required name="manager_student_card">
+                            </div>
+                        </template>
+
+                        <template v-else>
+                            <div class="ui input">
+                                <input type="text" v-model="manager.organization" required placeholder="سازمان" name="manager_organization">
+                            </div>
+                            <div class="ui input" style="padding-top: 10px;">
+                                <label for="manager_national_card" style="margin-top: 10px; padding: 3px;">عکس کارت ملی</label>
+                                <input type="file" required name="manager_national_card">
+                            </div>
+                        </template>
+
                     </div>
                     
+
+                    <div class="inline fields checkbox-container" v-if="team_type == '0'">
+                        <label class="checkbox-header">آیتم ها: </label>
+
+                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk" v-if="competition_field.is_selected">
+                            <div class="ui checkbox">
+                            <input type="checkbox" tabindex="0" disabled :name="'competition_' + competition_field.pk" checked class="hidden">
+                            <label>{{ competition_field.name }}</label>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
             
             <div class="ui padded raised right aligned segment" v-for="(member, i) in members" v-if="!member.is_delete">
-                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات عضو گروه</h3>
+                <h3 class="ui right aligned header">عضو گروه</h3>
                 <div class="fields">
                     
                     <div class="field">
                         <div class="ui input">
                             <input type="text" v-model="member.name" required placeholder="نام و نام خانوادگی" :name="'member_' + i + '_name'">
-                        </div>
-                        <div class="ui input">
-                            <input type="text" v-model="member.university" required placeholder="دانشگاه" :name="'member_' + i + '_university'">
                         </div>
                         <div class="ui input">
                             <input type="email" v-model="member.email" required placeholder="ایمیل" :name="'member_' + i + '_email'">
@@ -140,16 +190,34 @@
                             <input type="tel" 
                             pattern="[0-9]{11}" v-model="member.phone_number" required placeholder="شماره تلفن" :name="'member_' + i + '_phone_number'">
                         </div>
-                        <div class="ui input" style="padding-top: 10px;">
-                            <label :for="'member_' + i + '_student_card_image'" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
-                            <input type="file" required :name="'member_' + i + '_student_card_image'">
-                        </div>
+    
+                        <template v-if="team_type == '0'">
+                            <div class="ui input">
+                                <input type="text" v-model="member.university" required placeholder="دانشگاه" :name="'member_' + i + '_university'">
+                            </div>
+                            <div class="ui input" style="padding-top: 10px;">
+                                <label :for="'member_' + i + '_student_card_image'" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
+                                <input type="file" required :name="'member_' + i + '_student_card_image'">
+                            </div>
+                        </template>
+    
+                        <template v-else>
+                            <div class="ui input">
+                                <input type="text" v-model="member.organization" required placeholder="سازمان" :name="'member_' + i + '_organization'">
+                            </div>
+                            <div class="ui input" style="padding-top: 10px;">
+                                <label :for="'member_' + i + '_national_card_image'" style="margin-top: 10px; padding: 3px;">عکس کارت ملی</label>
+                                <input type="file" required :name="'member_' + i + '_national_card_image'">
+                            </div>
+                        </template>
+
                     </div>
+
                     
-                    <div class="inline fields checkbox-container">
+                    <div class="inline fields checkbox-container" v-if="team_type == '0'">
                         <label class="checkbox-header">آیتم ها: </label>
 
-                        <div class="inline field" v-for="member_competition_field in member.competition_fields" v-if="(team_type == '0' || member_competition_field.can_free_register) && competition_fields.find(el=>el.pk == member_competition_field.pk).is_selected" :key="member_competition_field.pk">
+                        <div class="inline field" v-for="member_competition_field in member.competition_fields" v-if="competition_fields.find(el=>el.pk == member_competition_field.pk).is_selected" :key="member_competition_field.pk">
                             <div class="ui checkbox" :id="'member_' + i + '_competition_' + member_competition_field.pk">
                             <input type="checkbox" tabindex="0" @change="handleCheckBoxChange(member, member_competition_field, i)" :name="'member_' + i + '_competition_' + member_competition_field.pk" v-model="member_competition_field.is_selected" class="hidden">
                             <label>{{ member_competition_field.name }}</label>
@@ -182,6 +250,12 @@
     new Vue({
         el: '#reg-form',
         computed: {
+            anyItemSelected(){
+                for (let i = 0; i < this.competition_fields.length; i++)
+                    if(this.competition_fields[i].is_selected)
+                        return true;
+                return false;
+            },
             activeMembers(){
                 const allMembers = [];
                 this.members.forEach((el, i) => {
@@ -194,6 +268,15 @@
         },
         data: {
             team_type: '0',
+            manager: {
+                name: '',
+                email: '',
+                phone_number: '',
+                university: '',
+                organization: '',
+                is_delete: false,
+                competition_fields: []
+            },
             competition_fields: [
                 {% for competition_field in competition_fields %}
                 {
@@ -201,8 +284,18 @@
                     name: '{{ competition_field.name }}',
                     team_member_limit_min: {{ competition_field.team_member_limit_min }},
                     team_member_limit_max: {{ competition_field.team_member_limit_max }},
-                    can_free_register: '{{ competition_field.can_free_register }}' === 'True',
+                    needs_advisor: '{{ competition_field.needs_advisor }}' === 'True',
+                    
+                    {% if competition_field.needs_advisor %}
+                    advisor: {
+                        name: '',
+                        email: '',
+                        university: ''
+                    },
+                    {% endif %}
+
                     is_selected: false,
+                    team_name: '',
                 },
                 {% endfor %}
             ],
@@ -248,6 +341,7 @@
                     email: '',
                     phone_number: '',
                     university: '',
+                    organization: '',
                     is_delete: false,
                     competition_fields: []
                 };
