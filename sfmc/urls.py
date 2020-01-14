@@ -30,5 +30,6 @@ urlpatterns = [
     path('contactus/', views.contactus_view, name='contactus'),
     path('regulations/', views.regulations_view, name='regulations'),
     path('competition/', include('competition.urls')),
+    path('invoice/', include('invoice.urls')),
     path('', views.index_view, name='index'),
 ]
