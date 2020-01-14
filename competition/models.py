@@ -8,11 +8,14 @@ class TeamTypeConsts():
     
     TYPE_1 = '0'
     TYPE_2 = '1'
+    TYPE_3 = '2'
 
     states = (
-        (TYPE_1, "ثبت نام شرکت کنندگان در مسابقه"),
-        (TYPE_2, "ثبت نام آزاد (خارج از مسابقه)"),
+        (TYPE_1, "شرکت کنندگان در مسابقه"),
+        (TYPE_2, "آزاد دانشجویی"),
+        (TYPE_3, "آزاد سازمانی"),
     )
+
 
 class CompetitionField(models.Model):
     needs_advisor = models.BooleanField(default=True)

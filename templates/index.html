@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block styles %}
+    <style>
+        .show-news-modal {
+            cursor: pointer;
+        }
+    </style>
+{% endblock styles %}
 
 {% block topcontent %}
     <div class="prizes ui piled segment">
@@ -37,10 +44,6 @@
 {% endblock topcontent %}
 
 {% block content %}
-
-
-                    
-
 <div class="ui piled segment" id="content_main_content_second">
 
     <h2 id="header_main_content_second2">
@@ -51,20 +54,19 @@
 
 
     <div style="padding: 15px; line-height: 30px;">
-        <div class="text_content_more_info">
+        <div class="text_content_more_info show-news-modal" id="show_news_modal_1">
             <i class="angle double left icon icon_judgement"></i>
-            <span style="font-weight: bold;">تسهیلات‌ ‌مرکز‌ ‌هدایت‌ ‌استعدادهای‌ ‌درخشان‌ ‌دانشگاه‌ ‌شیراز‌ ‌برای‌ ‌دانشجویان‌ ‌برتر‌ ‌مسابقات‌ ‌مکانیک‌ ‌سیالات‌</span><br />
-            طبق مقررات مرکز هدایت استعدادهای درخشان دانشگاه شیراز حداقل معدل برای عضویت دانشجویان دانشگاه شیراز در این مرکز معدل کل 18 می‌باشد. بر اساس مصوبه جدید این مرکز، چنانچه دانشجویان دانشگاه شیراز در مسابقات ملی دانشجویی مکانیک سیالات توسط کمیته علمی مسابقات به عنوان تیم برتر تشخیص داده شده و معرفی گردند، یک نمره تخفیف در معدل برای عضویت در این مرکز برای ایشان لحاظ شده، و می‌توانند با معدل 17 عضو مرکز استعدادهای درخشان شوند.
+            <a class="item">۲۲/۱۰/۱۳۹۸: تسهیلات‌ ‌مرکز‌ ‌هدایت‌ ‌استعدادهای‌ ‌درخشان‌ ‌دانشگاه‌ ‌شیراز‌ ‌برای‌ ‌دانشجویان‌ ‌برتر‌ ‌مسابقات‌ ‌مکانیک‌ ‌سیالات‌</a><br />
         </div>
 
         <div class="text_content_more_info">
             <i class="angle double left icon icon_judgement"></i>
-            <a class="item" href="{% url 'hovercraft' %}#news">هاورکرافت:</a> توان باطری ها می تواند تا 120 وات ارتقاء یابد.
+            <a class="item" href="{% url 'hovercraft' %}#news">۲۲/۱۰/۱۳۹۸: هاورکرافت:</a> توان باطری ها می تواند تا 120 وات ارتقاء یابد.
         </div>
 
         <div class="text_content_more_info">
             <i class="angle double left icon icon_judgement"></i>
-            <a class="item" href="{% url 'clipart' %}#news">نماهنگ:</a> <a href="{% static 'clips' %}">کلیپ دوره های قبل</a>
+            <a class="item" href="{% url 'clipart' %}#news">۲۲/۱۰/۱۳۹۸: نماهنگ:</a> <a href="{% static 'clips' %}">کلیپ دوره های قبل</a>
         </div>
     </div>
 
@@ -567,4 +569,33 @@
 
 
 </div>
+
+
+<div class="ui small modal" dir="rtl" style="direction: rtl; text-align: right;" id="news_modal_1">
+
+    <div class="header">تسهیلات‌ ‌مرکز‌ ‌هدایت‌ ‌استعدادهای‌ ‌درخشان‌ ‌دانشگاه‌ ‌شیراز‌ ‌برای‌ ‌دانشجویان‌ ‌برتر‌ ‌مسابقات‌ ‌مکانیک‌ ‌سیالات‌</div>
+    <div class="content">
+        طبق مقررات مرکز هدایت استعدادهای درخشان دانشگاه شیراز حداقل معدل برای عضویت دانشجویان دانشگاه شیراز در این مرکز معدل کل 18 می‌باشد. بر اساس مصوبه جدید این مرکز، چنانچه دانشجویان دانشگاه شیراز در مسابقات ملی دانشجویی مکانیک سیالات توسط کمیته علمی مسابقات به عنوان تیم برتر تشخیص داده شده و معرفی گردند، یک نمره تخفیف در معدل برای عضویت در این مرکز برای ایشان لحاظ شده، و می‌توانند با معدل 17 عضو مرکز استعدادهای درخشان شوند.
+    </div>
+    <div class="actions" style="text-align: center;">
+        <div class="ui primary right labeled icon button" id="close_news_modal_1">
+          بستن
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+</div>
+
 {% endblock bottomcontent %}
+
+{% block scripts  %}
+    <script>
+        $(document).ready(function(){
+            $("#show_news_modal_1").click(function(){
+                $("#news_modal_1").modal('show');
+            })
+            $("#close_news_modal_1").click(function(){
+                $("#news_modal_1").modal('hide');
+            })
+        })
+    </script>
+{% endblock scripts  %}
