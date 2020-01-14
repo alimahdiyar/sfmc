@@ -6,6 +6,19 @@
         .show-news-modal {
             cursor: pointer;
         }
+        .news-modal {
+            direction: rtl;
+            text-align: right !important;
+            font-family: Yekan;
+        }
+        .news-modal .header {
+            font-size: 18px !important;
+            line-height: 33px !important;
+        }
+        .news-modal .content {
+            line-height: 28px !important;
+            font-size: 16px !important;
+        }
     </style>
 {% endblock styles %}
 
@@ -56,17 +69,17 @@
     <div style="padding: 15px; line-height: 30px;">
         <div class="text_content_more_info show-news-modal show_news_modal_1">
             <i class="angle double left icon icon_judgement"></i>
-            <a class="item">۲۲/۱۰/۱۳۹۸: تسهیلات‌ ‌مرکز‌ ‌هدایت‌ ‌استعدادهای‌ ‌درخشان‌ ‌دانشگاه‌ ‌شیراز‌ ‌برای‌ ‌دانشجویان‌ ‌برتر‌ ‌مسابقات‌ ‌مکانیک‌ ‌سیالات‌</a><br />
+            <a class="item">۱۳۹۸/۱۰/۲۲: تسهیلات‌ ‌مرکز‌ ‌هدایت‌ ‌استعدادهای‌ ‌درخشان‌ ‌دانشگاه‌ ‌شیراز‌ ‌برای‌ ‌دانشجویان‌ ‌برتر‌ ‌مسابقات‌ ‌مکانیک‌ ‌سیالات‌</a><br />
         </div>
 
         <div class="text_content_more_info">
             <i class="angle double left icon icon_judgement"></i>
-            <a class="item" href="{% url 'hovercraft' %}#news">۲۲/۱۰/۱۳۹۸: هاورکرافت:</a> توان باطری ها می تواند تا 120 وات ارتقاء یابد.
+            <a class="item" href="{% url 'hovercraft' %}#news">۱۳۹۸/۱۰/۲۲: هاورکرافت:</a> توان باطری ها می تواند تا 120 وات ارتقاء یابد.
         </div>
 
         <div class="text_content_more_info">
             <i class="angle double left icon icon_judgement"></i>
-            <a class="item" href="{% url 'clipart' %}#news">۲۲/۱۰/۱۳۹۸: نماهنگ:</a> <a href="{% static 'clips' %}">کلیپ دوره های قبل</a>
+            <a class="item" href="{% url 'clipart' %}#news">۱۳۹۸/۱۰/۲۲: نماهنگ:</a> <a href="{% static 'clips' %}">کلیپ دوره های قبل</a>
         </div>
     </div>
 
@@ -571,7 +584,7 @@
 </div>
 
 
-<div class="ui small modal" dir="rtl" style="direction: rtl; text-align: right;" id="news_modal_1">
+<div class="ui small modal news-modal" id="news_modal_1">
 
     <div class="header">تسهیلات‌ ‌مرکز‌ ‌هدایت‌ ‌استعدادهای‌ ‌درخشان‌ ‌دانشگاه‌ ‌شیراز‌ ‌برای‌ ‌دانشجویان‌ ‌برتر‌ ‌مسابقات‌ ‌مکانیک‌ ‌سیالات‌</div>
     <div class="content">
