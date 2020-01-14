@@ -26,9 +26,9 @@ class CompetitionField(models.Model):
 
 
 class Participant(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.PROTECT, related_name="team")
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.PROTECT, related_name="profile")
 
-    team = models.ForeignKey('Team', on_delete=models.CASCADE,
+    participant_team = models.ForeignKey('Team', on_delete=models.CASCADE,
                                 related_name="members")
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=100)
@@ -49,9 +49,8 @@ class Advisor(models.Model):
 
 
 class Team(models.Model):
+    manager = models.OneToOneField(Participant, null=True, blank=True, on_delete=models.PROTECT, related_name="team")
     advisor = models.OneToOneField(Advisor, null=True, blank=True, on_delete=models.PROTECT, related_name="team")
-    manager = models.ForeignKey(Participant, on_delete=models.CASCADE,
-                                related_name="teams")  # redundant for development speed
     team_type = models.CharField(max_length=1, choices=TeamTypeConsts.states)
     name = models.CharField(max_length=100)
     competition_field = models.ForeignKey(CompetitionField, on_delete=models.CASCADE)
