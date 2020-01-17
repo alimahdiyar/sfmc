@@ -30,7 +30,9 @@ urlpatterns = [
     path('poster/', views.poster_view, name='poster'),
     path('contactus/', views.contactus_view, name='contactus'),
     path('regulations/', views.regulations_view, name='regulations'),
-    path('competition/', include('competition.urls')),
+
+    path('register/', views.register_view, name='register'),
+
     path('invoice/', include('invoice.urls')),
     path('', views.index_view, name='index'),
 ]
