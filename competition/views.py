@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.core.files.storage import FileSystemStorage
 from django.db import transaction
 from django.shortcuts import render, get_object_or_404
@@ -37,36 +38,43 @@ def registeration_view(request):
     valid_team_types = [{'title': team_type[1], 'value': team_type[0]} for team_type in TeamTypeConsts.states]
 
     if request.method == 'POST':
-
         with transaction.atomic():
             print(request.POST)
             print(request.FILES)
 
-            # myfile = request.FILES['manager_student_card']
-            # fs = FileSystemStorage()
-            # filename = fs.save(myfile.name, myfile)
-            # uploaded_file_url = fs.url(filename)
-            # print(uploaded_file_url)
-
-            manager = Participant.objects.create(
-                name=request.POST['manager_name'],
-                phone_number=request.POST['manager_phone'],
-                email=request.POST['manager_email'],
-                university=request.POST['manager_university'],
-                student_card_image = request.FILES['manager_student_card']
+            the_user = User.objects.create_user(
+                username=request.POST['manager_email'].strip(),
+                password=request.POST['manager_password_1'],
             )
-            # manager.save()
-            if(request.POST['team_type'] == TeamTypeConsts.TYPE_1):
+
+            the_manager = Participant.objects.create(
+                user=the_user,
+                name=request.POST['manager_name'].strip(),
+                phone_number=request.POST['manager_phone'].strip(),
+                email=request.POST['manager_email'].strip(),
+            )
+
+            if request.POST['team_type'] == TeamTypeConsts.PARTICIPANT:
                 pass
-            elif(request.POST['team_type'] == TeamTypeConsts.TYPE_2):
-                pass
-            elif(request.POST['team_type'] == TeamTypeConsts.TYPE_3):
-                pass
-                # Team.objects.create(
-                #     team_type=request.POST['team_type']
-                # )
             else:
-                raise Http404
+
+                the_team = Team.objects.create(
+                    manager=the_manager,
+                    team_type=request.POST['team_type']
+                )
+
+                the_manager.participant_team = the_team
+
+                if request.POST['team_type'] == TeamTypeConsts.PUBLIC_STUDENT:
+                    the_manager.university = request.POST['manager_university'].strip()
+                    the_manager.student_card_image = request.FILES['manager_student_card']
+                else:
+                    the_manager.organization = request.POST['manager_organization'].strip()
+                    the_manager.student_card_image = request.FILES['manager_national_card']
+
+                the_manager.save()
+
+            login(request, the_user)
         # form = RegisterationForm(request.POST)
         # if form.is_valid():
         #     if User.objects.filter(username=form.cleaned_data['email']).exists():
@@ -108,8 +116,8 @@ def registeration_view(request):
     #     form = RegisterationForm()
 
     # valid_entry = [entry_year_show(x) for x in range(14)]
-    return render(request, template, {'competition_fields': CompetitionField.objects.all(), 'valid_team_types': valid_team_types})
-
+    return render(request, template,
+                  {'competition_fields': CompetitionField.objects.all(), 'valid_team_types': valid_team_types})
 
 # def login_view(request):
 #     template = 'competition/login.html'

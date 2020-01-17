@@ -6,7 +6,9 @@
 .field input[type=text]{
     border: 1px solid #cdcdcd;
 }
-
+.ui.input {
+    padding: 5px;
+}
 .rtl {
     flex-direction: row-reverse;
     text-align: right;
@@ -57,7 +59,7 @@
                 <div class="fields">
 
                     <div class="inline fields checkbox-container">
-                        <label class="checkbox-header" for="team_type">نوع ثبت نام: </label>
+                        <label class="checkbox-header">نوع ثبت نام: </label>
                         <div class="field" v-for="valid_team_type in valid_team_types">
                         <div class="ui radio checkbox">
                             <input type="radio" name="team_type" :value="valid_team_type.value" v-model="team_type" tabindex="0" class="hidden">
@@ -98,13 +100,13 @@
                             <input type="tel"
                             pattern="[0-9]{11}" v-model="manager.phone_number" required placeholder="شماره تلفن" name="manager_phone">
                         </div>
-
-                        <template v-if="team_type == '2'">
+                        <div style="display: flex; flex-wrap: wrap">
+                            <template v-if="team_type == '2'">
                             <div class="ui input">
                                 <input type="text" v-model="manager.organization" required placeholder="سازمان" name="manager_organization">
                             </div>
-                            <div class="ui input" style="padding-top: 10px;">
-                                <label for="manager_national_card" style="margin-top: 10px; padding: 3px;">عکس کارت ملی</label>
+                            <div class="ui input">
+                                <label for="manager_national_card" style="padding: 10px;">عکس کارت ملی</label>
                                 <input type="file" required id="manager_national_card" name="manager_national_card">
                             </div>
                         </template>
@@ -113,14 +115,27 @@
                             <div class="ui input">
                                 <input type="text" v-model="manager.university" required placeholder="دانشگاه" name="manager_university">
                             </div>
-                            <div class="ui input" style="padding-top: 10px;">
-                                <label for="manager_student_card" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
-                                <input type="file" required name="manager_student_card">
+                            <div class="ui input">
+                                <label for="manager_student_card" style="padding: 10px;">عکس کارت دانشجویی</label>
+                                <input type="file" required id="manager_student_card" name="manager_student_card">
                             </div>
                         </template>
+                        </div>
+
 
                     </div>
 
+                    <div class="fields">
+
+                        <div class="ui input">
+                            <input type="password" v-model="manager.password_1" required placeholder="کلمه عبور" name="manager_password_1">
+                        </div>
+
+                        <div class="ui input">
+                            <input type="password" v-model="manager.password_2" required placeholder="تکرار کلمه عبور" name="manager_password_2">
+                        </div>
+
+                    </div>
 
                     <div class="inline fields checkbox-container" v-if="team_type == '0' && anyItemSelected">
                         <label class="checkbox-header">آیتم ها: </label>
@@ -191,8 +206,8 @@
                             <div class="ui input">
                                 <input type="text" v-model="member.university" required placeholder="دانشگاه" :name="'member_' + i + '_university'">
                             </div>
-                            <div class="ui input" style="padding-top: 10px;">
-                                <label :for="'member_' + i + '_student_card_image'" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
+                            <div class="ui input">
+                                <label :for="'member_' + i + '_student_card_image'" style="padding: 10px;">عکس کارت دانشجویی</label>
                                 <input type="file" required :name="'member_' + i + '_student_card_image'">
                             </div>
 
@@ -269,6 +284,8 @@
             ],
             team_type: '0',
             manager: {
+                password_1: '',
+                password_2: '',
                 name: '',
                 email: '',
                 phone_number: '',
@@ -379,6 +396,11 @@
                         alert('تعداد نفرات تیم ' + competition_field.name + ' باید بین ' + competition_field.team_member_limit_min + ' و ' + competition_field.team_member_limit_max + ' نفر باشد.')
                     }
                 });
+
+                if(this.manager.password_1 != this.manager.password_2){
+                    alert('کلمه عبور با تکرار همخوانی ندارد');
+                    formValid = false;
+                }
 
                 if(!formValid){
                     e.preventDefault();
