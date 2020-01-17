@@ -58,16 +58,10 @@
 
                     <div class="inline fields checkbox-container">
                         <label class="checkbox-header" for="team_type">نوع ثبت نام: </label>
-                        <div class="field">
+                        <div class="field" v-for="valid_team_type in valid_team_types">
                         <div class="ui radio checkbox">
-                            <input type="radio" name="team_type" value="0" v-model="team_type" tabindex="0" class="hidden">
-                            <label>ثبت نام شرکت کنندگان در مسابقه</label>
-                        </div>
-                        </div>
-                        <div class="field">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="team_type" value="1" v-model="team_type" tabindex="0" checked class="hidden">
-                            <label>ثبت نام آزاد (خارج از مسابقه)</label>
+                            <input type="radio" name="team_type" :value="valid_team_type.value" v-model="team_type" tabindex="0" class="hidden">
+                            <label>{{ valid_team_type.title }}</label>
                         </div>
                         </div>
                     </div>
@@ -86,6 +80,61 @@
 
                 </div>
                 
+            </div>
+
+            <div class="ui padded raised right aligned segment">
+
+                <h3 class="ui right aligned header">سرگروه</h3>
+                <div class="fields">
+
+                    <div class="field">
+                        <div class="ui input">
+                            <input type="text" v-model="manager.name" required placeholder="نام و نام خانوادگی" name="manager_name">
+                        </div>
+                        <div class="ui input">
+                            <input type="email" v-model="manager.email" required placeholder="ایمیل" name="manager_email">
+                        </div>
+                        <div class="ui input">
+                            <input type="tel"
+                            pattern="[0-9]{11}" v-model="manager.phone_number" required placeholder="شماره تلفن" name="manager_phone">
+                        </div>
+
+                        <template v-if="team_type == '2'">
+                            <div class="ui input">
+                                <input type="text" v-model="manager.organization" required placeholder="سازمان" name="manager_organization">
+                            </div>
+                            <div class="ui input" style="padding-top: 10px;">
+                                <label for="manager_national_card" style="margin-top: 10px; padding: 3px;">عکس کارت ملی</label>
+                                <input type="file" required id="manager_national_card" name="manager_national_card">
+                            </div>
+                        </template>
+
+                        <template v-else>
+                            <div class="ui input">
+                                <input type="text" v-model="manager.university" required placeholder="دانشگاه" name="manager_university">
+                            </div>
+                            <div class="ui input" style="padding-top: 10px;">
+                                <label for="manager_student_card" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
+                                <input type="file" required name="manager_student_card">
+                            </div>
+                        </template>
+
+                    </div>
+
+
+                    <div class="inline fields checkbox-container" v-if="team_type == '0' && anyItemSelected">
+                        <label class="checkbox-header">آیتم ها: </label>
+
+                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk" v-if="competition_field.is_selected">
+                            <div class="ui checkbox">
+                            <input type="checkbox" tabindex="0" disabled :name="'competition_' + competition_field.pk" checked class="hidden">
+                            <label>{{ competition_field.name }}</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
             <template v-if="team_type == '0' && anyItemSelected">
 
@@ -119,79 +168,26 @@
                 </div>
             </template>
 
-            <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات اعضا</h3>
-            <div class="ui padded raised right aligned segment">
+            <template v-if="team_type == '0' && anyMemberAdded">
 
-                <h3 class="ui right aligned header">سرگروه</h3>
-                <div class="fields">
-                    
-                    <div class="field">
-                        <div class="ui input">
-                            <input type="text" v-model="manager.name" required placeholder="نام و نام خانوادگی" name="manager_name">
-                        </div>
-                        <div class="ui input">
-                            <input type="email" v-model="manager.email" required placeholder="ایمیل" name="manager_email">
-                        </div>
-                        <div class="ui input">
-                            <input type="tel" 
-                            pattern="[0-9]{11}" v-model="manager.phone_number" required placeholder="شماره تلفن" name="manager_phone">
-                        </div>
+                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات اعضا</h3>
 
-                        <template v-if="team_type == '0'">
+                <div class="ui padded raised right aligned segment" v-for="(member, i) in members" v-if="!member.is_delete">
+                    <h3 class="ui right aligned header">عضو گروه</h3>
+                    <div class="fields">
+
+                        <div class="field">
                             <div class="ui input">
-                                <input type="text" v-model="manager.university" required placeholder="دانشگاه" name="manager_university">
+                                <input type="text" v-model="member.name" required placeholder="نام و نام خانوادگی" :name="'member_' + i + '_name'">
                             </div>
-                            <div class="ui input" style="padding-top: 10px;">
-                                <label for="manager_student_card" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
-                                <input type="file" required name="manager_student_card">
-                            </div>
-                        </template>
-
-                        <template v-else>
                             <div class="ui input">
-                                <input type="text" v-model="manager.organization" required placeholder="سازمان" name="manager_organization">
+                                <input type="email" v-model="member.email" required placeholder="ایمیل" :name="'member_' + i + '_email'">
                             </div>
-                            <div class="ui input" style="padding-top: 10px;">
-                                <label for="manager_national_card" style="margin-top: 10px; padding: 3px;">عکس کارت ملی</label>
-                                <input type="file" required name="manager_national_card">
+                            <div class="ui input">
+                                <input type="tel"
+                                pattern="[0-9]{11}" v-model="member.phone_number" required placeholder="شماره تلفن" :name="'member_' + i + '_phone_number'">
                             </div>
-                        </template>
 
-                    </div>
-                    
-
-                    <div class="inline fields checkbox-container" v-if="team_type == '0' && anyItemSelected">
-                        <label class="checkbox-header">آیتم ها: </label>
-
-                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk" v-if="competition_field.is_selected">
-                            <div class="ui checkbox">
-                            <input type="checkbox" tabindex="0" disabled :name="'competition_' + competition_field.pk" checked class="hidden">
-                            <label>{{ competition_field.name }}</label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            
-            <div class="ui padded raised right aligned segment" v-for="(member, i) in members" v-if="!member.is_delete">
-                <h3 class="ui right aligned header">عضو گروه</h3>
-                <div class="fields">
-                    
-                    <div class="field">
-                        <div class="ui input">
-                            <input type="text" v-model="member.name" required placeholder="نام و نام خانوادگی" :name="'member_' + i + '_name'">
-                        </div>
-                        <div class="ui input">
-                            <input type="email" v-model="member.email" required placeholder="ایمیل" :name="'member_' + i + '_email'">
-                        </div>
-                        <div class="ui input">
-                            <input type="tel" 
-                            pattern="[0-9]{11}" v-model="member.phone_number" required placeholder="شماره تلفن" :name="'member_' + i + '_phone_number'">
-                        </div>
-    
-                        <template v-if="team_type == '0'">
                             <div class="ui input">
                                 <input type="text" v-model="member.university" required placeholder="دانشگاه" :name="'member_' + i + '_university'">
                             </div>
@@ -199,39 +195,29 @@
                                 <label :for="'member_' + i + '_student_card_image'" style="margin-top: 10px; padding: 3px;">عکس کارت دانشجویی</label>
                                 <input type="file" required :name="'member_' + i + '_student_card_image'">
                             </div>
-                        </template>
-    
-                        <template v-else>
-                            <div class="ui input">
-                                <input type="text" v-model="member.organization" required placeholder="سازمان" :name="'member_' + i + '_organization'">
-                            </div>
-                            <div class="ui input" style="padding-top: 10px;">
-                                <label :for="'member_' + i + '_national_card_image'" style="margin-top: 10px; padding: 3px;">عکس کارت ملی</label>
-                                <input type="file" required :name="'member_' + i + '_national_card_image'">
-                            </div>
-                        </template>
 
-                    </div>
+                        </div>
 
-                    
-                    <div class="inline fields checkbox-container" v-if="team_type == '0' && anyItemSelected">
-                        <label class="checkbox-header">آیتم ها: </label>
 
-                        <div class="inline field" v-for="member_competition_field in member.competition_fields" v-if="competition_fields.find(el=>el.pk == member_competition_field.pk).is_selected" :key="member_competition_field.pk">
-                            <div class="ui checkbox" :id="'member_' + i + '_competition_' + member_competition_field.pk">
-                            <input type="checkbox" tabindex="0" @change="handleCheckBoxChange(member, member_competition_field, i)" :name="'member_' + i + '_competition_' + member_competition_field.pk" v-model="member_competition_field.is_selected" class="hidden">
-                            <label>{{ member_competition_field.name }}</label>
+                        <div class="inline fields checkbox-container" v-if="team_type == '0' && anyItemSelected">
+                            <label class="checkbox-header">آیتم ها: </label>
+
+                            <div class="inline field" v-for="member_competition_field in member.competition_fields" v-if="competition_fields.find(el=>el.pk == member_competition_field.pk).is_selected" :key="member_competition_field.pk">
+                                <div class="ui checkbox" :id="'member_' + i + '_competition_' + member_competition_field.pk">
+                                <input type="checkbox" tabindex="0" @change="handleCheckBoxChange(member, member_competition_field, i)" :name="'member_' + i + '_competition_' + member_competition_field.pk" v-model="member_competition_field.is_selected" class="hidden">
+                                <label>{{ member_competition_field.name }}</label>
+                                </div>
                             </div>
+
                         </div>
 
                     </div>
-                    
+                    <div class="ui red button" style="margin-top: 10px;" @click="removeMember(member)">حذف عضو</div>
                 </div>
-                <div class="ui red button" style="margin-top: 10px;" @click="removeMember(member)">حذف عضو</div>
-            </div>
 
+            </template>
 
-            <div class="ui primary button" @click="addMember">افزودن عضو</div>
+            <div v-if="team_type == '0'" class="ui primary button" @click="addMember">افزودن عضو</div>
             <input type="submit" value="ثبت نام" class="ui primary button" />
         </form>
         {% endverbatim %}
@@ -250,6 +236,12 @@
     new Vue({
         el: '#reg-form',
         computed: {
+            anyMemberAdded(){
+                for (let i = 0; i < this.members.length; i++)
+                    if(!this.members[i].is_delete)
+                        return true;
+                return false;
+            },
             anyItemSelected(){
                 for (let i = 0; i < this.competition_fields.length; i++)
                     if(this.competition_fields[i].is_selected)
@@ -267,6 +259,14 @@
             }
         },
         data: {
+            valid_team_types: [
+                {% for valid_team_type in valid_team_types %}
+                    {
+                        title: '{{ valid_team_type.title }}',
+                        value: '{{ valid_team_type.value }}',
+                    },
+                {% endfor %}
+            ],
             team_type: '0',
             manager: {
                 name: '',
