@@ -27,7 +27,7 @@ class TeamTypeConsts:
 
 
 class CompetitionField(models.Model):
-    needs_advisor = models.BooleanField(default=True)
+    needs_adviser = models.BooleanField(default=True)
     name = models.CharField(max_length=100)
     price = models.IntegerField()
     team_member_limit_min = models.IntegerField()
@@ -40,8 +40,6 @@ class CompetitionField(models.Model):
 class Participant(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.PROTECT, related_name="profile")
 
-    participant_team = models.ForeignKey('Team', on_delete=models.CASCADE, blank=True, null=True,
-                                         related_name="members")
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
@@ -69,15 +67,16 @@ class Participant(models.Model):
         return self.name + " " + self.phone_number
 
 
-class Advisor(models.Model):
+class Adviser(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     university = models.CharField(max_length=255)
 
 
 class Team(models.Model):
-    manager = models.OneToOneField(Participant, null=True, blank=True, on_delete=models.PROTECT, related_name="team")
-    advisor = models.OneToOneField(Advisor, null=True, blank=True, on_delete=models.PROTECT, related_name="team")
+    manager = models.ForeignKey(Participant, null=True, blank=True, on_delete=models.PROTECT, related_name="teams")
+    adviser = models.OneToOneField(Adviser, null=True, blank=True, on_delete=models.PROTECT, related_name="team")
+    participants = models.ManyToManyField(Participant, blank=True, related_name="participant_teams")
     team_type = models.CharField(max_length=1, choices=TeamTypeConsts.states)
     name = models.CharField(max_length=100, blank=True, null=True)
     competition_field = models.ForeignKey(CompetitionField, on_delete=models.CASCADE,  blank=True, null=True)
