@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from zeep import Client
-# Create your views here.
-
+from datetime import datetime
 
 import invoice.secret as sec
 
