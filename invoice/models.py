@@ -1,5 +1,5 @@
 from django.db import models
-
+from competition.models import Team
 # Create your models here.
 
 class Invoice(models.Model):
