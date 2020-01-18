@@ -1,9 +1,8 @@
 from django.db import models
-from competition.models import Team
 # Create your models here.
 
 class Invoice(models.Model):
-    team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.PROTECT, related_name="invoice")
+    team = models.ForeignKey("competition.Team", null=True, blank=True, on_delete=models.PROTECT, related_name="invoice")
 
     amount = models.IntegerField()
 
