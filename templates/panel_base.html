@@ -9,7 +9,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>مسابقات ملی دانشجویی مکانیک سیالات</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'HomepageStyle.css' %}"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'yekan.css' %}"/>
+<!--        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'HomepageStyle.css' %}"/>-->
         <link rel="stylesheet" href="{% static 'semantic-ui/2.4.1/semantic.min.css' %}">
         <link rel="stylesheet" href="{% static 'semantic-ui/semantic.rtl.helper.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,6 +20,60 @@
             body, p, h1, h2, h3, h4, h5, h6, a, label, input, button, div {
                 font-family: Yekan !important;
             }
+
+#fixed_menu
+{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:60px;
+    background-color:rgb(255, 255, 255);
+    z-index: 999;
+    padding-right: 150px;
+    box-shadow:  0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 700px) {
+    #fixed_menu
+    {
+        padding-right: 50px;
+    }
+}
+
+#home_fm
+{
+    font-family:Yekan;
+    float:right;
+    height:100%;
+    width:120px;
+    text-align:center;
+    border-bottom:2px solid blue;
+    cursor:pointer;
+    font-size:16px;
+    line-height:60px;
+    color:rgb(45, 52, 54);
+}
+
+#home_span
+{
+    position:relative;
+    right:4px;
+}
+
+#home_menu .item
+{
+    text-align:right !important;
+    border-bottom:1px solid rgb(233, 233, 233) !important;
+}
+
+#icon_home
+{
+    position:relative;
+    top:2px;
+    right:4px;
+    color:blue;
+}
         </style>
         {% block styles %}
         {% endblock styles %}
@@ -37,16 +92,17 @@
 
         <div id="fixed_menu">
 
-            <i class="bars icon" id="icon_bars_fm"></i>
-
-            <div class="ui large pointing dropdown link item" id="home_fm" href="#">
+            <div class="ui large pointing dropdown link item" id="home_fm" href="#" style="display: block; border-bottom: 0px;">
                 <span id="home_span">
                 <i class="angle down icon" id="icon_home"></i>
                 پنل کاربری
                 </span>
                 <div class="menu" id="home_menu">
                     <a class="item item_home" href="{% url 'index' %}">صفحه اصلی</a>
-                    <a class="item item_home" href="#">پنل کاربری</a>
+                    <a class="item item_home" href="{% url 'dashboard' %}">پنل کاربری</a>
+                    {% if user.is_authenticated %}
+                        <a class="item item_home" href="{% url 'logout' %}">خروج</a>
+                    {% endif %}
                 </div>
             </div>
 

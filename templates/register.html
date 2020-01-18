@@ -41,12 +41,10 @@
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
     <div class="fourteen wide mobile ten wide tablet ten wide computer column">
         <div class="ui message info" style="text-align: right;">
-            تعداد نفرات مجاز هر تیم:
-            <ul>
-                {% for competition_field in competition_fields %}
-                    <li>{{ competition_field.name }}: {{ competition_field.team_member_limit_min }} تا {{ competition_field.team_member_limit_max }} نفر</li>
-                {% endfor %}
-            </ul>
+            قبلا ثبت نام کرده اید؟  <a style="padding: 0px 4px; text-decoration: underline" href="{% url 'login' %}">وارد شوید</a>
+        </div>
+        <div class="ui message info" style="text-align: right;">
+            لطفا پیش از ثبت نام <a style="padding: 0px 4px; text-decoration: underline" href="{% static 'registration-help.docx' %}">فایل نحوه ی ثبت نام</a> را به دقت مطالعه فرمایید.
         </div>
         <form @submit="submitForm" class="ui from rtl" id="reg-form" method="POST" enctype="multipart/form-data" action="">
         {% csrf_token %}
@@ -86,7 +84,13 @@
 
             <div class="ui padded raised right aligned segment">
 
-                <h3 class="ui right aligned header">سرگروه</h3>
+                <h3 class="ui right aligned header" v-if="team_type == '0'">
+                        سرگروه
+                </h3>
+                <h4 style="font-size: 16px;" class="ui right aligned header" v-else>
+                        مشخصات فردی
+                </h4>
+
                 <div class="fields">
 
                     <div class="field">
@@ -98,7 +102,7 @@
                         </div>
                         <div class="ui input">
                             <input type="tel"
-                            pattern="[0-9]{11}" v-model="manager.phone_number" required placeholder="شماره تلفن" name="manager_phone">
+                            pattern="[0-9]{11}" v-model="manager.phone_number" required placeholder="شماره تلفن" name="manager_phone_number">
                         </div>
                         <div style="display: flex; flex-wrap: wrap">
                             <template v-if="team_type == '2'">
@@ -106,8 +110,8 @@
                                 <input type="text" v-model="manager.organization" required placeholder="سازمان" name="manager_organization">
                             </div>
                             <div class="ui input">
-                                <label for="manager_national_card" style="padding: 10px;">عکس کارت ملی</label>
-                                <input type="file" required id="manager_national_card" name="manager_national_card">
+                                <label for="manager_national_card_image" style="padding: 10px;">عکس کارت ملی</label>
+                                <input type="file" accept="image/*" required id="manager_national_card_image" name="manager_national_card_image">
                             </div>
                         </template>
 
@@ -116,8 +120,8 @@
                                 <input type="text" v-model="manager.university" required placeholder="دانشگاه" name="manager_university">
                             </div>
                             <div class="ui input">
-                                <label for="manager_student_card" style="padding: 10px;">عکس کارت دانشجویی</label>
-                                <input type="file" required id="manager_student_card" name="manager_student_card">
+                                <label for="manager_student_card_image" style="padding: 10px;">عکس کارت دانشجویی</label>
+                                <input type="file" accept="image/*" required id="manager_student_card_image" name="manager_student_card_image">
                             </div>
                         </template>
                         </div>
@@ -165,21 +169,21 @@
                         </div>
 
 
-                        <div class="field" v-if="competition_field.needs_advisor">
+                        <div class="field" v-if="competition_field.needs_adviser">
                             <h4 class="ui right aligned header" style="margin-top: 13px;">مشخصات مشاور هیئت علمی</h4>
                             <div class="ui input">
-                                <input type="text" v-model="competition_field.advisor.name" required placeholder="نام و نام خانوادگی" :name="'competition_' + competition_field.pk + '_advisor_name'">
-                            </div> 
+                                <input type="text" v-model="competition_field.adviser.name" required placeholder="نام و نام خانوادگی" :name="'competition_' + competition_field.pk + '_adviser_name'">
+                            </div>
                             <div class="ui input">
-                                <input type="email" v-model="competition_field.advisor.email" required placeholder="ایمیل" :name="'competition_' + competition_field.pk + '_advisor_email'">
-                            </div> 
+                                <input type="email" v-model="competition_field.adviser.email" required placeholder="ایمیل" :name="'competition_' + competition_field.pk + '_adviser_email'">
+                            </div>
                             <div class="ui input">
-                                <input type="text" v-model="competition_field.advisor.university" required placeholder="نام دانشگاه" :name="'competition_' + competition_field.pk + '_advisor_university'">
-                            </div> 
+                                <input type="text" v-model="competition_field.adviser.university" required placeholder="نام دانشگاه" :name="'competition_' + competition_field.pk + '_adviser_university'">
+                            </div>
                         </div>
-    
+
                     </div>
-    
+
                 </div>
             </template>
 
@@ -208,7 +212,7 @@
                             </div>
                             <div class="ui input">
                                 <label :for="'member_' + i + '_student_card_image'" style="padding: 10px;">عکس کارت دانشجویی</label>
-                                <input type="file" required :name="'member_' + i + '_student_card_image'">
+                                <input type="file" accept="image/*" required :name="'member_' + i + '_student_card_image'">
                             </div>
 
                         </div>
@@ -232,7 +236,7 @@
 
             </template>
 
-            <div v-if="team_type == '0'" class="ui primary button" @click="addMember">افزودن عضو</div>
+            <div v-if="team_type == '0'" class="ui button" @click="addMember">افزودن عضو</div>
             <input type="submit" value="ثبت نام" class="ui primary button" />
         </form>
         {% endverbatim %}
@@ -301,10 +305,10 @@
                     name: '{{ competition_field.name }}',
                     team_member_limit_min: {{ competition_field.team_member_limit_min }},
                     team_member_limit_max: {{ competition_field.team_member_limit_max }},
-                    needs_advisor: '{{ competition_field.needs_advisor }}' === 'True',
-                    
-                    {% if competition_field.needs_advisor %}
-                    advisor: {
+                    needs_adviser: '{{ competition_field.needs_adviser }}' === 'True',
+
+                    {% if competition_field.needs_adviser %}
+                    adviser: {
                         name: '',
                         email: '',
                         university: ''

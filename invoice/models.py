@@ -1,10 +1,10 @@
 from django.db import models
 
 # Create your models here.
-from competition.models import Team
 
 class Invoice(models.Model):
     team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.PROTECT, related_name="invoice")
+
     amount = models.IntegerField()
 
     update_date = models.DateTimeField(auto_now=True)

@@ -1,0 +1,62 @@
+{% extends 'panel_base.html' %}
+{% load static %}
+
+{% block styles %}
+<style>
+.field input[type=text]{
+    border: 1px solid #cdcdcd;
+}
+.ui.input {
+    padding: 5px;
+}
+.rtl {
+    flex-direction: row-reverse;
+    text-align: right;
+    direction: rtl;
+}
+
+#reg-form input[type=text] {
+    text-align: right;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-container .checkbox-header {
+    padding: 10px 2px;
+    font-weight: bold;
+}
+
+.checkbox-container .field {
+    padding: 10px;
+}
+</style>
+{% endblock styles %}
+
+
+{% block content %}
+
+<div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
+    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        <h3 class="ui right aligned header" style="margin-top: 13px;">{{ team.manager.name }}</h3>
+        <div style="display: flex; flex-wrap: wrap">
+            <div class="ui padded raised center aligned segment" style="text-align: center; width: 100%;">
+
+                <h3 class="ui center aligned header" style="margin-bottom: 30px;">
+                        پرداخت
+                </h3>
+                <span style="font-size: 15px;">پرداخت شما هنوز انجام نشده است</span>
+                <br />
+                <br />
+                <span style="font-size: 17px;">{{ team.invoice.amount }} تومان</span>
+                <br />
+                <br />
+                <a class="ui primary button" href="{% url 'invoice:payment' pk=team.invoice.pk %}">پرداخت</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

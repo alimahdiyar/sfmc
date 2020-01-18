@@ -2,17 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-def student_card_image_upload_location(instance, filename):
-    print(filename)
-    return "participant/%s/student_card.%s" % (instance.name, filename.split('.')[-1])
-
-
-def national_card_image_upload_location(instance, filename):
-    print(filename)
-    return "participant/%s/national_card.%s" % (instance.name, filename.split('.')[-1])
-
 
 # Create your models here.
+from django.db.models.signals import post_save
+
+from invoice.models import Invoice
+
 
 class TeamTypeConsts:
     PARTICIPANT = '0'
@@ -26,8 +21,20 @@ class TeamTypeConsts:
     )
 
 
+def student_card_image_upload_location(instance, filename):
+    return "participant/%s/student_card.%s" % (instance.name, filename.split('.')[-1])
+
+
+def national_card_image_upload_location(instance, filename):
+    return "participant/%s/national_card.%s" % (instance.name, filename.split('.')[-1])
+
+
+def team_uploaded_file_upload_location(instance, filename):
+    return "team/%s_%s/%s" % ((instance.name if instance.name else instance.manager.name), str(instance.upload_date), filename)
+
+
 class CompetitionField(models.Model):
-    needs_advisor = models.BooleanField(default=True)
+    needs_adviser = models.BooleanField(default=True)
     name = models.CharField(max_length=100)
     price = models.IntegerField()
     team_member_limit_min = models.IntegerField()
@@ -40,8 +47,6 @@ class CompetitionField(models.Model):
 class Participant(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.PROTECT, related_name="profile")
 
-    participant_team = models.ForeignKey('Team', on_delete=models.CASCADE, blank=True, null=True,
-                                         related_name="members")
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
@@ -69,24 +74,41 @@ class Participant(models.Model):
         return self.name + " " + self.phone_number
 
 
-class Advisor(models.Model):
+class Adviser(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     university = models.CharField(max_length=255)
 
 
 class Team(models.Model):
-    manager = models.OneToOneField(Participant, null=True, blank=True, on_delete=models.PROTECT, related_name="team")
-    advisor = models.OneToOneField(Advisor, null=True, blank=True, on_delete=models.PROTECT, related_name="team")
+    manager = models.ForeignKey(Participant, null=True, blank=True, on_delete=models.PROTECT, related_name="teams")
+    adviser = models.OneToOneField(Adviser, null=True, blank=True, on_delete=models.PROTECT, related_name="team")
+    participants = models.ManyToManyField(Participant, blank=True, related_name="participant_teams")
     team_type = models.CharField(max_length=1, choices=TeamTypeConsts.states)
     name = models.CharField(max_length=100, blank=True, null=True)
     competition_field = models.ForeignKey(CompetitionField, on_delete=models.CASCADE,  blank=True, null=True)
 
     upload_date = models.DateTimeField(null=True, blank=True)
-    uploaded_file = models.FileField(null=True, blank=True)
+    uploaded_file = models.FileField(upload_to=team_uploaded_file_upload_location,null=True, blank=True)
 
     def __str__(self):
         if self.name:
             return self.name
         else:
             return self.manager.name
+
+
+def create_team_invoice(sender, instance, created, **kwargs):
+    if not Invoice.objects.filter(team=instance).exists():
+    # if created and not Profile.objects.filter(user=instance).exists():
+        amount = 0
+        if instance.team_type == TeamTypeConsts.PUBLIC_ORGANIZATION:
+            amount = 200000
+        elif instance.team_type == TeamTypeConsts.PUBLIC_STUDENT:
+            amount = 100000
+        else:
+            amount = instance.competition_field.price
+        Invoice.objects.create(team=instance, amount=amount)
+
+
+post_save.connect(create_team_invoice, sender=Team, dispatch_uid="create_team_invoice")

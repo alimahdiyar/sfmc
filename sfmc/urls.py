@@ -19,6 +19,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('clipart/', views.clipart_view, name='clipart'),
+    path('prizes/', views.prizes_view, name='prizes'),
     path('about/', views.about_view, name='about'),
     path('history/', views.history_view, name='history'),
     path('calendar/', views.calendar_view, name='calendar'),
@@ -29,7 +30,12 @@ urlpatterns = [
     path('poster/', views.poster_view, name='poster'),
     path('contactus/', views.contactus_view, name='contactus'),
     path('regulations/', views.regulations_view, name='regulations'),
-    path('competition/', include('competition.urls')),
+
+    path('register/', views.register_view, name='register'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('dashboard/', views.dashboard_view, name='dashboard'),
+
     path('invoice/', include('invoice.urls')),
     path('', views.index_view, name='index'),
 ]
