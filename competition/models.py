@@ -22,15 +22,17 @@ class TeamTypeConsts:
 
 
 def student_card_image_upload_location(instance, filename):
-    return "participant/%s/student_card.%s" % (instance.name, filename.split('.')[-1])
+    return "participant/%s/student-card.%s" % (instance.name, filename.split('.')[-1])
 
 
 def national_card_image_upload_location(instance, filename):
-    return "participant/%s/national_card.%s" % (instance.name, filename.split('.')[-1])
+    return "participant/%s/national-card.%s" % (instance.name, filename.split('.')[-1])
 
 
 def team_uploaded_file_upload_location(instance, filename):
-    return "team/%s_%s/%s" % ((instance.name if instance.name else instance.manager.name), str(instance.upload_date), filename)
+    file_ext = filename.split('.')[-1]
+    file_name = ''.join(filename.split('.')[:-1])
+    return "team/%s/%s-%s.%s" % ((instance.name if instance.name else instance.manager.name), file_name, str(instance.upload_date.strftime('%Y-%m-%d-%H-%M-%S')), file_ext)
 
 
 class CompetitionField(models.Model):
@@ -97,6 +99,13 @@ class Team(models.Model):
         else:
             return self.manager.name
 
+    @property
+    def payment_done(self):
+        return False # TODO: remove fake payment not done message
+
+    @property
+    def active_invoice(self):
+        return self.invoice.first()
 
 def create_team_invoice(sender, instance, created, **kwargs):
     if not Invoice.objects.filter(team=instance).exists():

@@ -181,3 +181,6 @@ def res_code_status(res_code):
         return False, 'تراکنش نامعتبر است.'
     elif res_code == 61:
         return False, 'خطا در واریز'
+
+def pay_invoice_view(request):
+    return HttpResponse('Payment not ready')
