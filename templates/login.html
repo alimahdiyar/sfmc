@@ -1,0 +1,92 @@
+{% extends 'panel_base.html' %}
+{% load static %}
+
+{% block styles %}
+<style>
+.field input[type=text]{
+    border: 1px solid #cdcdcd;
+}
+
+.ui.input {
+    padding-top: 15px;
+}
+
+.ui.input.txt {
+    width: 300px;
+}
+
+.rtl {
+    flex-direction: row-reverse;
+    text-align: right;
+    direction: rtl;
+}
+
+#reg-form input[type=text] {
+    text-align: right;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-container .checkbox-header {
+    padding: 10px 2px;
+    font-weight: bold;
+}
+
+.checkbox-container .field {
+    padding: 10px;
+}
+</style>
+{% endblock styles %}
+
+
+{% block content %}
+
+<div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
+    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        {% if err %}
+            <div class="ui message error" style="width: 400px; margin: 15px auto;">نام کاربری یا کلمه عبور صحیح نمی باشد</div>
+        {% endif %}
+        <form @submit="submitForm" class="ui from rtl" id="reg-form" method="POST" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+
+            <div class="ui padded raised center aligned segment" style="max-width: 400px; margin: auto">
+
+                <h3 class="ui cneter aligned header">
+                        ورود
+                </h3>
+                <div class="fields">
+
+                    <div class="field">
+
+                        <div class="ui input txt">
+                            <input type="email" required placeholder="ایمیل سرگروه" name="username">
+                        </div>
+
+                    </div>
+                    <div class="field">
+
+                        <div class="ui input txt">
+                            <input type="password" required placeholder="کلمه عبور" name="password">
+                        </div>
+
+                    </div>
+                    <div class="field">
+
+                        <div class="ui input">
+
+                            <input style="width: 100px; text-align: center;" type="submit" value="ورود" class="ui primary button" />
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

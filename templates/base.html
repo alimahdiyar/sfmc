@@ -140,17 +140,10 @@
 
         <div id="fixed_menu">
 
-            <i class="bars icon" id="icon_bars_fm"></i>
+            <i class="bars icon" id="icon_bars_fm" style="margin-left: 0px;"></i>
 
-            <div class="ui large pointing dropdown link item" id="home_fm" href="#">
-                <span id="home_span">
-                <i class="angle down icon" id="icon_home"></i>
-                خانه
-                </span>
-                <div class="menu" id="home_menu">
-                    <a class="item item_home" href="#">صفحه اصلی</a>
-                    <a class="item item_home" href="#">پنل کاربری</a>
-                </div>
+            <div id="home_fm" style="display: block; border-bottom: 0px;" href="#">
+                <a class="item item_home" style="color: black;" href="{% url 'dashboard' %}">پنل کاربری</a>
             </div>
 
             <!-- <a id="sign_fm" href="#">

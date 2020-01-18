@@ -2,17 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-def student_card_image_upload_location(instance, filename):
-    print(filename)
-    return "participant/%s/student_card.%s" % (instance.name, filename.split('.')[-1])
-
-
-def national_card_image_upload_location(instance, filename):
-    print(filename)
-    return "participant/%s/national_card.%s" % (instance.name, filename.split('.')[-1])
-
 
 # Create your models here.
+from django.db.models.signals import post_save
+
+from invoice.models import Invoice
+
 
 class TeamTypeConsts:
     PARTICIPANT = '0'
@@ -24,6 +19,18 @@ class TeamTypeConsts:
         (PUBLIC_STUDENT, "آزاد دانشجویی"),
         (PUBLIC_ORGANIZATION, "آزاد سازمانی"),
     )
+
+
+def student_card_image_upload_location(instance, filename):
+    return "participant/%s/student_card.%s" % (instance.name, filename.split('.')[-1])
+
+
+def national_card_image_upload_location(instance, filename):
+    return "participant/%s/national_card.%s" % (instance.name, filename.split('.')[-1])
+
+
+def team_uploaded_file_upload_location(instance, filename):
+    return "team/%s_%s/%s" % ((instance.name if instance.name else instance.manager.name), str(instance.upload_date), filename)
 
 
 class CompetitionField(models.Model):
@@ -82,10 +89,26 @@ class Team(models.Model):
     competition_field = models.ForeignKey(CompetitionField, on_delete=models.CASCADE,  blank=True, null=True)
 
     upload_date = models.DateTimeField(null=True, blank=True)
-    uploaded_file = models.FileField(null=True, blank=True)
+    uploaded_file = models.FileField(upload_to=team_uploaded_file_upload_location,null=True, blank=True)
 
     def __str__(self):
         if self.name:
             return self.name
         else:
             return self.manager.name
+
+
+def create_team_invoice(sender, instance, created, **kwargs):
+    if not Invoice.objects.filter(team=instance).exists():
+    # if created and not Profile.objects.filter(user=instance).exists():
+        amount = 0
+        if instance.team_type == TeamTypeConsts.PUBLIC_ORGANIZATION:
+            amount = 200000
+        elif instance.team_type == TeamTypeConsts.PUBLIC_STUDENT:
+            amount = 100000
+        else:
+            amount = instance.competition_field.price
+        Invoice.objects.create(team=instance, amount=amount)
+
+
+post_save.connect(create_team_invoice, sender=Team, dispatch_uid="create_team_invoice")

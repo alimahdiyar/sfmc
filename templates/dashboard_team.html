@@ -1,0 +1,94 @@
+{% extends 'panel_base.html' %}
+{% load static %}
+
+{% block styles %}
+<style>
+.field input[type=text]{
+    border: 1px solid #cdcdcd;
+}
+.ui.input {
+    padding: 5px;
+}
+.rtl {
+    flex-direction: row-reverse;
+    text-align: right;
+    direction: rtl;
+}
+
+#reg-form input[type=text] {
+    text-align: right;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-container .checkbox-header {
+    padding: 10px 2px;
+    font-weight: bold;
+}
+
+.checkbox-container .field {
+    padding: 10px;
+}
+</style>
+{% endblock styles %}
+
+
+{% block content %}
+
+<div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
+    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        <div class="ui message info" style="text-align: right;">
+            لطفا برای هر آیتم فقط یک فایل zip آپلود کنید
+        </div>
+        {% for team in teams %}
+            <h3 class="ui right aligned header" style="margin-top: 13px;">{{ team.name }} - {{ team.competition_field.name }}</h3>
+            <div style="display: flex; flex-wrap: wrap">
+                <div class="ui padded raised right aligned segment" style="width: auto; margin: 10px auto; min-width: 400px;">
+
+                    <h3 class="ui center aligned header">
+                            آپلود فایل
+                    </h3>
+                    {% if team.uploaded_file %}
+                        <a href="{{ team.uploaded_file }}">فایل آپلود شده</a>
+                    {% else %}
+                        شما هنوز فایلی آپلود نکرده اید
+                    {% endif %}
+                    <form style="padding-top: 10px;" class="ui from rtl" id="reg-form" method="POST" enctype="multipart/form-data" action="">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ team.pk }}" name="team_pk">
+                        <div class="ui field" style="text-align: center;">
+                            <div class="ui input">
+                                <label for="team_uploaded_file" style="padding: 10px;">فایل جدید</label>
+                                <input accept="application/zip" type="file" required id="team_uploaded_file" name="team_uploaded_file">
+                            </div>
+                        </div>
+                        <div class="ui field" style="text-align: center;">
+                            <div class="ui input">
+                                <input style="width: 90px; text-align: center;" type="submit" class="ui primary button" value="ارسال" />
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="ui padded raised right aligned segment" style="width: auto; margin: 10px auto; min-width: 400px; text-align: center;">
+
+                    <h3 class="ui center aligned header" style="margin-bottom: 30px;">
+                            پرداخت
+                    </h3>
+                    <span style="font-size: 15px;">پرداخت تیم شما هنوز انجام نشده است</span>
+                    <br />
+                    <br />
+                    <span style="font-size: 17px;">{{ team.invoice.amount }} تومان</span>
+                    <br />
+                    <br />
+                    <a class="ui primary button" href="{% url 'invoice:payment' pk=team.invoice.pk %}">پرداخت</a>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
