@@ -78,7 +78,7 @@ def callback(request):
     return home(request)
 
 
-def start_transaction(request, team, amounts):
+def start_transaction(request, team, amount):
     local_date = datetime.now().strftime("%Y%m%d")
     local_time = datetime.now().strftime("%H%M%S")
     client = Client(operational_url)
