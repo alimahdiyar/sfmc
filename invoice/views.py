@@ -100,7 +100,7 @@ def start_transaction(request, team, amount):
     invoice.save()
     #do sth
     template = "invoice/to_payment_page.html"
-    return render(request, template, {'error_message' : error_message, 'RefID': ref_id, 'BankURL': bank_url})
+    return render(request, template, {'res_code' : res_code, 'error_message' : error_message, 'RefID': ref_id, 'BankURL': bank_url})
 
 
 
