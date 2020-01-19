@@ -4,6 +4,8 @@ from zeep import Client
 from datetime import datetime
 
 import invoice.secret as sec
+from competition.models import Team, CompetitionField, Participant
+from invoice.models import Invoice
 
 
 terminal_id = sec.p_terminalID
@@ -16,6 +18,17 @@ def home(request):
 
     return HttpResponse('home')
     #return HttpResponseRedirect(reverse('sfmc:'))
+def pay_team(request, team_pk):
+    try:
+        team = Team.objects.filter(pk = team_pk)
+    except:
+        return home(request)
+    if request.user != team.manager.user:
+        return home(request)
+
+    return start_transaction(request, team, team.competition_field.price)
+
+
 
 def callback(request):
     res_code = request.POST.get('ResCode', None)
