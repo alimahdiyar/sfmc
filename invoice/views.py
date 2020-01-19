@@ -90,7 +90,7 @@ def start_transaction(request, team, amount):
     result = client.service.bpPayRequest(terminal_id, user_name, user_password, order_id,amount,
                                          str(local_date), str(local_time), '', callback_url, 0)
     res_code = int(result.split(',')[0].strip())
-    status, message = res_code_status(res_code)
+    status, error_message = res_code_status(res_code)
     ref_id = 0
     if status:
         ref_id = result.split(',')[1].strip()
@@ -100,7 +100,7 @@ def start_transaction(request, team, amount):
     invoice.save()
     #do sth
     template = "invoice/to_payment_page.html"
-    return render(request, template, {'error_message' : error_description, 'RefID': ref_id, 'BankURL': bank_url})
+    return render(request, template, {'error_message' : error_message, 'RefID': ref_id, 'BankURL': bank_url})
 
 
 
