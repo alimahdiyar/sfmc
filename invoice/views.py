@@ -20,7 +20,7 @@ def home(request):
     #return HttpResponseRedirect(reverse('sfmc:'))
 def pay_team(request, team_pk):
     try:
-        team = Team.objects.filter(pk = team_pk)
+        team = Team.objects.get(pk = team_pk)
     except:
         return home(request)
     if request.user != team.manager.user:
