@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from zeep import Client
 from datetime import datetime
 
@@ -7,6 +7,7 @@ import invoice.secret as sec
 from competition.models import Team, CompetitionField, Participant
 from invoice.models import Invoice
 from furl import furl
+from django.urls import reverse
 
 terminal_id = sec.p_terminalID
 user_name = sec.p_userName
