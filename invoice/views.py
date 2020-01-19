@@ -6,7 +6,7 @@ from datetime import datetime
 import invoice.secret as sec
 from competition.models import Team, CompetitionField, Participant
 from invoice.models import Invoice
-
+from furl import furl
 
 terminal_id = sec.p_terminalID
 user_name = sec.p_userName
