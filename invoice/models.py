@@ -2,7 +2,7 @@ from django.db import models
 # Create your models here.
 
 class Invoice(models.Model):
-    team = models.ForeignKey("competition.Team", null=True, blank=True, on_delete=models.PROTECT, related_name="invoice")
+    owner = models.ForeignKey("competition.Participant", null=True, blank=True, on_delete=models.PROTECT, related_name="invoices")
 
     amount = models.IntegerField()
 

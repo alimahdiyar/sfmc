@@ -47,13 +47,18 @@
                 <h3 class="ui center aligned header" style="margin-bottom: 30px;">
                         پرداخت
                 </h3>
-                <span style="font-size: 15px;">پرداخت شما هنوز انجام نشده است</span>
-                <br />
-                <br />
-                <span style="font-size: 17px;">{{ team.active_invoice.amount }} تومان</span>
-                <br />
-                <br />
-                <a class="ui primary button" href="{% url 'invoice:payment' team_pk=team.pk %}">پرداخت</a>
+
+                {% if user.profile.payment_done %}
+                    <span style="font-size: 15px;">پرداخت شما با موفقیت انجام شده است</span>
+                {% else %}
+                    <span style="font-size: 15px;">پرداخت شما هنوز انجام نشده است</span>
+                    <br />
+                    <br />
+                    <span style="font-size: 17px;">{{ user.profile.payment_amount }} تومان</span>
+                    <br />
+                    <br />
+                    <a class="ui primary button" href="{% url 'invoice:payment' %}">پرداخت</a>
+                {% endif %}
 
             </div>
         </div>

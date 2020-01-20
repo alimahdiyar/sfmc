@@ -43,9 +43,27 @@
         <div class="ui message info" style="text-align: right;">
             لطفا برای هر آیتم فقط یک فایل zip آپلود کنید
         </div>
+
+
+            <div class="ui padded raised right aligned segment" style=" width: 300px; margin: 30px auto 10px auto; min-width: 400px; text-align: center;">
+
+                {% if user.profile.payment_done %}
+                    <span style="font-size: 15px;">پرداخت شما با موفقیت انجام شده است</span>
+                {% else %}
+                    <span style="font-size: 15px;">پرداخت شما هنوز انجام نشده است</span>
+                    <br />
+                    <br />
+                    <span style="font-size: 17px;">{{ user.profile.payment_amount }} تومان</span>
+                    <br />
+                    <br />
+                    <a class="ui primary button" href="{% url 'invoice:payment' %}">پرداخت</a>
+                {% endif %}
+
+            </div>
+ 
         {% for team in teams %}
             <h3 class="ui right aligned header" style="margin-top: 13px;">{{ team.name }} - {{ team.competition_field.name }}</h3>
-            <div style="display: flex; flex-wrap: wrap">
+
                 <div class="ui padded raised right aligned segment" style="width: auto; margin: 10px auto; min-width: 400px;">
 
                     <h3 class="ui center aligned header">
@@ -73,21 +91,6 @@
                     </form>
 
                 </div>
-                <div class="ui padded raised right aligned segment" style="width: auto; margin: 10px auto; min-width: 400px; text-align: center;">
-
-                    <h3 class="ui center aligned header" style="margin-bottom: 30px;">
-                            پرداخت
-                    </h3>
-                    <span style="font-size: 15px;">پرداخت تیم شما هنوز انجام نشده است</span>
-                    <br />
-                    <br />
-                    <span style="font-size: 17px;">{{ team.active_invoice.amount }} تومان</span>
-                    <br />
-                    <br />
-                    <a class="ui primary button" href="{% url 'invoice:payment' team_pk=team.pk %}">پرداخت</a>
-
-                </div>
-            </div>
         {% endfor %}
     </div>
 </div>

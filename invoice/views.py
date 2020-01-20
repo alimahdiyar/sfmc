@@ -16,20 +16,20 @@ user_name = sec.p_userName
 user_password = sec.p_userPassword
 operational_url = sec.p_operational_url
 bank_url = sec.p_bank_url
+payment_code = sec.p_payment_code
 
 def home(request):
 
     return HttpResponse('home')
     #return HttpResponseRedirect(reverse('sfmc:'))
-def pay_team(request, team_pk):
-    try:
-        team = Team.objects.get(pk = team_pk)
-    except:
-        return home(request)
-    if request.user != team.manager.user:
-        return home(request)
+def pay_view(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('register'))
+        
+    owner = Participant.objects.get(user = request.user)
 
-    return start_transaction(request, team, team.competition_field.price)
+
+    return start_transaction(request, owner, owner.payment_amount * 10)
 
 
 @csrf_exempt
@@ -84,17 +84,17 @@ def callback(request):
     return home(request)
 
 
-def start_transaction(request, team, amount):
+def start_transaction(request, owner, amount):
     local_date = datetime.now().strftime("%Y%m%d")
     local_time = datetime.now().strftime("%H%M%S")
     client = Client(operational_url)
     callback_url = furl(request.build_absolute_uri(reverse("invoice:callback")))
 
-    invoice = Invoice.objects.create(team=team, amount=amount)
-    order_id = invoice.pk + 1000
+    invoice = Invoice.objects.create(owner=owner, amount=amount)
+    order_id = invoice.pk + 2000
 
     result = client.service.bpPayRequest(terminal_id, user_name, user_password, order_id,amount,
-                                         str(local_date), str(local_time), '', callback_url, 0)
+                                         str(local_date), str(local_time), '', callback_url, payment_code)
     res_code = int(result.split(',')[0].strip())
     status, error_message = res_code_status(res_code)
     ref_id = 0

@@ -137,7 +137,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse('login'))
+    return HttpResponseRedirect(reverse('register'))
 
 def index_view(request):
     return render(request, "index.html", {})

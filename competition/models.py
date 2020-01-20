@@ -72,6 +72,32 @@ class Participant(models.Model):
     university = models.CharField(max_length=255, null=True, blank=True)
     organization = models.CharField(max_length=255, null=True, blank=True)
 
+    @property
+    def payment_done(self):
+        return False #TODO: edit this hardcoded value
+
+    @property
+    def payment_amount(self):
+        if not self.teams.exists():
+            return None
+        team_type = self.teams.first().team_type
+        
+        if team_type == TeamTypeConsts.PUBLIC_STUDENT:
+            return 100000
+        elif team_type == TeamTypeConsts.PUBLIC_ORGANIZATION:
+            return 200000
+
+        amount = 0
+        members_pk = set()
+
+        for team in self.teams.all():
+            print(team.competition_field.name, team.competition_field.price)
+            amount += team.competition_field.price
+            for member in team.participants.all():
+                members_pk.add(member.pk)
+
+        return amount + 90000 * len(members_pk)
+
     def __str__(self):
         return self.name + " " + self.phone_number
 
@@ -98,26 +124,3 @@ class Team(models.Model):
             return self.name
         else:
             return self.manager.name
-
-    @property
-    def payment_done(self):
-        return False # TODO: remove fake payment not done message
-
-    @property
-    def active_invoice(self):
-        return self.invoice.first()
-
-def create_team_invoice(sender, instance, created, **kwargs):
-    if not Invoice.objects.filter(team=instance).exists():
-    # if created and not Profile.objects.filter(user=instance).exists():
-        amount = 0
-        if instance.team_type == TeamTypeConsts.PUBLIC_ORGANIZATION:
-            amount = 200000
-        elif instance.team_type == TeamTypeConsts.PUBLIC_STUDENT:
-            amount = 100000
-        else:
-            amount = instance.competition_field.price
-        Invoice.objects.create(team=instance, amount=amount)
-
-
-post_save.connect(create_team_invoice, sender=Team, dispatch_uid="create_team_invoice")
