@@ -85,7 +85,7 @@ def start_transaction(request, team, amount):
     callback_url = furl(request.build_absolute_uri(reverse("invoice:callback")))
 
     invoice = Invoice.objects.create(team=team, amount=amount)
-    order_id = invoice.pk
+    order_id = invoice.pk + 1000
 
     result = client.service.bpPayRequest(terminal_id, user_name, user_password, order_id,amount,
                                          str(local_date), str(local_time), '', callback_url, 0)
@@ -95,7 +95,7 @@ def start_transaction(request, team, amount):
     if status:
         ref_id = result.split(',')[1].strip()
     else:
-        return HttpResponse('bank connection error')
+        return HttpResponse('bank connection error: ' + status + '\n' + error_message)
     invoice.ref_id= ref_id
     invoice.save()
     #do sth
