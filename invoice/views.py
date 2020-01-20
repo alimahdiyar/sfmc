@@ -50,7 +50,7 @@ def callback(request):
             return home(request)
 
         Invoice.res_code = int(res_code)
-        invoice.sale_order_id = sale_orderId
+        invoice.sale_order_id = sale_order_id
         invoice.sale_reference_id = sale_reference_id
 
 
