@@ -72,7 +72,7 @@ def callback(request):
                     invoice.success = True
 
                 else:
-                    return HttpResponse("are you the bad guy?")
+                    return HttpResponse("are you the bad guy: " + status + '\n' + message)
 
             else:
                 invoice.error_code = int(ResCode)
