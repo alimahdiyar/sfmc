@@ -73,9 +73,9 @@ def callback(request):
 
                 else:
                     try:
-                        return HttpResponse("are you the bad guy: " + status + '\n' + message)
+                        return HttpResponse("are you the bad guy: " + str(status) + '\n' + str(message))
                     except:
-                        return HttpResponse("are you the bad guy: " + ResCode)
+                        return HttpResponse("are you the bad guy: " + str(ResCode))
             else:
                 invoice.error_code = int(ResCode)
                 invoice.error_description = message
