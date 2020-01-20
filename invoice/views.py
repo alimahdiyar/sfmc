@@ -43,7 +43,7 @@ def callback(request):
     message = ''
     if ref_id:
         invoice = Invoice.objects.filter(ref_id=ref_id)
-        if not invoice.exist():
+        if not invoice.exists():
             return home(request)
         invoice = Invoice.first()
         if invoice.success:
