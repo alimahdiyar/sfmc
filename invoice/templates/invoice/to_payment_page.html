@@ -5,13 +5,19 @@
     <title></title>
   </head>
   <body>
+    <p>
+      لطفا شناسه پرداخت را کپی کنید
+    </p>
+    <h1>2400080102137</h1>
     <form name="payment_form" id="payment_form" action="{{ BankURL }}" method="post">
       <input type="hidden" name="RefId" id="RefID" value="{{ RefID }}">
       <input type="submit" value="Submit">
     </form>
+    <!--
     <script type="text/javascript">
 
       document.getElementById('payment_form').submit()
     </script>
+  -->
   </body>
 </html>
