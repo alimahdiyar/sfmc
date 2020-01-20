@@ -19,9 +19,8 @@ bank_url = sec.p_bank_url
 payment_code = sec.p_payment_code
 
 def home(request):
+    return HttpResponseRedirect(reverse('dashboard'))
 
-    return HttpResponse('home')
-    #return HttpResponseRedirect(reverse('sfmc:'))
 def pay_view(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('register'))
@@ -44,10 +43,10 @@ def callback(request):
     if ref_id:
         invoice = Invoice.objects.filter(ref_id=ref_id)
         if not invoice.exists():
-            return home(request)
+            return HttpResponseRedirect(reverse('dashboard'))
         invoice = invoice.first()
         if invoice.success:
-            return home(request)
+            return HttpResponseRedirect(reverse('dashboard'))
 
         order_id = invoice.pk
 
@@ -81,7 +80,7 @@ def callback(request):
                 invoice.error_description = message
         invoice.save()
 
-    return home(request)
+    return HttpResponseRedirect(reverse('dashboard'))
 
 
 def start_transaction(request, owner, amount):

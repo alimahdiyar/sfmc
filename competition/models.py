@@ -74,7 +74,10 @@ class Participant(models.Model):
 
     @property
     def payment_done(self):
-        return False #TODO: edit this hardcoded value
+        for invoice in self.invoices.all():
+            if invoice.success:
+                return True
+        return False
 
     @property
     def payment_amount(self):
