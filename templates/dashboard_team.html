@@ -84,7 +84,7 @@
                     <span style="font-size: 17px;">{{ team.active_invoice.amount }} تومان</span>
                     <br />
                     <br />
-                    <a class="ui primary button" href="{% url 'invoice:payment' pk=team.active_invoice.pk %}">پرداخت</a>
+                    <a class="ui primary button" href="{% url 'invoice:payment' team_pk=team.pk %}">پرداخت</a>
 
                 </div>
             </div>

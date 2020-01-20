@@ -1,10 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from zeep import Client
 from datetime import datetime
 
 import invoice.secret as sec
+from competition.models import Team, CompetitionField, Participant
+from invoice.models import Invoice
+from furl import furl
+from django.urls import reverse
 
+from django.views.decorators.csrf import csrf_exempt
 
 terminal_id = sec.p_terminalID
 user_name = sec.p_userName
@@ -16,7 +21,18 @@ def home(request):
 
     return HttpResponse('home')
     #return HttpResponseRedirect(reverse('sfmc:'))
+def pay_team(request, team_pk):
+    try:
+        team = Team.objects.get(pk = team_pk)
+    except:
+        return home(request)
+    if request.user != team.manager.user:
+        return home(request)
 
+    return start_transaction(request, team, team.competition_field.price)
+
+
+@csrf_exempt
 def callback(request):
     res_code = request.POST.get('ResCode', None)
     sale_reference_id = request.POST.get('SaleReferenceId', None)
@@ -25,20 +41,22 @@ def callback(request):
 
     status = False
     message = ''
-    if ref_Id:
+    if ref_id:
         invoice = Invoice.objects.filter(ref_id=ref_id)
-        if not invoice.exist():
+        if not invoice.exists():
             return home(request)
-        invoice = Invoice.first()
+        invoice = invoice.first()
         if invoice.success:
             return home(request)
 
-        Invoice.res_code = int(res_code)
-        invoice.sale_order_id = sale_orderId
+        order_id = invoice.pk
+
+        invoice.res_code = int(res_code)
+        invoice.sale_order_id = sale_order_id
         invoice.sale_reference_id = sale_reference_id
 
 
-        if ResCode:
+        if res_code:
             status, message = res_code_status(int(res_code))
             if status:
                 client = Client(operational_url)
@@ -54,8 +72,10 @@ def callback(request):
                     invoice.success = True
 
                 else:
-                    return HttpResponse("are you the bad guy?")
-
+                    try:
+                        return HttpResponse("are you the bad guy: " + str(status) + '\n' + str(message))
+                    except:
+                        return HttpResponse("are you the bad guy: " + str(ResCode))
             else:
                 invoice.error_code = int(ResCode)
                 invoice.error_description = message
@@ -64,29 +84,29 @@ def callback(request):
     return home(request)
 
 
-def start_transaction(request, team, amounts):
+def start_transaction(request, team, amount):
     local_date = datetime.now().strftime("%Y%m%d")
     local_time = datetime.now().strftime("%H%M%S")
     client = Client(operational_url)
     callback_url = furl(request.build_absolute_uri(reverse("invoice:callback")))
 
     invoice = Invoice.objects.create(team=team, amount=amount)
-    order_id = invoice.pk
+    order_id = invoice.pk + 1000
 
     result = client.service.bpPayRequest(terminal_id, user_name, user_password, order_id,amount,
                                          str(local_date), str(local_time), '', callback_url, 0)
     res_code = int(result.split(',')[0].strip())
-    status, message = res_code_status(res_code)
+    status, error_message = res_code_status(res_code)
     ref_id = 0
     if status:
         ref_id = result.split(',')[1].strip()
     else:
-        return HttpResponse('bank connection error')
+        return HttpResponse('bank connection error: ' + status + '\n' + error_message)
     invoice.ref_id= ref_id
     invoice.save()
     #do sth
     template = "invoice/to_payment_page.html"
-    return render(request, template, {'error_message' : error_description, 'RefID': ref_id, 'BankURL': bank_url})
+    return render(request, template, {'res_code' : res_code, 'error_message' : error_message, 'RefID': ref_id, 'BankURL': bank_url})
 
 
 
