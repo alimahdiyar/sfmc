@@ -9,6 +9,8 @@ from invoice.models import Invoice
 from furl import furl
 from django.urls import reverse
 
+from django.views.decorators.csrf import csrf_exempt
+
 terminal_id = sec.p_terminalID
 user_name = sec.p_userName
 user_password = sec.p_userPassword
@@ -30,7 +32,7 @@ def pay_team(request, team_pk):
     return start_transaction(request, team, team.competition_field.price)
 
 
-
+@csrf_exempt
 def callback(request):
     res_code = request.POST.get('ResCode', None)
     sale_reference_id = request.POST.get('SaleReferenceId', None)
