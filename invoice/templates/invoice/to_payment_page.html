@@ -7,7 +7,7 @@
   <p>{{res_code}}</p>
   <p>{{error_message}}</p>
   <body>
-    <form name="payment_form" id="payment_form" action="{{ BankURL }}" method="get">
+    <form name="payment_form" id="payment_form" action="{{ BankURL }}" method="post">
       <input type="hidden" name="RefID" id="RefID" value="{{ RefID }}">
       <input type="text" name="" value="">
       <input type="submit" value="Submit">
