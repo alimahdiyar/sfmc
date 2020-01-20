@@ -54,7 +54,7 @@ def callback(request):
         invoice.sale_reference_id = sale_reference_id
 
 
-        if ResCode:
+        if res_code:
             status, message = res_code_status(int(res_code))
             if status:
                 client = Client(operational_url)
