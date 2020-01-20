@@ -57,14 +57,15 @@ def register_view(request):
                 the_manager.save()
 
                 members = {}
-                for active_member in request.POST['active_members'].split(','):
-                    members[active_member] = Participant.objects.create(
-                        name=request.POST['member_' + active_member + '_name'].strip(),
-                        phone_number=request.POST['member_' + active_member + '_phone_number'].strip(),
-                        email=request.POST['member_' + active_member + '_email'].strip(),
-                        university=request.POST['member_' + active_member + '_university'].strip(),
-                        student_card_image=request.FILES['member_' + active_member + '_student_card_image']
-                    )
+                if request.POST['active_members']:
+                    for active_member in request.POST['active_members'].split(','):
+                        members[active_member] = Participant.objects.create(
+                            name=request.POST['member_' + active_member + '_name'].strip(),
+                            phone_number=request.POST['member_' + active_member + '_phone_number'].strip(),
+                            email=request.POST['member_' + active_member + '_email'].strip(),
+                            university=request.POST['member_' + active_member + '_university'].strip(),
+                            student_card_image=request.FILES['member_' + active_member + '_student_card_image']
+                        )
 
                 for competition_field in CompetitionField.objects.all():
                     if 'competition_' + str(competition_field.pk) in request.POST:
