@@ -44,7 +44,7 @@
             قبلا ثبت نام کرده اید؟  <a style="padding: 0px 4px; text-decoration: underline" href="{% url 'login' %}">وارد شوید</a>
         </div>
         <div class="ui message info" style="text-align: right;">
-            لطفا پیش از ثبت نام <a style="padding: 0px 4px; text-decoration: underline" href="{% static 'registration-help.docx' %}">فایل نحوه ی ثبت نام</a> را به دقت مطالعه فرمایید.
+            لطفا پیش از ثبت نام <a style="padding: 0px 4px; text-decoration: underline" href="{% static 'registration-help.pdf' %}">فایل نحوه ی ثبت نام</a> را به دقت مطالعه فرمایید.
         </div>
         <form @submit="submitForm" class="ui from rtl" id="reg-form" method="POST" enctype="multipart/form-data" action="">
         {% csrf_token %}
