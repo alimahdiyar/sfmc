@@ -41,7 +41,7 @@ def callback(request):
 
     status = False
     message = ''
-    if ref_Id:
+    if ref_id:
         invoice = Invoice.objects.filter(ref_id=ref_id)
         if not invoice.exist():
             return home(request)
