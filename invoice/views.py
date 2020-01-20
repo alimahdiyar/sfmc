@@ -24,7 +24,7 @@ def home(request):
 def pay_view(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('register'))
-        
+
     owner = Participant.objects.get(user = request.user)
 
 
@@ -76,7 +76,7 @@ def callback(request):
                     except:
                         return HttpResponse("are you the bad guy: " + str(ResCode))
             else:
-                invoice.error_code = int(ResCode)
+                invoice.error_code = int(res_code)
                 invoice.error_description = message
         invoice.save()
 
