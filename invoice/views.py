@@ -49,7 +49,9 @@ def callback(request):
         if invoice.success:
             return home(request)
 
-        Invoice.res_code = int(res_code)
+        order_id = invoice.order_id
+
+        invoice.res_code = int(res_code)
         invoice.sale_order_id = sale_order_id
         invoice.sale_reference_id = sale_reference_id
 
