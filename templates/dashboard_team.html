@@ -46,11 +46,23 @@
 
 
             <div class="ui padded raised right aligned segment" style=" width: 300px; margin: 30px auto 10px auto; min-width: 400px; text-align: center;">
-
+            <h3 class="ui right center header">پرداخت</h3>
+                <table class="ui blue table" style="font-size: 16px; text-align: center;">
+                    {% for payment_item in user.profile.invoice_items %}
+                        <tr>
+                            <td>
+                                {{ payment_item.title }}
+                            </td>
+                            <td>
+                                {{ payment_item.price }} تومان
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
                 {% if user.profile.payment_done %}
-                    <span style="font-size: 15px;">پرداخت شما با موفقیت انجام شده است</span>
+                    <span style="font-size: 16px;">پرداخت شما با موفقیت انجام شده است</span>
                 {% else %}
-                    <span style="font-size: 15px;">پرداخت شما هنوز انجام نشده است</span>
+                    <span style="font-size: 16px;">پرداخت شما هنوز انجام نشده است</span>
                     <br />
                     <br />
                     <span style="font-size: 17px;">{{ user.profile.payment_amount }} تومان</span>
@@ -70,7 +82,7 @@
                             آپلود فایل
                     </h3>
                     {% if team.uploaded_file %}
-                        <a href="{{ team.uploaded_file }}">فایل آپلود شده</a>
+                        <a href="{{ team.uploaded_file_url }}">فایل آپلود شده</a>
                     {% else %}
                         شما هنوز فایلی آپلود نکرده اید
                     {% endif %}

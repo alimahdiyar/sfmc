@@ -73,6 +73,42 @@ class Participant(models.Model):
     organization = models.CharField(max_length=255, null=True, blank=True)
 
     @property
+    def invoice_items(self):
+        if not self.teams.exists():
+            return []
+        team_type = self.teams.first().team_type
+        
+        if team_type == TeamTypeConsts.PUBLIC_STUDENT:
+            return [{
+                'title': 'ثبت نام آزاد دانشجویی',
+                'price': 100000
+            }]
+        elif team_type == TeamTypeConsts.PUBLIC_ORGANIZATION:
+            return [{
+                'title': 'ثبت نام آزاد سازمانی',
+                'price': 200000
+            }]
+
+        items = []
+        members_pk = set()
+
+        for team in self.teams.all():
+            
+            items.append({
+                'title': team.competition_field.name,
+                'price': team.competition_field.price
+            })
+            
+            for member in team.participants.all():
+                members_pk.add(member.pk)
+        items.append({
+            'title': 'ثبت نام فردی ' + str(len(members_pk)) + ' نفر',
+            'price': 90000 * len(members_pk)
+        })
+        print(items)
+        return items
+
+    @property
     def payment_done(self):
         for invoice in self.invoices.all():
             if invoice.success:
@@ -94,7 +130,6 @@ class Participant(models.Model):
         members_pk = set()
 
         for team in self.teams.all():
-            print(team.competition_field.name, team.competition_field.price)
             amount += team.competition_field.price
             for member in team.participants.all():
                 members_pk.add(member.pk)
@@ -121,6 +156,11 @@ class Team(models.Model):
 
     upload_date = models.DateTimeField(null=True, blank=True)
     uploaded_file = models.FileField(upload_to=team_uploaded_file_upload_location,null=True, blank=True)
+    
+    @property
+    def uploaded_file_url(self):
+        if self.uploaded_file and hasattr(self.uploaded_file, 'url'):
+            return self.uploaded_file.url
 
     def __str__(self):
         if self.name:

@@ -388,18 +388,24 @@
             },
             submitForm(e){
                 let formValid = true;
-
+                let anyCompetitionSelected = false;
                 this.competition_fields.forEach(competition_field => {
-                    if(competition_field.is_selected
-                        && (
-                                competition_field.team_member_limit_min > this.membersCount(competition_field)
-                                || competition_field.team_member_limit_max < this.membersCount(competition_field)
-                            )
+                    if(competition_field.is_selected){
+                        anyCompetitionSelected = true;
+                        if(
+                            competition_field.team_member_limit_min > this.membersCount(competition_field)
+                            || competition_field.team_member_limit_max < this.membersCount(competition_field)
                         ){
-                        formValid = false;
-                        alert('تعداد نفرات تیم ' + competition_field.name + ' باید بین ' + competition_field.team_member_limit_min + ' و ' + competition_field.team_member_limit_max + ' نفر باشد.')
+                            formValid = false;
+                            alert('تعداد نفرات تیم ' + competition_field.name + ' باید بین ' + competition_field.team_member_limit_min + ' و ' + competition_field.team_member_limit_max + ' نفر باشد.')
+                        }
                     }
                 });
+
+                if(!anyCompetitionSelected){
+                    alert('حداقل یک آیتم را انتخاب کنید');
+                    formValid = false;
+                }
 
                 if(this.manager.password_1 != this.manager.password_2){
                     alert('کلمه عبور با تکرار همخوانی ندارد');

@@ -90,7 +90,7 @@ def start_transaction(request, owner, amount):
     callback_url = furl(request.build_absolute_uri(reverse("invoice:callback")))
 
     invoice = Invoice.objects.create(owner=owner, amount=amount)
-    order_id = invoice.pk + 2000
+    order_id = invoice.pk + 2500
 
     result = client.service.bpPayRequest(terminal_id, user_name, user_password, order_id,amount,
                                          str(local_date), str(local_time), '', callback_url, payment_code)
