@@ -456,45 +456,4 @@
         }
     });
 </script>
-<script>
-    var member_clone;
-    var form;
-
-
-
-
-    $(document).ready(function () {
-        // $('#checkBtn').click(function() {
-        //   checked = $("input[type=checkbox]:checked").length;
-
-        //   if(!checked) {
-        //     alert("You must check at least one checkbox.");
-        //     return false;
-        //   }
-        // });
-
-        // z.appendTo("form")
-        // member_clone = z;
-        // form = $("form")[0];
-
-        $("#add-btn").click(function(){
-            add_member().appendTo("form");
-        })
-    });
-
-
-    function add_member(){
-        var z = $("#member").clone();
-        // console.log(z);
-        var member_items = z.find(".team-property");
-        // console.log(member_items);
-        $(member_items[0]).text("مشخصات عضو");
-        $(member_items[1]).remove();
-        $(member_items[2]).find("p").text("نام عضو");
-        // console.log(z)
-        z.removeAttr("id");
-        return z;
-        }
-</script>
-
 {% endblock scripts %}
