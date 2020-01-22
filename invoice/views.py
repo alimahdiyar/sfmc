@@ -28,7 +28,8 @@ def pay_view(request):
     owner = Participant.objects.get(user = request.user)
 
 
-    return start_transaction(request, owner, owner.payment_amount * 10)
+    # return start_transaction(request, owner, owner.payment_amount * 10)
+    return start_transaction(request, owner, owner.payment_amount / 100)
 
 
 @csrf_exempt
