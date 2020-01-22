@@ -40,6 +40,11 @@
 
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
     <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        {% if registration_error %}
+        <div class="ui message error" style="text-align: right;">
+            {{ registration_error }}
+        </div>
+        {% endif %}
         <div class="ui message info" style="text-align: right;">
             قبلا ثبت نام کرده اید؟  <a style="padding: 0px 4px; text-decoration: underline" href="{% url 'login' %}">وارد شوید</a>
         </div>
@@ -48,6 +53,7 @@
         </div>
         <form @submit="submitForm" class="ui from rtl" id="reg-form" method="POST" enctype="multipart/form-data" action="">
         {% csrf_token %}
+        <input type="hidden" name="form_data_json" :value="formDataJson" />
         {% verbatim %}
             <input type="hidden" name="active_members" :value="activeMembers">
 
@@ -278,6 +284,7 @@
             }
         },
         data: {
+            formDataJson: '',
             valid_team_types: [
                 {% for valid_team_type in valid_team_types %}
                     {
@@ -402,7 +409,7 @@
                     }
                 });
 
-                if(!anyCompetitionSelected){
+                if(this.team_type == '0' && !anyCompetitionSelected){
                     alert('حداقل یک آیتم را انتخاب کنید');
                     formValid = false;
                 }
@@ -415,11 +422,30 @@
                 if(!formValid){
                     e.preventDefault();
                 } else {
+                    this.formDataJson = JSON.stringify({
+                        valid_team_types: this.valid_team_types,
+                        team_type: this.team_type,
+                        manager: this.manager,
+                        competition_fields: this.competition_fields,
+                        members: this.members
+                    });
                     return true;
                 }
             }
         },
         created(){
+            let formDataJsonString = '{{ form_data_json | safe }}';
+            if(formDataJsonString){
+                console.log('saved form data loaded')
+                this.formDataJson = JSON.parse(formDataJsonString);
+
+                this.valid_team_types = this.formDataJson.valid_team_types,
+                this.team_type = this.formDataJson.team_type,
+                this.manager = this.formDataJson.manager,
+                this.competition_fields = this.formDataJson.competition_fields,
+                this.members = this.formDataJson.members
+            }
+
             console.log('created');
         },
         mounted(){

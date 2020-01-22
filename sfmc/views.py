@@ -34,10 +34,18 @@ def register_view(request):
     valid_team_types = [{'title': team_type[1], 'value': team_type[0]} for team_type in TeamTypeConsts.states]
 
     if request.method == 'POST':
+        if User.objects.filter(username=request.POST['manager_email'].strip()).exists():
+            return render(request, template,
+                  {
+                      'competition_fields': CompetitionField.objects.all(),
+                      'valid_team_types': valid_team_types,
+                      'registration_error': 'ایمیل سرگروه از قبل وجود دارد',
+                      'form_data_json': request.POST['form_data_json']
+                  })
         with transaction.atomic():
             print(request.POST)
             print(request.FILES)
-
+            
             the_user = User.objects.create_user(
                 username=request.POST['manager_email'].strip(),
                 password=request.POST['manager_password_1'],
@@ -114,7 +122,11 @@ def register_view(request):
             login(request, the_user)
         return HttpResponseRedirect(reverse('dashboard'))
     return render(request, template,
-                  {'competition_fields': CompetitionField.objects.all(), 'valid_team_types': valid_team_types})
+                  {
+                      'competition_fields': CompetitionField.objects.all(),
+                      'valid_team_types': valid_team_types,
+                      'registration_error': None
+                  })
 
 
 def login_view(request):
