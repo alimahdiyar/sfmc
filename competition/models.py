@@ -116,6 +116,20 @@ class Participant(models.Model):
         return False
 
     @property
+    def registration_done(self):
+        if not self.payment_done:
+            return False
+        
+        if self.teams.first().team_type != TeamTypeConsts.PARTICIPANT:
+            return True
+
+        for team in self.teams.all():
+            if not team.uploaded_file:
+                return False
+
+        return True
+
+    @property
     def payment_amount(self):
         if not self.teams.exists():
             return None

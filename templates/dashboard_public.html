@@ -41,6 +41,11 @@
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
     <div class="fourteen wide mobile ten wide tablet ten wide computer column">
         <h3 class="ui right aligned header" style="margin-top: 13px;">{{ team.manager.name }}</h3>
+        {% if user.profile.registration_done %}
+        <div class="ui message success" style="text-align: right; line-height: 24px;">
+            ثبت نام شما تکمیل شده است. <a style="padding: 0px 4px; text-decoration: underline;" href="{% url 'logout' %}">خروج</a>
+        </div>
+        {% endif %}
         <div style="display: flex; flex-wrap: wrap">
             <div class="ui padded raised center aligned segment" style="text-align: center; width: 100%;">
 
