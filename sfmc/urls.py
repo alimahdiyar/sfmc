@@ -37,5 +37,7 @@ urlpatterns = [
     path('dashboard/', views.dashboard_view, name='dashboard'),
 
     path('invoice/', include('invoice.urls')),
+    path('dorm/', include('dorm.urls')),
+
     path('', views.index_view, name='index'),
 ]
