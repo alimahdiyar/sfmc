@@ -24,12 +24,12 @@ def to_pay_amount(user):
     payed_amount = 0
     dorm_price = 0
 
-    for dorm_user in user.dorm_users:
+    for dorm_user in DormUser.objects.filter(user=user):
         if dorm_user.day1:
             dorm_price += 30 * 10*3 * 10
         if dorm_user.day2:
             dorm_price += 30 * 10*3 * 10
-    for dorm_payment in user.dorm_payments:
+    for dorm_payment in DormPayment.objects.filter(user=user):
         if dorm_payment.success:
             payed_amount += dorm_payment.amount
 
@@ -41,20 +41,25 @@ def dorm_users(request):
     template = "dorm_user"
 
     if request.method != "POST":
-        return render(request, template, {'dorm_users':request.user.dorm_users, 'to_pay_amount':to_pay_amount(request.user)})
+        return render(request, template, {'dorm_users':DormUser.objects.filter(user=request.user), 'to_pay_amount':to_pay_amount(request.user)})
 
     for active_member in request.POST['active_members'].split(','):
         dorm_user = DormUser.objects.create(
             name=request.POST[f'member_{active_member}_name'].strip(),
             sex=int(request.POST[f'member_{active_member}_sex'].strip()),
-            day1=request.POST[f'member_{active_member}_day1'].strip(),
-            day2=request.POST[f'member_{active_member}_day2'].strip(),
             student_card_image=request.FILES[f'member_{active_member}_student_card_image'],
             national_card_image=request.FILES[f'member_{active_member}_national_card_image']
         )
+        if 'fmember_{active_member}_day1' in request.POST:
+            if request.POSt['fmember_{active_member}_day1']:
+                dorm_user.day1=True
+        if 'fmember_{active_member}_day2' in request.POST:
+            if request.POSt['fmember_{active_member}_day2']:
+                dorm_user.day2=True
+
         dorm_user.save()
 
-    return render(request, template, {'dorm_users':request.user.dorm_users, 'to_pay_amount':to_pay_amount(request.user)})
+    return render(request, template, {'dorm_users'::DormUser.objects.filter(user=request.user), 'to_pay_amount':to_pay_amount(request.user)})
 
 def pay_bill(request):
     if not request.user.is_authenticated:
