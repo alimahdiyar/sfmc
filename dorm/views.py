@@ -33,7 +33,7 @@ def to_pay_amount(user):
         if dorm_payment.success:
             payed_amount += dorm_payment.amount
 
-    return dorm_price - payed_amount1
+    return dorm_price - payed_amount
 def dorm_users(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('dashboard'))
