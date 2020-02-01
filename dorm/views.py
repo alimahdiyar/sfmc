@@ -26,9 +26,9 @@ def to_pay_amount(user):
 
     for dorm_user in DormUser.objects.filter(user=user):
         if dorm_user.day1:
-            dorm_price += 30 * 10*3 * 10
+            dorm_price += 30 * 10**3 * 10
         if dorm_user.day2:
-            dorm_price += 30 * 10*3 * 10
+            dorm_price += 30 * 10**3 * 10
     for dorm_payment in DormPayment.objects.filter(user=user):
         if dorm_payment.success:
             payed_amount += dorm_payment.amount
