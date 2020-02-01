@@ -45,6 +45,7 @@ def dorm_users(request):
 
     for active_member in request.POST['active_members'].split(','):
         dorm_user = DormUser.objects.create(
+            user=request.user,
             name=request.POST[f'member_{active_member}_name'].strip(),
             sex=int(request.POST[f'member_{active_member}_sex'].strip()),
             student_card_image=request.FILES[f'member_{active_member}_student_card_image'],
