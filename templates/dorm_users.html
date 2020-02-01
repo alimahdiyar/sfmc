@@ -63,15 +63,12 @@
                 <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات اعضا</h3>
 
                 <div class="ui padded raised right aligned segment" v-for="(member, i) in members" v-if="!member.is_delete">
+                  <div class="ui form">
                     <div class="fields">
-
                       <div class="field">
                         <div class="ui input">
                             <input type="text" v-model="member.name" required placeholder="نام و نام خانوادگی" :name="'member_' + i + '_name'">
                         </div>
-
-
-
                         <div class="inline fields">
                             <label>جنسیت</label>
                             <div class="field">
@@ -110,6 +107,7 @@
 
                     </div>
                     <div class="ui red button" style="margin-top: 10px;" @click="removeMember(member)">حذف عضو</div>
+                  </div>
                 </div>
 
             </template>
