@@ -69,7 +69,7 @@ def pay_bill(request):
     amount = to_pay_amount(request.user)
 
     if amount > 0:
-        start_transaction(request, amount)
+        return start_transaction(request, amount)
     else:
         return HttpResponse("what to pay???")
 
