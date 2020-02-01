@@ -37,14 +37,19 @@
 
 
 {% block content %}
-<div class="">
-  {% for dorm_user in dorm_users %}
+
+{% for dorm_user in dorm_users %}
+<div class="ui piled segment" id="content_main_content_second">
+    <div class="text_main_content">
+
     <p>name : {{dorm_user.name}}</p>
     <p>sex  : {{dorm_user.sex}}</p>
     <p>day1 : {{dorm_user.day1}}</p>
     <p>day2 : {{dorm_user.day2}}</p>
-  {% endfor %}
+
+    </div>
 </div>
+{% endfor %}
 
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
     <div class="fourteen wide mobile ten wide tablet ten wide computer column">
