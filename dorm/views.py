@@ -52,10 +52,10 @@ def dorm_users(request):
             national_card_image=request.FILES[f'member_{active_member}_national_card_image']
         )
         if f'member_{active_member}_day1' in request.POST:
-            if request.POSt[f'member_{active_member}_day1']:
+            if request.POST[f'member_{active_member}_day1']:
                 dorm_user.day1=True
         if f'member_{active_member}_day2' in request.POST:
-            if request.POSt[f'member_{active_member}_day2']:
+            if request.POST[f'member_{active_member}_day2']:
                 dorm_user.day2=True
 
         dorm_user.save()
