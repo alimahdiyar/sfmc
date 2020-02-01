@@ -66,7 +66,7 @@ def pay_bill(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('dashboard'))
 
-    amout = to_pay_amount(request.user)
+    amount = to_pay_amount(request.user)
 
     if amount > 0:
         start_transaction(request, amount)
