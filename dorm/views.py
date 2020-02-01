@@ -148,7 +148,7 @@ def start_transaction(request, amount):
     dorm_payment.ref_id= ref_id
     dorm_payment.save()
     #do sth
-    template = "dorm/to_payment_page.html"
+    template = "to_payment_page.html"
     return render(request, template, {'res_code' : res_code, 'error_message' : error_message, 'RefID': ref_id, 'BankURL': bank_url})
 
 

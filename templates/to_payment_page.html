@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1 style="text-align:center ; font-size:50px">
+      در حال انتقال به درگاه بانک
+    </h1>
+    <form hidden ame="payment_form" id="payment_form" action="{{ BankURL }}" method="post">
+      <input type="hidden" name="RefId" id="RefID" value="{{ RefID }}">
+      <input type="submit" value="پرداخت">
+    </form>
+    <script type="text/javascript">
+      document.getElementById('payment_form').submit()
+    </script>
+  </body>
+</html>
