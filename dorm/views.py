@@ -38,7 +38,7 @@ def dorm_users(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('dashboard'))
 
-    template = "dorm_user"
+    template = "dorm_users.html"
 
     if request.method != "POST":
         return render(request, template, {'dorm_users':DormUser.objects.filter(user=request.user), 'to_pay_amount':to_pay_amount(request.user)})
