@@ -71,11 +71,6 @@
 
 
     <div style="padding: 15px; line-height: 30px;">
-        <div class="text_content_more_info show-news-modal show_news_modal_2">
-            <i class="angle double left icon icon_judgement"></i>
-            <a class="item">۱۳۹۸/۱۱/۰۸: اطلاعیه مهم پیرامون اسکان دانشجویان</a><br />
-        </div>
-    
         <div class="text_content_more_info">
             <i class="angle double left icon icon_judgement"></i>
             <a class="item" href="{% url 'register' %}">۱۳۹۸/۱۱/۰۴: ثبت نام آغاز شد</a><br />
@@ -88,7 +83,7 @@
 
         <div class="text_content_more_info">
             <i class="angle double left icon icon_judgement"></i>
-            <a class="item" href="{% url 'hovercraft' %}#news">۱۳۹۸/۱۰/۲۲: هاورکرافت:</a> مقدار بیشینه مجموع مصرف کننده های مدل از 70به 120 وات ساعت ارتقا یافت.
+            <a class="item" href="{% url 'hovercraft' %}#news">۱۳۹۸/۱۰/۲۲: هاورکرافت:</a> توان باطری ها می تواند تا 120 وات ارتقاء یابد.
         </div>
 
         <div class="text_content_more_info">
@@ -417,6 +412,16 @@
 
             </div>
 
+            <div class="sponsor">
+
+                <img class="ui centered image" style="width:140px !important; margin-top: 20px; object-fit: fill;" src="{% static 'radman.png' %}">
+
+                <!-- <div>
+                    شرکت رادمان صنعت
+                </div> -->
+
+            </div>
+
             <!-- <div class="sponsor">
 
                 <img class="ui centered image" src="{% static 'nokhbegan.png' %}">
@@ -612,20 +617,6 @@
       </div>
 </div>
 
-<div class="ui small modal news-modal" id="news_modal_2">
-
-    <div class="header">اطلاعیه مهم پیرامون اسکان دانشجویان</div>
-    <div class="content">
-        به استحضار دانشجویان محترم می رساند با پیگیری های مسئولین مسابقات، امکان اسکان برای دانشجویان آقا و خانم در تاریخ سه شنبه  13ام (شب) و چهارشنبه 14 ام اسفند ماه فراهم گردیده است. جزییات ثبت نام در روزهای آتی در همین سایت به اطلاع خواهد رسید.
-    </div>
-    <div class="actions" style="text-align: center;">
-        <div class="ui primary right labeled icon button" id="close_news_modal_2">
-          بستن
-          <i class="checkmark icon"></i>
-        </div>
-      </div>
-</div>
-
 {% endblock bottomcontent %}
 
 {% block scripts  %}
@@ -636,12 +627,6 @@
             })
             $("#close_news_modal_1").click(function(){
                 $("#news_modal_1").modal('hide');
-            })
-            $(".show_news_modal_2").click(function(){
-                $("#news_modal_2").modal('show');
-            })
-            $("#close_news_modal_2").click(function(){
-                $("#news_modal_2").modal('hide');
             })
         })
     </script>
