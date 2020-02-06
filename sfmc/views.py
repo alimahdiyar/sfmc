@@ -6,10 +6,6 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 
-from competition.models import CompetitionField, Participant, Team, TeamTypeConsts, Adviser
-
-
-
 
 def register_view(request):
     template = 'register.html'
