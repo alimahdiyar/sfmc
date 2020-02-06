@@ -55,88 +55,36 @@
         {% csrf_token %}
         <input type="hidden" name="form_data_json" :value="formDataJson" />
         {% verbatim %}
-            <input type="hidden" name="active_members" :value="activeMembers">
-
-            <h3 class="ui right aligned header" style="margin-top: 13px;">اطلاعات کلی</h3>
-            <div class="ui padded raised right aligned segment">
-                
-                <div class="fields">
-
-                    <div class="inline fields checkbox-container">
-                        <label class="checkbox-header">نوع ثبت نام: </label>
-                        <div class="field" v-for="valid_team_type in valid_team_types">
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="team_type" :value="valid_team_type.value" v-model="team_type" tabindex="0" class="hidden">
-                            <label>{{ valid_team_type.title }}</label>
-                        </div>
-                        </div>
-                    </div>
-
-                    <div class="inline fields checkbox-container" v-if="team_type == '0'">
-                        <label class="checkbox-header">آیتم ها: </label>
-
-                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk">
-                            <div class="ui checkbox">
-                            <input type="checkbox" tabindex="0" :name="'competition_' + competition_field.pk" v-model="competition_field.is_selected" class="hidden">
-                            <label>{{ competition_field.name }}</label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                
-            </div>
-
             <div class="ui padded raised right aligned segment">
 
-                <h3 class="ui right aligned header" v-if="team_type == '0'">
-                        سرگروه
+                <h3 class="ui right aligned header" >
+                        اطلاعات اولیه
                 </h3>
-                <h4 style="font-size: 16px;" class="ui right aligned header" v-else>
-                        مشخصات فردی
-                </h4>
-
                 <div class="fields">
-
                     <div class="field">
                         <div class="ui input">
                             <input type="text" v-model="manager.name" required placeholder="نام و نام خانوادگی" name="manager_name">
                         </div>
+
                         <div class="ui input">
                             <input type="email" v-model="manager.email" required placeholder="ایمیل" name="manager_email">
+                        </div>
+
+                        <div class="ui input">
+                            <input type="tel"
+                            pattern="[0-9]{10}" v-model="manager.national_id" required placeholder="کد ملی" name="manager_national_id">
                         </div>
                         <div class="ui input">
                             <input type="tel"
                             pattern="[0-9]{11}" v-model="manager.phone_number" required placeholder="شماره تلفن" name="manager_phone_number">
                         </div>
-                        <div style="display: flex; flex-wrap: wrap">
-                            <template v-if="team_type == '2'">
-                            <div class="ui input">
-                                <input type="text" v-model="manager.organization" required placeholder="سازمان" name="manager_organization">
-                            </div>
-                            <div class="ui input">
-                                <label for="manager_national_card_image" style="padding: 10px;">عکس کارت ملی</label>
-                                <input type="file" accept="image/*" required id="manager_national_card_image" name="manager_national_card_image">
-                            </div>
-                        </template>
 
-                        <template v-else>
-                            <div class="ui input">
-                                <input type="text" v-model="manager.university" required placeholder="دانشگاه" name="manager_university">
-                            </div>
-                            <div class="ui input">
-                                <label for="manager_student_card_image" style="padding: 10px;">عکس کارت دانشجویی</label>
-                                <input type="file" accept="image/*" required id="manager_student_card_image" name="manager_student_card_image">
-                            </div>
-                        </template>
+                        <div class="ui input">
+                            <input type="text" v-model="manager.university" required placeholder="دانشگاه" name="manager_university">
                         </div>
-
-
                     </div>
 
                     <div class="fields">
-
                         <div class="ui input">
                             <input type="password" v-model="manager.password_1" required placeholder="کلمه عبور" name="manager_password_1">
                         </div>
@@ -144,106 +92,9 @@
                         <div class="ui input">
                             <input type="password" v-model="manager.password_2" required placeholder="تکرار کلمه عبور" name="manager_password_2">
                         </div>
-
                     </div>
-
-                    <div class="inline fields checkbox-container" v-if="team_type == '0' && anyItemSelected">
-                        <label class="checkbox-header">آیتم ها: </label>
-
-                        <div class="inline field" v-for="competition_field in competition_fields" :key="competition_field.pk" v-if="competition_field.is_selected">
-                            <div class="ui checkbox">
-                            <input type="checkbox" tabindex="0" disabled :name="'competition_' + competition_field.pk" checked class="hidden">
-                            <label>{{ competition_field.name }}</label>
-                            </div>
-                        </div>
-
-                    </div>
-
                 </div>
             </div>
-            <template v-if="team_type == '0' && anyItemSelected">
-
-                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات آیتم ها</h3>
-                <div class="ui padded raised right aligned segment" v-for="competition_field in competition_fields" v-if="competition_field.is_selected">
-                    
-                    <div class="fields">
-                        <h3 class="ui right aligned header">{{ competition_field.name }}</h3>
-                        <div class="field">
-                            <div class="ui input">
-                                <input type="text" v-model="competition_field.team_name" required placeholder="نام گروه" :name="'competition_' + competition_field.pk + '_team_name'">
-                            </div>
-                        </div>
-
-
-                        <div class="field" v-if="competition_field.needs_adviser">
-                            <h4 class="ui right aligned header" style="margin-top: 13px;">مشخصات مشاور هیئت علمی</h4>
-                            <div class="ui input">
-                                <input type="text" v-model="competition_field.adviser.name" required placeholder="نام و نام خانوادگی" :name="'competition_' + competition_field.pk + '_adviser_name'">
-                            </div>
-                            <div class="ui input">
-                                <input type="email" v-model="competition_field.adviser.email" required placeholder="ایمیل" :name="'competition_' + competition_field.pk + '_adviser_email'">
-                            </div>
-                            <div class="ui input">
-                                <input type="text" v-model="competition_field.adviser.university" required placeholder="نام دانشگاه" :name="'competition_' + competition_field.pk + '_adviser_university'">
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </template>
-
-            <template v-if="team_type == '0' && anyMemberAdded">
-
-                <h3 class="ui right aligned header" style="margin-top: 13px;">مشخصات اعضا</h3>
-
-                <div class="ui padded raised right aligned segment" v-for="(member, i) in members" v-if="!member.is_delete">
-                    <h3 class="ui right aligned header">عضو گروه</h3>
-                    <div class="fields">
-
-                        <div class="field">
-                            <div class="ui input">
-                                <input type="text" v-model="member.name" required placeholder="نام و نام خانوادگی" :name="'member_' + i + '_name'">
-                            </div>
-                            <div class="ui input">
-                                <input type="email" v-model="member.email" required placeholder="ایمیل" :name="'member_' + i + '_email'">
-                            </div>
-                            <div class="ui input">
-                                <input type="tel"
-                                pattern="[0-9]{11}" v-model="member.phone_number" required placeholder="شماره تلفن" :name="'member_' + i + '_phone_number'">
-                            </div>
-
-                            <div class="ui input">
-                                <input type="text" v-model="member.university" required placeholder="دانشگاه" :name="'member_' + i + '_university'">
-                            </div>
-                            <div class="ui input">
-                                <label :for="'member_' + i + '_student_card_image'" style="padding: 10px;">عکس کارت دانشجویی</label>
-                                <input type="file" accept="image/*" required :name="'member_' + i + '_student_card_image'">
-                            </div>
-
-                        </div>
-
-
-                        <div class="inline fields checkbox-container" v-if="team_type == '0' && anyItemSelected">
-                            <label class="checkbox-header">آیتم ها: </label>
-
-                            <div class="inline field" v-for="member_competition_field in member.competition_fields" v-if="competition_fields.find(el=>el.pk == member_competition_field.pk).is_selected" :key="member_competition_field.pk">
-                                <div class="ui checkbox" :id="'member_' + i + '_competition_' + member_competition_field.pk">
-                                <input type="checkbox" tabindex="0" @change="handleCheckBoxChange(member, member_competition_field, i)" :name="'member_' + i + '_competition_' + member_competition_field.pk" v-model="member_competition_field.is_selected" class="hidden">
-                                <label>{{ member_competition_field.name }}</label>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="ui red button" style="margin-top: 10px;" @click="removeMember(member)">حذف عضو</div>
-                </div>
-
-            </template>
-
-            <div v-if="team_type == '0'" class="ui button" @click="addMember">افزودن عضو</div>
-            <input type="submit" value="ثبت نام" class="ui primary button" />
         </form>
         {% endverbatim %}
     </div>
@@ -261,159 +112,22 @@
     new Vue({
         el: '#reg-form',
         computed: {
-            anyMemberAdded(){
-                for (let i = 0; i < this.members.length; i++)
-                    if(!this.members[i].is_delete)
-                        return true;
-                return false;
-            },
-            anyItemSelected(){
-                for (let i = 0; i < this.competition_fields.length; i++)
-                    if(this.competition_fields[i].is_selected)
-                        return true;
-                return false;
-            },
-            activeMembers(){
-                const allMembers = [];
-                this.members.forEach((el, i) => {
-                    if(!el.is_delete){
-                        allMembers.push(i);
-                    };
-                });
-                return allMembers.join(',');
-            }
         },
         data: {
             formDataJson: '',
-            valid_team_types: [
-                {% for valid_team_type in valid_team_types %}
-                    {
-                        title: '{{ valid_team_type.title }}',
-                        value: '{{ valid_team_type.value }}',
-                    },
-                {% endfor %}
-            ],
-            team_type: '0',
             manager: {
                 password_1: '',
                 password_2: '',
                 name: '',
-                email: '',
                 phone_number: '',
+                national_id: '',
                 university: '',
-                organization: '',
-                is_delete: false,
-                competition_fields: []
+                email: '',
             },
-            competition_fields: [
-                {% for competition_field in competition_fields %}
-                {
-                    pk: {{ competition_field.pk }},
-                    name: '{{ competition_field.name }}',
-                    team_member_limit_min: {{ competition_field.team_member_limit_min }},
-                    team_member_limit_max: {{ competition_field.team_member_limit_max }},
-                    needs_adviser: '{{ competition_field.needs_adviser }}' === 'True',
-
-                    {% if competition_field.needs_adviser %}
-                    adviser: {
-                        name: '',
-                        email: '',
-                        university: ''
-                    },
-                    {% endif %}
-
-                    is_selected: false,
-                    team_name: '',
-                },
-                {% endfor %}
-            ],
-            members: [
-
-            ]
         },
         methods: {
-            membersCount(competition_field){
-                let i = 1; // The manager is already enrolled
-                this.members.forEach(member => {
-                    if(member.competition_fields.find(el => el.pk == competition_field.pk).is_selected){
-                        i++;
-                    }
-                });
-                console.log(competition_field.name, i);
-                return i;
-            },
-            handleCheckBoxChange(member, member_competition_field, i){
-                if(member.is_delete){
-                    return;
-                }
-                const competition_field = this.competition_fields.find(el => el.pk == member_competition_field.pk)
-                console.log(member_competition_field)
-                console.log(competition_field)
-                if(member_competition_field.is_selected){
-                    if(this.membersCount(competition_field) > competition_field.team_member_limit_max){
-                        alert('تعداد نفرات تیم ' + competition_field.name + ' باید بین ' + competition_field.team_member_limit_min + ' و ' + competition_field.team_member_limit_max + ' نفر باشد.')
-                        member_competition_field.is_selected = false;
-                        $('#' + 'member_' + i + '_competition_' + member_competition_field.pk).checkbox('set unchecked');
-                    }
-                } else {
-                    if(this.membersCount(competition_field) < competition_field.team_member_limit_min){
-                        alert('تعداد نفرات تیم ' + competition_field.name + ' باید بین ' + competition_field.team_member_limit_min + ' و ' + competition_field.team_member_limit_max + ' نفر باشد.')
-                        member_competition_field.is_selected = true;
-                        $('#' + 'member_' + i + '_competition_' + member_competition_field.pk).checkbox('set checked');
-                    }
-                }
-            },
-            addMember(){
-                const newMember = {
-                    name: '',
-                    email: '',
-                    phone_number: '',
-                    university: '',
-                    organization: '',
-                    is_delete: false,
-                    competition_fields: []
-                };
-                this.competition_fields.forEach(competition_field => {
-                    const member_competition_field = Object.assign({}, competition_field)
-                    
-                    if(competition_field.is_selected){
-                        member_competition_field.is_selected = member_competition_field.team_member_limit_max > this.membersCount(competition_field);
-                    }
-
-                    
-                    newMember.competition_fields.push(member_competition_field);
-                });
-
-                this.members.push(newMember)
-            },
-            removeMember(member){
-                member.is_delete = true;
-
-                member.competition_fields.forEach(competition_field => {
-                    competition_field.is_selected = false;
-                });
-            },
             submitForm(e){
                 let formValid = true;
-                let anyCompetitionSelected = false;
-                this.competition_fields.forEach(competition_field => {
-                    if(competition_field.is_selected){
-                        anyCompetitionSelected = true;
-                        if(
-                            competition_field.team_member_limit_min > this.membersCount(competition_field)
-                            || competition_field.team_member_limit_max < this.membersCount(competition_field)
-                        ){
-                            formValid = false;
-                            alert('تعداد نفرات تیم ' + competition_field.name + ' باید بین ' + competition_field.team_member_limit_min + ' و ' + competition_field.team_member_limit_max + ' نفر باشد.')
-                        }
-                    }
-                });
-
-                if(this.team_type == '0' && !anyCompetitionSelected){
-                    alert('حداقل یک آیتم را انتخاب کنید');
-                    formValid = false;
-                }
-
                 if(this.manager.password_1 != this.manager.password_2){
                     alert('کلمه عبور با تکرار همخوانی ندارد');
                     formValid = false;
@@ -423,11 +137,7 @@
                     e.preventDefault();
                 } else {
                     this.formDataJson = JSON.stringify({
-                        valid_team_types: this.valid_team_types,
-                        team_type: this.team_type,
                         manager: this.manager,
-                        competition_fields: this.competition_fields,
-                        members: this.members
                     });
                     return true;
                 }
@@ -438,12 +148,7 @@
             if(formDataJsonString){
                 console.log('saved form data loaded')
                 this.formDataJson = JSON.parse(formDataJsonString);
-
-                this.valid_team_types = this.formDataJson.valid_team_types,
-                this.team_type = this.formDataJson.team_type,
                 this.manager = this.formDataJson.manager,
-                this.competition_fields = this.formDataJson.competition_fields,
-                this.members = this.formDataJson.members
             }
 
             console.log('created');
