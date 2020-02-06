@@ -154,7 +154,7 @@ def logout_view(request):
 def index_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('dorm:dorm_users'))
-    else
+    else:
         return HttpResponseRedirect(reverse('register'))
 
 
