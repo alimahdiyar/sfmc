@@ -66,9 +66,7 @@
                             <input type="text" v-model="manager.name" required placeholder="نام و نام خانوادگی" name="manager_name">
                         </div>
 
-                        <div class="ui input">
-                            <input type="email" v-model="manager.email" required placeholder="ایمیل" name="manager_email">
-                        </div>
+
 
                         <div class="ui input">
                             <input type="tel"
@@ -79,9 +77,15 @@
                             pattern="[0-9]{11}" v-model="manager.phone_number" required placeholder="شماره تلفن" name="manager_phone_number">
                         </div>
 
-                        <div class="ui input">
-                            <input type="text" v-model="manager.university" required placeholder="دانشگاه" name="manager_university">
-                        </div>
+
+                    </div>
+                    <div class="field">
+                      <div class="ui input">
+                          <input type="text" v-model="manager.university" required placeholder="دانشگاه" name="manager_university">
+                      </div>
+                      <div class="ui input">
+                          <input type="email" v-model="manager.email" required placeholder="ایمیل" name="manager_email">
+                      </div>
                     </div>
 
                     <div class="fields">
