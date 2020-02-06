@@ -1,13 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-
-
-# Create your models here.
 from django.db.models.signals import post_save
-
-from invoice.models import Invoice
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.PROTECT, related_name="profile")
