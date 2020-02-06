@@ -45,7 +45,7 @@ def register_view(request):
         with transaction.atomic():
             print(request.POST)
             print(request.FILES)
-            
+
             the_user = User.objects.create_user(
                 username=request.POST['manager_email'].strip(),
                 password=request.POST['manager_password_1'],
@@ -152,7 +152,10 @@ def logout_view(request):
     return HttpResponseRedirect(reverse('index'))
 
 def index_view(request):
-    return render(request, "index.html", {})
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('dorm:dorm_users'))
+    else
+        return HttpResponseRedirect(reverse('register'))
 
 
 def about_view(request):
