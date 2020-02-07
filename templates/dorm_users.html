@@ -39,8 +39,9 @@
 {% block content %}
 
 {% for dorm_user in dorm_users %}
-<div class="ui piled segment" id="content_main_content_second">
-    <div class="text_main_content">
+
+<div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
+    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
 
     <p>نام : {{dorm_user.name}}</p>
     <p>جنسیت  : {% if dorm_user.sex %}خانم{% else %}آقا{%endif%}</p>
@@ -57,11 +58,15 @@
 </div>
 {% endfor %}
 
-<div class="ui piled segment" id="content_main_content_second">
-    <div class="text_main_content">
-      <p>هزینه قابل پرداخت</p>
-      <p>{{to_pay_amount}}</p>
-      <a href="{% url 'dorm:pay_bill' %}">پرداخت</a>
+<div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
+    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        <div class="ui piled segment" id="content_main_content_second">
+            <div class="text_main_content">
+              <p>هزینه قابل پرداخت</p>
+              <p>{{to_pay_amount}}</p>
+              <a href="{% url 'dorm:pay_bill' %}">پرداخت</a>
+            </div>
+        </div>
     </div>
 </div>
 
