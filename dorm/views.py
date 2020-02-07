@@ -36,7 +36,7 @@ def to_pay_amount(user):
     return dorm_price - payed_amount
 def dorm_users(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('dashboard'))
+        home(request)
 
     template = "dorm_users.html"
 
@@ -64,7 +64,7 @@ def dorm_users(request):
 
 def pay_bill(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('dashboard'))
+        home(request)
 
     amount = to_pay_amount(request.user)
 
