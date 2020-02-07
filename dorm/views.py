@@ -60,7 +60,7 @@ def dorm_users(request):
 
         dorm_user.save()
 
-    return render(request, template, {'dorm_users':DormUser.objects.filter(user=request.user), 'to_pay_amount':to_pay_amount(request.user)})
+    return HttpResponseRedirect(reverse("dorm:dorm_users"))
 
 def pay_bill(request):
     if not request.user.is_authenticated:
