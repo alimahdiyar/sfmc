@@ -43,9 +43,13 @@
     <div class="text_main_content">
 
     <p>نام : {{dorm_user.name}}</p>
-    <p>جنسیت  : {{dorm_user.sex}}</p>
-    <p>13 اسفند : {{dorm_user.day1}}</p>
-    <p>14 اسفند : {{dorm_user.day2}}</p>
+    <p>جنسیت  : {% if dorm_user.sex %}خانم{% else %}آقا{%endif%}</p>
+    {% if dorm_user.day1 %}
+    <p>13 اسفند</p>
+    {% endif %}
+    {% if dorm_user.day2 %}
+    <p>14 اسفند</p>
+    {% endif %}
 
     </div>
 </div>
@@ -61,11 +65,7 @@
 
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
     <div class="fourteen wide mobile ten wide tablet ten wide computer column">
-        {% if registration_error %}
-        <div class="ui message error" style="text-align: right;">
-            {{ registration_error }}
-        </div>
-        {% endif %}
+
 
         <form @submit="submitForm" class="ui from rtl" id="reg-form" method="POST" enctype="multipart/form-data" action="">
         {% csrf_token %}
