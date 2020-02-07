@@ -18,7 +18,7 @@ bank_url = sec.p_bank_url
 payment_code = sec.p_payment_code
 
 def home(request):
-    return HttpResponseRedirect(reverse('dashboard'))
+    return HttpResponseRedirect(reverse('login'))
 
 def to_pay_amount(user):
     payed_amount = 0
