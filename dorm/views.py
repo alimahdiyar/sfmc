@@ -48,6 +48,7 @@ def dorm_users(request):
             user=request.user,
             name=request.POST[f'member_{active_member}_name'].strip(),
             sex=int(request.POST[f'member_{active_member}_sex'].strip()),
+            national_id=request.POST[f'member_{active_member}_national_id'].strip(),
             student_card_image=request.FILES[f'member_{active_member}_student_card_image'],
             national_card_image=request.FILES[f'member_{active_member}_national_card_image']
         )

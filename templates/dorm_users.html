@@ -53,7 +53,7 @@
         <p>14 اسفند</p>
         {% endif %}
 
-        {{ MEDIA_URL }}{{dorm_user.student_card_image}}
+        {{dorm_user.student_card_image}}
       </div>
     </div>
   </div>
@@ -90,6 +90,9 @@
                       <div class="field">
                         <div class="ui input">
                             <input type="text" v-model="member.name" required placeholder="نام و نام خانوادگی" :name="'member_' + i + '_name'">
+                        </div>
+                        <div class="ui input">
+                            <input type="tel" pattern="[0-9]{10}" v-model="member.national_id" required placeholder="کد ملی" :name="'member_' + i + '_national_id'">
                         </div>
                         <div class="inline fields">
                             <label>جنسیت</label>
@@ -184,6 +187,7 @@
             addMember(){
                 const newMember = {
                     name: '',
+                    national_id: '',
                     sex: false,
                     day1: false,
                     day2: false,
