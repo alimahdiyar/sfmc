@@ -44,9 +44,13 @@
         <div class="ui piled segment" id="content_main_content_second">
             <div class="text_main_content">
               <h3 class="ui right aligned header" style="margin-top: 13px;">صورت حساب</h3>
-              <p>هزینه قابل پرداخت</p>
-              <p>{{to_pay_amount}}</p>
-              <a href="{% url 'dorm:pay_bill' %}">پرداخت</a>
+                {% if to_pay_amount %}
+                <p>هزینه قابل پرداخت</p>
+                <p>{{to_pay_amount}}</p>
+                <a href="{% url 'dorm:pay_bill' %}">پرداخت</a>
+                {% else %}
+                <p>شما همه مبلغ خوابگاه را پرداخت کردید</p>
+                {% endif %}
             </div>
         </div>
     </div>
