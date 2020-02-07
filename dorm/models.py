@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 
 
 def student_card_image_upload_location(instance, filename):
-    return "dorm_user/%s/student-card.%s" % (instance.national_id, filename.split('.')[-1])
+    return "dorm_user/%s/%s/student-card.%s" % (instance.user.pk, instance.national_id, filename.split('.')[-1])
 
 
 def national_card_image_upload_location(instance, filename):
-    return "dorm_user/%s/national-card.%s" % (instance.national_id, filename.split('.')[-1])
+    return "dorm_user/%s/%s/national-card.%s" % (instance.user.pk, instance.national_id, filename.split('.')[-1])
 
 
 class DormPayment(models.Model):

@@ -45,6 +45,7 @@
     <div class="ui piled segment" id="content_main_content_second">
       <div class="text_main_content">
         <p>نام : {{dorm_user.name}}</p>
+        <p>کد ملی : {{dorm_user.national_id}}</p>
         <p>جنسیت  : {% if dorm_user.sex %}خانم{% else %}آقا{%endif%}</p>
         {% if dorm_user.day1 %}
         <p>13 اسفند</p>
@@ -52,8 +53,8 @@
         {% if dorm_user.day2 %}
         <p>14 اسفند</p>
         {% endif %}
-
-        {{dorm_user.student_card_image}}
+        <img style="width: 300px;height: 200px;" src="/media/{{dorm_user.student_card_image}}">
+        <img style="width: 300px;height: 200px;" src="/media/{{dorm_user.student_card_image}}">
       </div>
     </div>
   </div>
