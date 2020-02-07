@@ -41,20 +41,22 @@
 {% for dorm_user in dorm_users %}
 
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
-    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+  <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+    <div class="ui piled segment" id="content_main_content_second">
+      <div class="text_main_content">
+        <p>نام : {{dorm_user.name}}</p>
+        <p>جنسیت  : {% if dorm_user.sex %}خانم{% else %}آقا{%endif%}</p>
+        {% if dorm_user.day1 %}
+        <p>13 اسفند</p>
+        {% endif %}
+        {% if dorm_user.day2 %}
+        <p>14 اسفند</p>
+        {% endif %}
 
-    <p>نام : {{dorm_user.name}}</p>
-    <p>جنسیت  : {% if dorm_user.sex %}خانم{% else %}آقا{%endif%}</p>
-    {% if dorm_user.day1 %}
-    <p>13 اسفند</p>
-    {% endif %}
-    {% if dorm_user.day2 %}
-    <p>14 اسفند</p>
-    {% endif %}
-
-    {{dorm_user.student_card_image}}
-
+        {{ MEDIA_URL }}{{dorm_user.student_card_image}}
+      </div>
     </div>
+  </div>
 </div>
 {% endfor %}
 
