@@ -145,7 +145,8 @@ def start_transaction(request, amount):
     if status:
         ref_id = result.split(',')[1].strip()
     else:
-        return HttpResponse('bank connection error: ' + status + '\n' + error_message)
+        return HttpResponse(f'bank connection error: {status}\n\
+                              error_message: {error_message}')
     dorm_payment.ref_id= ref_id
     dorm_payment.save()
     #do sth
