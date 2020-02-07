@@ -39,7 +39,7 @@ class DormUser(models.Model):
 
     day1 = models.BooleanField(default=0)
     day2 = models.BooleanField(default=0)
-    national_id = model.CharField(max_length=20)
+    national_id = models.CharField(max_length=20)
     student_card_image = models.ImageField(upload_to=student_card_image_upload_location,
                                            null=True,
                                            blank=True,
