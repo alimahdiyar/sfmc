@@ -96,23 +96,17 @@
                 <span id="home_span">
                 <i class="angle down icon" id="icon_home"></i>
                 پنل کاربری
-                </span>
-                <div class="menu" id="home_menu">
-                    <a class="item item_home" href="{% url 'index' %}">صفحه اصلی</a>
-                    <a class="item item_home" href="{% url 'dashboard' %}">پنل کاربری</a>
+
                     {% if user.is_authenticated %}
                         <a class="item item_home" href="{% url 'logout' %}">خروج</a>
+                    {% else %}
+                        <a class="item item_home" href="{% url 'login' %}">ورود</a>
                     {% endif %}
-                </div>
+
+                  </span>
             </div>
 
-            <!-- <a id="sign_fm" href="#">
-                ثبت نام
-            </a>
 
-            <a id="login_fm" href="#">
-                ورود
-            </a> -->
 
         </div>
 
