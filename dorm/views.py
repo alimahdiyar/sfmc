@@ -41,7 +41,7 @@ def dorm_users(request):
     template = "dorm_users.html"
 
     if request.method != "POST":
-        return render(request, template, {'dorm_users':DormUser.objects.filter(user=request.user), 'to_pay_amount':to_pay_amount(request.user)})
+        return render(request, template, {'dorm_users':DormUser.objects.filter(user=request.user), 'to_pay_amount':to_pay_amount(request.user)//10000 })
 
     for active_member in request.POST['active_members'].split(','):
         dorm_user = DormUser.objects.create(
