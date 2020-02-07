@@ -38,6 +38,22 @@
 
 {% block content %}
 
+
+<div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
+    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        <div class="ui piled segment" id="content_main_content_second">
+            <div class="text_main_content">
+              <h3 class="ui right aligned header" style="margin-top: 13px;">صورت حساب</h3>
+              <p>هزینه قابل پرداخت</p>
+              <p>{{to_pay_amount}}</p>
+              <a href="{% url 'dorm:pay_bill' %}">پرداخت</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 {% for dorm_user in dorm_users %}
 
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
@@ -54,7 +70,7 @@
         <p>14 اسفند</p>
         {% endif %}
         <img style="width: 300px;height: 200px;" src="/media/{{dorm_user.student_card_image}}">
-        <img style="width: 300px;height: 200px;" src="/media/{{dorm_user.student_card_image}}">
+        <img style="width: 300px;height: 200px;" src="/media/{{dorm_user.national_card_image}}">
       </div>
     </div>
   </div>
@@ -63,20 +79,6 @@
 
 <div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
     <div class="fourteen wide mobile ten wide tablet ten wide computer column">
-        <div class="ui piled segment" id="content_main_content_second">
-            <div class="text_main_content">
-              <p>هزینه قابل پرداخت</p>
-              <p>{{to_pay_amount}}</p>
-              <a href="{% url 'dorm:pay_bill' %}">پرداخت</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
-    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
-
-
         <form @submit="submitForm" class="ui from rtl" id="reg-form" method="POST" enctype="multipart/form-data" action="">
         {% csrf_token %}
         <input type="hidden" name="form_data_json" :value="formDataJson" />
