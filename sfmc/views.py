@@ -5,9 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
-
-from competition.models import Profile
-
+from dorm.models import DormUser
 
 def register_view(request):
     template = 'register.html'
@@ -15,7 +13,7 @@ def register_view(request):
         return HttpResponseRedirect(reverse('index'))
 
     if request.method == 'POST':
-        if User.objects.filter(username=request.POST['manager_email'].strip()).exists():
+        if User.objects.filter(username=request.POST['national_id'].strip()).exists():
             return render(request, template,
                   {
                       'registration_error': 'ایمیل سرگروه از قبل وجود دارد',
@@ -23,17 +21,27 @@ def register_view(request):
                   })
         with transaction.atomic():
             the_user = User.objects.create_user(
-                username=request.POST['manager_email'].strip(),
-                password=request.POST['manager_password_1'],
+                username=request.POST['national_id'].strip(),
+                password=request.POST['password_1'],
             )
 
-            the_manager = Profile.objects.create(
+
+            dorm_user = DormUser.objects.create(
                 user=the_user,
-                name=request.POST['manager_name'].strip(),
-                national_id=request.POST['manager_national_id'].strip(),
-                phone_number=request.POST['manager_phone_number'].strip(),
-                email=request.POST['manager_email'].strip(),
+                name=request.POST['name'].strip(),
+                gender=int(request.POST['gender'].strip()),
+                national_id=request.POST['national_id'].strip(),
+                student_card_image=request.FILES['student_card_image'],
+                national_card_image=request.FILES['national_card_image']
             )
+            if 'day1' in request.POST:
+                if request.POST['day1']:
+                    dorm_user.day1=True
+            if 'day2' in request.POST:
+                if request.POST['day2']:
+                    dorm_user.day2=True
+
+            dorm_user.save()
 
         login(request, the_user)
         return HttpResponseRedirect(reverse('index'))

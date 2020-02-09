@@ -46,17 +46,17 @@ def dorm_users(request):
     for active_member in request.POST['active_members'].split(','):
         dorm_user = DormUser.objects.create(
             user=request.user,
-            name=request.POST[f'member_{active_member}_name'].strip(),
-            sex=int(request.POST[f'member_{active_member}_sex'].strip()),
-            national_id=request.POST[f'member_{active_member}_national_id'].strip(),
-            student_card_image=request.FILES[f'member_{active_member}_student_card_image'],
-            national_card_image=request.FILES[f'member_{active_member}_national_card_image']
+            name=request.POST['name'].strip(),
+            gender=int(request.POST['gender'].strip()),
+            national_id=request.POST['national_id'].strip(),
+            student_card_image=request.FILES['student_card_image'],
+            national_card_image=request.FILES['national_card_image']
         )
-        if f'member_{active_member}_day1' in request.POST:
-            if request.POST[f'member_{active_member}_day1']:
+        if 'day1' in request.POST:
+            if request.POST['day1']:
                 dorm_user.day1=True
-        if f'member_{active_member}_day2' in request.POST:
-            if request.POST[f'member_{active_member}_day2']:
+        if 'day2' in request.POST:
+            if request.POST['day2']:
                 dorm_user.day2=True
 
         dorm_user.save()

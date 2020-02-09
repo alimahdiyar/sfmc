@@ -35,7 +35,7 @@ class DormUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="dorm_users")
 
     name = models.CharField(max_length= 150)
-    sex = models.BooleanField(default = 0)# 0: male, 1:female
+    gender = models.BooleanField(default = 0)# 0: male, 1:female
 
     day1 = models.BooleanField(default=0)
     day2 = models.BooleanField(default=0)
