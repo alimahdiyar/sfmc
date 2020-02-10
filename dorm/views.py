@@ -135,7 +135,7 @@ def start_transaction(request, amount):
     callback_url = furl(request.build_absolute_uri(reverse("dorm:callback")))
 
     dorm_payment = DormPayment.objects.create(user=request.user, amount=amount)
-    order_id = dorm_payment.pk + 13000
+    order_id = dorm_payment.pk + 14000
 
     result = client.service.bpPayRequest(terminal_id, user_name, user_password, order_id,amount,
                                          str(local_date), str(local_time), '', callback_url, payment_code)
