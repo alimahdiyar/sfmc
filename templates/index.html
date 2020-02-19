@@ -77,6 +77,23 @@
             <span class="item" style="font-weight: bold">۱۳۹۸/۱۱/۲۹: مهلت ارسال آثار و ثبت نام تا 5 اسفند تمدید شد.</span>
         </div>
 
+
+        <div class="text_content_more_info show-news-modal show_news_modal_2">
+            <i class="angle double left icon icon_judgement"></i>
+            <a class="item">۱۳۹۸/۱۱/۳۰: نحوه داوری محور نماهنگ</a><br />
+        </div>
+
+        <div class="text_content_more_info show-news-modal show_news_modal_3">
+            <i class="angle double left icon icon_judgement"></i>
+            <a class="item">۱۳۹۸/۱۱/۳۰: ارائه جدول زمانبندی حضور تیمهای شرکت کننده</a><br />
+        </div>
+        
+
+        <div class="text_content_more_info show-news-modal show_news_modal_4">
+            <i class="angle double left icon icon_judgement"></i>
+            <a class="item">۱۳۹۸/۱۱/۳۰: ثبت نام اعضاء محترم هیات علمی دانشگاهها و موسسات آموزش عالی</a><br />
+        </div>
+
         <div class="text_content_more_info">
             <i class="angle double left icon icon_judgement"></i>
             <a class="item" href="{% url 'hovercraft' %}#news">۱۳۹۸/۱۱/۲۹: هاورکرافت:</a> از آنجا که ماموریت هاورکرافت آتش نشان است، آتش (شعله شمع) باید دقیقا با پرتاب آب خاموش شود.
@@ -675,6 +692,49 @@
       </div>
 </div>
 
+<div class="ui small modal news-modal" id="news_modal_2">
+
+    <div class="header">نحوه داوری محور نماهنگ</div>
+    <div class="content">
+        برای محور نماهنگ پس دریافت آثار و ارسال آنها به داوران، بهترین نماهنگها انتخاب شده و در روز افتتاحیه مسابقات به اکران عمومی در می آیند. پس از امتیاز دهی توسط حضار، بهترین نماهنگها بر اساس جدول امتیازبندی نماهنگ انتخاب میشوند.    
+    </div>
+    <div class="actions" style="text-align: center;">
+        <div class="ui primary right labeled icon button" id="close_news_modal_1">
+          بستن
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+</div>
+
+<div class="ui small modal news-modal" id="news_modal_3">
+
+    <div class="header">ارائه جدول زمانبندی حضور تیمهای شرکت کننده</div>
+    <div class="content">
+        به دلیل محدودیت زمانی مسابقات، قرعه کشی برای زمان حضور هر یک از تیمهای شرکت کننده در کلیه محورهای مسابقات (به جز نماهنگ) توسط تیم داوری انجام شده و یک روز قبل از شروع مسابقات، اطلاع رسانی می گردد.
+    </div>
+    <div class="actions" style="text-align: center;">
+        <div class="ui primary right labeled icon button" id="close_news_modal_1">
+          بستن
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+</div>
+
+<div class="ui small modal news-modal" id="news_modal_4">
+
+    <div class="header">ثبت نام اعضاء محترم هیات علمی دانشگاهها و موسسات آموزش عالی</div>
+    <div class="content">
+        سلام و عرض ادب<br />
+لطفا اعضاء محترم هیات علمی دانشگاهها و موسسات آموزش عالی که علاقه مند به حضور در مسابقات هستند (به جز اعضاء محترم هیات امنا و داوران گرامی مسابقات) با مراجعه به قسمت ثبت نام آزاد   سازمانی، اقدام به ثبت نام نمایند تا تدارکات مورد نیاز برای حضور سروران گرانقدر تثبیت شود.
+    </div>
+    <div class="actions" style="text-align: center;">
+        <div class="ui primary right labeled icon button" id="close_news_modal_1">
+          بستن
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+</div>
+
 {% endblock bottomcontent %}
 
 {% block scripts  %}
@@ -685,6 +745,24 @@
             })
             $("#close_news_modal_1").click(function(){
                 $("#news_modal_1").modal('hide');
+            })
+            $(".show_news_modal_2").click(function(){
+                $("#news_modal_2").modal('show');
+            })
+            $("#close_news_modal_2").click(function(){
+                $("#news_modal_2").modal('hide');
+            })
+            $(".show_news_modal_3").click(function(){
+                $("#news_modal_3").modal('show');
+            })
+            $("#close_news_modal_3").click(function(){
+                $("#news_modal_3").modal('hide');
+            })
+            $(".show_news_modal_4").click(function(){
+                $("#news_modal_4").modal('show');
+            })
+            $("#close_news_modal_4").click(function(){
+                $("#news_modal_4").modal('hide');
             })
         })
     </script>
