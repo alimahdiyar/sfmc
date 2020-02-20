@@ -159,6 +159,10 @@ class Adviser(models.Model):
     email = models.EmailField(max_length=100)
     university = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name + " | " + self.email + " | " + self.university
+
+
 
 class Team(models.Model):
     manager = models.ForeignKey(Participant, null=True, blank=True, on_delete=models.PROTECT, related_name="teams")
@@ -177,7 +181,9 @@ class Team(models.Model):
             return self.uploaded_file.url
 
     def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return self.manager.name
+        name = self.name if self.name else self.manager.name
+        if self.team_type == TeamTypeConsts.PARTICIPANT:
+            return name + " | " + str(self.competition_field)
+        for team_type in TeamTypeConsts.states:
+            if team_type[0] == self.team_type:
+                return name + " | " + team_type[1]
