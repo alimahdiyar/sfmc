@@ -72,6 +72,11 @@
 
     <div style="padding: 15px; line-height: 30px;">
         
+        <div class="text_content_more_info show-news-modal show_news_modal_5">
+            <i class="angle double left icon icon_judgement"></i>
+            <a class="item">۱۳۹۸/۱۲/۰۵: اطلاعیه تعویق مسابقات سیالات</a><br />
+        </div>
+
         <div class="text_content_more_info">
             <i class="angle double left icon icon_judgement"></i>
             <span class="item" style="font-weight: bold">۱۳۹۸/۱۱/۲۹: مهلت ارسال آثار و ثبت نام تا 5 اسفند تمدید شد.</span>
@@ -82,6 +87,7 @@
             <i class="angle double left icon icon_judgement"></i>
             <a class="item">۱۳۹۸/۱۱/۳۰: نحوه داوری محور نماهنگ</a><br />
         </div>
+
 
         <div class="text_content_more_info show-news-modal show_news_modal_3">
             <i class="angle double left icon icon_judgement"></i>
@@ -735,6 +741,24 @@
       </div>
 </div>
 
+<div class="ui small modal news-modal" id="news_modal_5">
+
+    <div class="header">اطلاعیه تعویق مسابقات سیالات</div>
+    <div class="content">
+        با سلام و دعای خیر<br />
+        احتراما با توجه به بخشنامه وزارت علوم، تحقیقات و فناوری، برگزاری مسابقات تا اطلاع ثانوی ملغی شده و زمان برگزاری آن با رعایت فاصله زمانی لازم، در همین وب سایت اطلاع رسانی خواهد شد. همچنین با توجه به تعطیلی برخی دانشگاههای کشور در هفته جاری، مهلت ارسال آثار نیز تا 15 اسفندماه تمدید میگردد.<br />
+        با آرزوی سلامتی و توفیق الهی<br />
+        سید محراب امیری<br />
+        دبیر پنجمین دوره مسابقات مکانیک سیالات    
+    </div>
+    <div class="actions" style="text-align: center;">
+        <div class="ui primary right labeled icon button" id="close_news_modal_5">
+          بستن
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+</div>
+
 {% endblock bottomcontent %}
 
 {% block scripts  %}
@@ -763,6 +787,12 @@
             })
             $("#close_news_modal_4").click(function(){
                 $("#news_modal_4").modal('hide');
+            })
+            $(".show_news_modal_5").click(function(){
+                $("#news_modal_5").modal('show');
+            })
+            $("#close_news_modal_5").click(function(){
+                $("#news_modal_5").modal('hide');
             })
         })
     </script>
