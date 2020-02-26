@@ -1,6 +1,7 @@
 from django.contrib import admin
-
-# Register your models here.
 from invoice.models import Invoice
 
-admin.site.register(Invoice)
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = ['name', 'amount', 'success', 'start_date', 'update_date', 'ref_id']
+
+admin.site.register(Invoice, InvoiceAdmin)

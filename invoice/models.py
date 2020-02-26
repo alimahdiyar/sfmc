@@ -20,6 +20,10 @@ class Invoice(models.Model):
     sale_referenceId = models.CharField(max_length=40, null=True, blank=True)
 
 
+    @property
+    def name(self):
+        return self.owner.name
+
     def __str__(self):
         return self.owner.name + " | " + str(self.amount) + " | " + ('موفق' if self.success else 'ناموفق')
     #Do whatever you want here
