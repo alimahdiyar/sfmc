@@ -30,6 +30,9 @@ class DormPayment(models.Model):
     sale_orderId = models.CharField(max_length=40, null=True, blank=True)
     sale_referenceId = models.CharField(max_length=40, null=True, blank=True)
 
+    @property
+    def name(self):
+        return self.user.dorm_users.first().name
 
 class DormUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="dorm_users")
