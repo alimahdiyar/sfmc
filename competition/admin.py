@@ -10,7 +10,7 @@ class AdviserAdmin(admin.ModelAdmin):
     list_display = ['name', 'email', 'university']
 
 class ParticipantAdmin(admin.ModelAdmin):
-    list_display = ['name', 'phone_number']
+    list_display = ['name', 'email', 'phone_number']
 
 admin.site.register(CompetitionField)
 admin.site.register(Participant, ParticipantAdmin)
