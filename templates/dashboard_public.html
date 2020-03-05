@@ -62,7 +62,7 @@
                     <span style="font-size: 17px;">{{ user.profile.payment_amount }} تومان</span>
                     <br />
                     <br />
-                    <a class="ui primary button" href="{% url 'invoice:payment' %}">پرداخت</a>
+                    {% comment %} <a class="ui primary button" href="{% url 'invoice:payment' %}">پرداخت</a> {% endcomment %}
                 {% endif %}
 
             </div>

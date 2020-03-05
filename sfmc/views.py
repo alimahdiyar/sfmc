@@ -5,21 +5,23 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
+from django.http import Http404
 
 from competition.models import CompetitionField, Participant, Team, TeamTypeConsts, Adviser
 
 
 def dashboard_view(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('register'))
+        # return HttpResponseRedirect(reverse('register'))
+        raise Http404
     the_profile = request.user.profile
     teams = the_profile.teams.all()
     if teams[0].team_type == TeamTypeConsts.PARTICIPANT:
-        if request.method == 'POST':
-            the_team = Team.objects.get(pk = int(request.POST['team_pk']))
-            the_team.upload_date = timezone.now()
-            the_team.uploaded_file = request.FILES['team_uploaded_file']
-            the_team.save()
+        # if request.method == 'POST':
+        #     the_team = Team.objects.get(pk = int(request.POST['team_pk']))
+        #     the_team.upload_date = timezone.now()
+        #     the_team.uploaded_file = request.FILES['team_uploaded_file']
+        #     the_team.save()
         return render(request, 'dashboard_team.html',
                       {'teams': teams})
     return render(request, 'dashboard_public.html',
