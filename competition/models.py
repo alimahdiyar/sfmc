@@ -175,15 +175,30 @@ class Team(models.Model):
     upload_date = models.DateTimeField(null=True, blank=True)
     uploaded_file = models.FileField(upload_to=team_uploaded_file_upload_location,null=True, blank=True)
     
+
+    @property
+    def payment_done(self):
+        for invoice in self.manager.invoices.all():
+            if invoice.success:
+                return 'Y'
+        return 'N'
+
+    @property
+    def team_name(self):
+        return self.name if self.name else self.manager.name
+
+    @property
+    def field_or_type(self):
+        if self.team_type == TeamTypeConsts.PARTICIPANT:
+            return str(self.competition_field)
+        for team_type in TeamTypeConsts.states:
+            if team_type[0] == self.team_type:
+                return team_type[1]
+
     @property
     def uploaded_file_url(self):
         if self.uploaded_file and hasattr(self.uploaded_file, 'url'):
             return self.uploaded_file.url
 
     def __str__(self):
-        name = self.name if self.name else self.manager.name
-        if self.team_type == TeamTypeConsts.PARTICIPANT:
-            return name + " | " + str(self.competition_field)
-        for team_type in TeamTypeConsts.states:
-            if team_type[0] == self.team_type:
-                return name + " | " + team_type[1]
+        return self.team_name + ' | ' + self.field_or_type

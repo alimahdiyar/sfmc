@@ -3,7 +3,7 @@ from .models import CompetitionField, Participant, Team, Adviser
 # Register your models here.
 
 class TeamAdmin(admin.ModelAdmin):
-    # list_display = ['name', 'competition_field']
+    list_display = ['team_name', 'field_or_type', 'payment_done']
     list_filter = ['competition_field']
 
 class AdviserAdmin(admin.ModelAdmin):
