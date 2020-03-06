@@ -27,11 +27,13 @@ def dashboard_view(request):
 
 
 def register_view(request):
-    # template = 'register.html'
     template = 'register_finished.html'
     if request.user.is_authenticated and not request.user.is_superuser:
         return HttpResponseRedirect(reverse('dashboard'))
-
+    
+    return render(request, template)
+    
+    # template = 'register.html'
     # valid_team_types = [{'title': team_type[1], 'value': team_type[0]} for team_type in TeamTypeConsts.states]
 
     # if request.method == 'POST':
@@ -128,7 +130,6 @@ def register_view(request):
     #                   'valid_team_types': valid_team_types,
     #                   'registration_error': None
     #               })
-    return render(request, template)
 
 
 def login_view(request):
