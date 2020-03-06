@@ -1,0 +1,51 @@
+{% extends 'panel_base.html' %}
+{% load static %}
+
+{% block styles %}
+<style>
+.field input[type=text]{
+    border: 1px solid #cdcdcd;
+}
+.ui.input {
+    padding: 5px;
+}
+.rtl {
+    flex-direction: row-reverse;
+    text-align: right;
+    direction: rtl;
+}
+
+#reg-form input[type=text] {
+    text-align: right;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-container .checkbox-header {
+    padding: 10px 2px;
+    font-weight: bold;
+}
+
+.checkbox-container .field {
+    padding: 10px;
+}
+</style>
+{% endblock styles %}
+
+
+{% block content %}
+
+<div dir="rtl" class="ui center aligned grid" style="direction: rtl; padding-top: 100px; background-color: #fafafa;">
+    <div class="fourteen wide mobile ten wide tablet ten wide computer column">
+        <div class="ui message info" style="text-align: right;">
+            مهلت ثبت نام به پایان رسیده است
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}
