@@ -72,6 +72,11 @@
 
     <div style="padding: 15px; line-height: 30px;">
         
+        <div class="text_content_more_info show-news-modal show_news_modal_6">
+            <i class="angle double left icon icon_judgement"></i>
+            <a class="item">۱۳۹۸/۱۲/۱۷: تمدید مجدد مهلت ارسال آثار و ثبت نام در مسابقات و ثبت نام اسکان تا 22 اسفندماه</a><br />
+        </div>
+        
         <div class="text_content_more_info show-news-modal show_news_modal_5">
             <i class="angle double left icon icon_judgement"></i>
             <a class="item">۱۳۹۸/۱۲/۰۵: اطلاعیه تعویق مسابقات سیالات</a><br />
@@ -759,6 +764,20 @@
       </div>
 </div>
 
+<div class="ui small modal news-modal" id="news_modal_6">
+
+    <div class="header">اطلاعیه تعویق مسابقات سیالات</div>
+    <div class="content">
+        با توجه به تقاضای تعدادی از دانشجویان محترم برای شرکت در پنجمین دوره مسابقات، امکان ثبت نام و ارسال آثار و همچنین ثبت نام برای اسکان، تا تاریخ 22 اسفندماه تمدید می گردد. خواهشمند است تا زمان مذکور ثبت نام خود را نهایی فرمایید چراکه این مهلت مجددا تمدید نخواهد شد.
+    </div>
+    <div class="actions" style="text-align: center;">
+        <div class="ui primary right labeled icon button" id="close_news_modal_6">
+          بستن
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+</div>
+
 {% endblock bottomcontent %}
 
 {% block scripts  %}
@@ -793,6 +812,12 @@
             })
             $("#close_news_modal_5").click(function(){
                 $("#news_modal_5").modal('hide');
+            })
+            $(".show_news_modal_6").click(function(){
+                $("#news_modal_6").modal('show');
+            })
+            $("#close_news_modal_6").click(function(){
+                $("#news_modal_6").modal('hide');
             })
         })
     </script>
