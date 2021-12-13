@@ -17,7 +17,7 @@ isodate==0.6.0
 isort==4.3.21
 jedi==0.15.2
 lazy-object-proxy==1.4.2
-lxml==4.4.1
+lxml==4.6.5
 mccabe==0.6.1
 orderedmultidict==1.0.1
 parso==0.5.2
